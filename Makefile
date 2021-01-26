@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 16:22:45 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 16:30:27 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,11 @@ MAKE_SUB	=	make -C libs/
 
 DEBUG_OUT	=	debug.out
 
+DEBUG_DIR	=	sources/debug_files/
+
 DEBUG_FILES	=	debug_main.o
+
+DEBUG_FULL	=	$(addprefix $(DEBUG_DIR), $(DEBUG_FILES))
 
 INC_DIR		=	includes/
 
@@ -72,13 +76,13 @@ norme:			fclean
 				norminette libs/libft/
 				norminette sources/
 
-debug:			libft gnl mlx $(DEBUG_FILES) $(OBJS)
-				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/main.o, $(OBJS)) $(DEBUG_FILES) -o $(DEBUG_OUT)
+debug:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
+				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
 				./$(DEBUG_OUT)
 
 clean:
 				$(RM) $(OBJS)
-				$(RM) $(DEBUG_FILES)
+				$(RM) $(DEBUG_FULL)
 				$(RM) libmlx.dylib
 				$(MAKE_SUB)libft/ clean
 				$(MAKE_SUB)gnl/ clean
@@ -87,7 +91,7 @@ clean:
 fclean:
 				$(RM) $(OBJS)
 				$(RM) $(NAME)
-				$(RM) $(DEBUG_FILES)
+				$(RM) $(DEBUG_FULL)
 				$(RM) $(DEBUG_OUT)
 				$(RM) libmlx.dylib
 				$(MAKE_SUB)libft/ fclean
