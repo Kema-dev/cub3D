@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 13:32:58 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/26 14:45:18 by jjourdan         ###   ########lyon.fr   */
+/*   Created: 2021/01/26 14:18:39 by jjourdan          #+#    #+#             */
+/*   Updated: 2021/01/26 14:44:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include "stdio.h"
-#include "sys/types.h"
+#ifndef _CUB3D_H
+# define _CUB3D_H
 
-int	main(void)
-{
-	void *wind = mlx_init();
-	mlx_new_window(wind, 800, 800, "TEST");
-	return (0);
-}
+# include "get_next_line.h"
+# include "libft.h"
+# include  <mlx.h>
+
+
+
+#endif

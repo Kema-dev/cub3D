@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 13:54:34 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 14:33:14 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
 OBJS		=	$(SRCS_FULL:.c=.o)
 
-LIBS		=	-L libs/mlx/mlx_mms -l mlx -framework OpenGL -framework AppKit -L libs/gnl -l gnl -L libs/libft -l ft
+LIBS		=	-L libs/gnl -l gnl -L libs/libft -l ft
 
 all:			libft gnl mlx $(NAME)
 
@@ -63,15 +63,12 @@ libft:
 gnl:
 				$(MAKE_SUB)gnl/
 
-mlx:
-				$(MAKE_SUB)mlx/mlx_mms/
-
 norme:
 				norminette libs/gnl/
 				norminette libs/libft/
 				norminette sources/
 
-debug:			all
+debug:
 				$(CC) $(DEBUG_FLAGS) -I includes/ $(LIBS) $(DEBUG_FILES) -o $(DEBUG_OUT)
 				#printf "\033c"
 				./$(DEBUG_OUT)
@@ -80,12 +77,10 @@ clean:
 				$(RM) $(OBJS)
 				$(MAKE_SUB)libft/ clean
 				$(MAKE_SUB)gnl/ clean
-				$(MAKE_SUB)mlx/mlx_mms/ clean
 
 fclean:
 				$(MAKE_SUB)libft/ fclean
 				$(MAKE_SUB)gnl/ fclean
-				$(MAKE_SUB)mlx/mlx_mms/ clean
 				$(RM) $(NAME)
 				$(RM) $(DEBUG_OUT)
 

@@ -6,13 +6,13 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 12:00:42 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/20 23:23:53 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 14:32:16 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_get_save(char *save)
+char	*ft_gnl_get_save(char *save)
 {
 	char	*out;
 	size_t	i;
@@ -29,7 +29,7 @@ char	*ft_get_save(char *save)
 		free(save);
 		return (0);
 	}
-	if (!(out = malloc(sizeof(char) * (ft_strlen(save) - i + 1))))
+	if (!(out = malloc(sizeof(char) * (ft_gnl_strlen(save) - i + 1))))
 		return (0);
 	i++;
 	while (save[i] != 0)
@@ -39,7 +39,7 @@ char	*ft_get_save(char *save)
 	return (out);
 }
 
-char	*ft_get_line(char *save)
+char	*ft_gnl_get_line(char *save)
 {
 	int		i;
 	char	*out;
@@ -55,7 +55,7 @@ char	*ft_get_line(char *save)
 	return (out);
 }
 
-int		ft_error_exit(char *save, char *buf)
+int		ft_gnl_error_exit(char *save, char *buf)
 {
 	free(save);
 	free(buf);
@@ -72,16 +72,16 @@ int		get_next_line(int fd, char **line)
 	if ((fd < 0) || (!line) || (BUFFER_SIZE <= 0) || (!(buf = \
 					malloc(sizeof(char) * (BUFFER_SIZE + 1)))))
 		return (-1);
-	while ((ft_new_line(save) != 0) && (head != 0))
+	while ((ft_gnl_new_line(save) != 0) && (head != 0))
 	{
 		if ((head = read(fd, buf, BUFFER_SIZE)) < 0)
-			return (ft_error_exit(save, buf));
+			return (ft_gnl_error_exit(save, buf));
 		buf[head] = 0;
-		save = ft_strjoin(save, buf);
+		save = ft_gnl_strjoin(save, buf);
 	}
 	free(buf);
-	*line = ft_get_line(save);
-	save = ft_get_save(save);
+	*line = ft_gnl_get_line(save);
+	save = ft_gnl_get_save(save);
 	if (head != 0)
 		return (1);
 	free(save);
