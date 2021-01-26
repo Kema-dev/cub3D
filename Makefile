@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 14:33:14 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 15:19:38 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
 OBJS		=	$(SRCS_FULL:.c=.o)
 
-LIBS		=	-L libs/gnl -l gnl -L libs/libft -l ft
+LIBS		=	libs/mlx/mms/libmlx.dylib libs/gnl/libgnl.a libs/libft/libft.a
 
 all:			libft gnl mlx $(NAME)
 
@@ -63,12 +63,15 @@ libft:
 gnl:
 				$(MAKE_SUB)gnl/
 
+mlx:
+				$(MAKE_SUB)mlx/mms/
+
 norme:
 				norminette libs/gnl/
 				norminette libs/libft/
 				norminette sources/
 
-debug:
+debug:			libft gnl mlx
 				$(CC) $(DEBUG_FLAGS) -I includes/ $(LIBS) $(DEBUG_FILES) -o $(DEBUG_OUT)
 				#printf "\033c"
 				./$(DEBUG_OUT)
@@ -77,12 +80,15 @@ clean:
 				$(RM) $(OBJS)
 				$(MAKE_SUB)libft/ clean
 				$(MAKE_SUB)gnl/ clean
+				$(MAKE_SUB)mlx/mms/ clean
 
 fclean:
-				$(MAKE_SUB)libft/ fclean
-				$(MAKE_SUB)gnl/ fclean
+				$(RM) $(OBJS)
 				$(RM) $(NAME)
 				$(RM) $(DEBUG_OUT)
+				$(MAKE_SUB)libft/ fclean
+				$(MAKE_SUB)gnl/ fclean
+				$(MAKE_SUB)mlx/mms/ clean
 
 re:				fclean all
 
