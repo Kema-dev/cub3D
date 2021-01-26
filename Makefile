@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 15:19:38 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 15:35:46 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,18 +44,21 @@ INCLUDES	=	cub3d.h
 
 SRCS_DIR	=	sources/
 
-SRCS		=	
+SRCS		=	main.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
 OBJS		=	$(SRCS_FULL:.c=.o)
 
-LIBS		=	libs/mlx/mms/libmlx.dylib libs/gnl/libgnl.a libs/libft/libft.a
+LIBS		=	libs/mlx/mms/libmlx.dylib -framework OpenGL -framework AppKit libs/gnl/libgnl.a libs/libft/libft.a
 
 all:			libft gnl mlx $(NAME)
 
-$(NAME):		$(OBJS)
-				$(CC) $(FLAGS) -I includes/ $(OBJS) $(LIBS) -o $(NAME)
+%.o: %.c
+				$(CC) $(FLAGS) -I libs/mlx/mms/ -I includes/ -c $< -o $@
+
+$(NAME): $(OBJS)
+				$(CC) -L libs/mlx/mms/ -l mlx -framework OpenGL -framework AppKit $(LIBS) -o $(NAME)
 
 libft:
 				$(MAKE_SUB)libft/
@@ -71,7 +74,7 @@ norme:
 				norminette libs/libft/
 				norminette sources/
 
-debug:			libft gnl mlx
+debug:			libft gnl mlx $(DEBUG_FILES)
 				$(CC) $(DEBUG_FLAGS) -I includes/ $(LIBS) $(DEBUG_FILES) -o $(DEBUG_OUT)
 				#printf "\033c"
 				./$(DEBUG_OUT)
