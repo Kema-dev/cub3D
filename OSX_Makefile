@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 14:18:50 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 13:44:24 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,25 +50,12 @@ SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
 OBJS		=	$(SRCS_FULL:.c=.o)
 
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-MLX_VAR		=	tux/
-MLX_LIB		=	libmlx.a
-LIBS		=	-L . -l mlx -L /usr/lib -lXext -lX11 -lm -lz libs/gnl/libgnl.a libs/libft/libft.a
-	%.o: %.c
-				$(CC) $(FLAGS) -I/usr/include -I libs/mlx/tux -O3 -c $< -o $@
-endif
-
-
-ifeq ($(UNAME_S),Darwin)
-MLX_VAR		=	mms/
-MLX_LIB		=	libmlx.dylib
 LIBS		=	-L . -l mlx -framework OpenGL -framework AppKit libs/gnl/libgnl.a libs/libft/libft.a
-	%.o: %.c
-				$(CC) $(FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) -c $< -o $@
-endif
 
 all:			libft gnl mlx $(NAME)
+
+%.o: %.c
+				$(CC) $(FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
 				$(CC) $(LIBS) $(OBJS) -o $(NAME)
@@ -80,8 +67,8 @@ gnl:
 				$(MAKE_SUB)gnl/
 
 mlx:
-				$(MAKE_SUB)mlx/$(MLX_VAR)
-				mv libs/mlx/$(MLX_VAR)/$(MLX_LIB) ./$(MLX_LIB)
+				$(MAKE_SUB)mlx/mms/
+				mv libs/mlx/mms/libmlx.dylib ./libmlx.dylib
 
 norme:			fclean
 				printf "\033c"
@@ -105,7 +92,7 @@ fclean:
 				$(RM) $(NAME)
 				$(RM) $(DEBUG_FULL)
 				$(RM) $(DEBUG_OUT)
-				$(RM) $(MLX_LIB)
+				$(RM) libmlx.dylib
 				$(MAKE_SUB)libft/ fclean
 				$(MAKE_SUB)gnl/ fclean
 				$(MAKE_SUB)mlx/mms/ clean
