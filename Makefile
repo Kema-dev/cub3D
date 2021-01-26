@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 15:35:46 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 15:51:22 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ all:			libft gnl mlx $(NAME)
 				$(CC) $(FLAGS) -I libs/mlx/mms/ -I includes/ -c $< -o $@
 
 $(NAME): $(OBJS)
-				$(CC) -L libs/mlx/mms/ -l mlx -framework OpenGL -framework AppKit $(LIBS) -o $(NAME)
+				$(CC) -L libs/mlx/mms/ -l mlx -framework OpenGL -framework AppKit $(LIBS) $(OBJS) -o $(NAME)
 
 libft:
 				$(MAKE_SUB)libft/
@@ -69,7 +69,8 @@ gnl:
 mlx:
 				$(MAKE_SUB)mlx/mms/
 
-norme:
+norme:			fclean
+				printf "\033c"
 				norminette libs/gnl/
 				norminette libs/libft/
 				norminette sources/
