@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 14:18:50 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 14:31:59 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,23 +55,23 @@ ifeq ($(UNAME_S),Linux)
 MLX_VAR		=	tux/
 MLX_LIB		=	libmlx.a
 LIBS		=	-L . -l mlx -L /usr/lib -lXext -lX11 -lm -lz libs/gnl/libgnl.a libs/libft/libft.a
-	%.o: %.c
-				$(CC) $(FLAGS) -I/usr/include -I libs/mlx/tux -O3 -c $< -o $@
+O_TO_C		=	$(CC) $(FLAGS) -I/usr/include -I libs/mlx/tux -O3 -c $< -o $@
 endif
-
 
 ifeq ($(UNAME_S),Darwin)
 MLX_VAR		=	mms/
 MLX_LIB		=	libmlx.dylib
 LIBS		=	-L . -l mlx -framework OpenGL -framework AppKit libs/gnl/libgnl.a libs/libft/libft.a
-	%.o: %.c
-				$(CC) $(FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) -c $< -o $@
+O_TO_C		=	$(CC) $(FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) -c $< -o $@
 endif
 
 all:			libft gnl mlx $(NAME)
 
 $(NAME): $(OBJS)
 				$(CC) $(LIBS) $(OBJS) -o $(NAME)
+
+%.o: %.c
+				$(O_TO_C)
 
 libft:
 				$(MAKE_SUB)libft/
