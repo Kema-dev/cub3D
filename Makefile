@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 15:51:22 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 16:22:45 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,9 @@ MAKE_SUB	=	make -C libs/
 
 DEBUG_OUT	=	debug.out
 
-DEBUG_FILES	=	main.c
+DEBUG_FILES	=	debug_main.o
 
 INC_DIR		=	includes/
-
-INC_FULL	=	$(addprefix $(INC_DIR), $(INCLUDES))
-
-INCLUDES	=	cub3d.h
 
 SRCS_DIR	=	sources/
 
@@ -50,15 +46,15 @@ SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
 OBJS		=	$(SRCS_FULL:.c=.o)
 
-LIBS		=	libs/mlx/mms/libmlx.dylib -framework OpenGL -framework AppKit libs/gnl/libgnl.a libs/libft/libft.a
+LIBS		=	-L . -l mlx -framework OpenGL -framework AppKit libs/gnl/libgnl.a libs/libft/libft.a
 
 all:			libft gnl mlx $(NAME)
 
 %.o: %.c
-				$(CC) $(FLAGS) -I libs/mlx/mms/ -I includes/ -c $< -o $@
+				$(CC) $(FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
-				$(CC) -L libs/mlx/mms/ -l mlx -framework OpenGL -framework AppKit $(LIBS) $(OBJS) -o $(NAME)
+				$(CC) $(LIBS) $(OBJS) -o $(NAME)
 
 libft:
 				$(MAKE_SUB)libft/
@@ -68,6 +64,7 @@ gnl:
 
 mlx:
 				$(MAKE_SUB)mlx/mms/
+				mv libs/mlx/mms/libmlx.dylib ./libmlx.dylib
 
 norme:			fclean
 				printf "\033c"
@@ -75,13 +72,14 @@ norme:			fclean
 				norminette libs/libft/
 				norminette sources/
 
-debug:			libft gnl mlx $(DEBUG_FILES)
-				$(CC) $(DEBUG_FLAGS) -I includes/ $(LIBS) $(DEBUG_FILES) -o $(DEBUG_OUT)
-				#printf "\033c"
+debug:			libft gnl mlx $(DEBUG_FILES) $(OBJS)
+				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/main.o, $(OBJS)) $(DEBUG_FILES) -o $(DEBUG_OUT)
 				./$(DEBUG_OUT)
 
 clean:
 				$(RM) $(OBJS)
+				$(RM) $(DEBUG_FILES)
+				$(RM) libmlx.dylib
 				$(MAKE_SUB)libft/ clean
 				$(MAKE_SUB)gnl/ clean
 				$(MAKE_SUB)mlx/mms/ clean
@@ -89,7 +87,9 @@ clean:
 fclean:
 				$(RM) $(OBJS)
 				$(RM) $(NAME)
+				$(RM) $(DEBUG_FILES)
 				$(RM) $(DEBUG_OUT)
+				$(RM) libmlx.dylib
 				$(MAKE_SUB)libft/ fclean
 				$(MAKE_SUB)gnl/ fclean
 				$(MAKE_SUB)mlx/mms/ clean
