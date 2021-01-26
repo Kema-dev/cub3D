@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/26 16:30:27 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 15:23:24 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,6 @@ debug:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 clean:
 				$(RM) $(OBJS)
 				$(RM) $(DEBUG_FULL)
-				$(RM) libmlx.dylib
 				$(MAKE_SUB)libft/ clean
 				$(MAKE_SUB)gnl/ clean
 				$(MAKE_SUB)mlx/mms/ clean
