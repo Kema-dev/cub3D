@@ -5,12 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2021/01/27 10:43:10 by jjourdan         ###   ########lyon.fr    #
-=======
-#    Updated: 2021/01/26 15:23:24 by jjourdan         ###   ########lyon.fr    #
->>>>>>> 5ed80223d6830c8480b9b6a095cfa1b56ff162cd
+#    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
+#    Updated: 2021/01/27 10:46:13 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
