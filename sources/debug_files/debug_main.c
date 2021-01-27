@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/26 16:35:32 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 10:29:59 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-int     main(void)
+int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
