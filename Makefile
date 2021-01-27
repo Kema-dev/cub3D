@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/27 11:13:05 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/27 12:32:16 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCS_DIR	=	sources/
 
 SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_get_color_info.c \
-				ft_cub3d_shading_utils.c
+				ft_cub3d_shading_utils.c \
+				ft_cub3d_pixel_manipulation.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
