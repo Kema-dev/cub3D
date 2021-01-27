@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 12:30:13 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 13:11:01 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "get_next_line.h"
 # include "libft.h"
+# include <stdio.h>
 # include <mlx.h>
 
 # define RED	0x00FF0000
@@ -28,6 +29,11 @@ typedef struct	s_data {
 	int			line_length;
 	int			endian;
 }				t_data;
+
+typedef struct	s_vars {
+	void		*mlx;
+	void		*win;
+}				t_vars;
 
 /*
 ** get_color_info
@@ -51,5 +57,11 @@ int				ft_cub3d_add_shading_from_distance(int trgb, double distance);
 */
 
 void		ft_cub3d_pixel_put(t_data *data, int x, int y, int color);
+
+/*
+** key_events
+*/
+
+int			ft_cub3d_check_key_event(int keycode, t_vars *vars);
 
 #endif

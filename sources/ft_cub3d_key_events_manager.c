@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cub3d_pixel_manipulation.c                      :+:      :+:    :+:   */
+/*   ft_cub3d_key_events_manager.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 12:27:27 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 13:07:25 by jjourdan         ###   ########lyon.fr   */
+/*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
+/*   Updated: 2021/01/27 13:28:19 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		ft_cub3d_pixel_put(t_data *data, int x, int y, int color)
+int	ft_cub3d_check_key_event(int keycode, t_vars *vars)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	printf("keycode=%d\n", keycode);
+	(void)vars;
+	return (0);
 }
