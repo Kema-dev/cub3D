@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/27 10:46:13 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/27 11:13:05 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,21 +32,23 @@ NAME		=	Cub3D
 
 MAKE_SUB	=	make -C libs/
 
-DEBUG_OUT	=	debug.out
-
-DEBUG_DIR	=	sources/debug_files/
-
-DEBUG_FILES	=	ft_cub3d_debug_main.o
-
-DEBUG_FULL	=	$(addprefix $(DEBUG_DIR), $(DEBUG_FILES))
-
 INC_DIR		=	includes/
 
 SRCS_DIR	=	sources/
 
-SRCS		=	ft_cub3d_main.c
+SRCS		=	ft_cub3d_main.c \
+				ft_cub3d_get_color_info.c \
+				ft_cub3d_shading_utils.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
+
+DEBUG_OUT	=	debug.out
+
+DEBUG_DIR	=	sources/debug_files/
+
+DEBUG_FILES	=	ft_cub3d_debug_main.o \
+
+DEBUG_FULL	=	$(addprefix $(DEBUG_DIR), $(DEBUG_FILES))
 
 OBJS		=	$(SRCS_FULL:.c=.o)
 
@@ -72,6 +74,7 @@ mlx:
 
 norme:			fclean
 				printf "\033c"
+				norminette includes/
 				norminette libs/gnl/
 				norminette libs/libft/
 				norminette sources/
@@ -79,6 +82,11 @@ norme:			fclean
 debug:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
 				./$(DEBUG_OUT)
+
+cdebug:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
+				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
+				printf "\033c"
+				@./$(DEBUG_OUT)
 
 clean:
 				$(RM) $(OBJS)
