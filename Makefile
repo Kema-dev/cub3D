@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 12:13:37 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/27 10:30:08 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/27 10:43:10 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ DEBUG_OUT	=	debug.out
 
 DEBUG_DIR	=	sources/debug_files/
 
-DEBUG_FILES	=	debug_main.o
+DEBUG_FILES	=	ft_cub3d_debug_main.o
 
 DEBUG_FULL	=	$(addprefix $(DEBUG_DIR), $(DEBUG_FILES))
 
@@ -44,7 +44,7 @@ INC_DIR		=	includes/
 
 SRCS_DIR	=	sources/
 
-SRCS		=	main.c
+SRCS		=	ft_cub3d_main.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
@@ -77,7 +77,7 @@ norme:			fclean
 				norminette sources/
 
 debug:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
-				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
+				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
 				./$(DEBUG_OUT)
 
 clean:
