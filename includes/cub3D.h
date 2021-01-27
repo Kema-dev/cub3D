@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 13:11:01 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 14:16:08 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "get_next_line.h"
 # include "libft.h"
+# include <sys/types.h>
 # include <stdio.h>
 # include <mlx.h>
 
@@ -56,12 +57,19 @@ int				ft_cub3d_add_shading_from_distance(int trgb, double distance);
 ** pixel_manipulation
 */
 
-void		ft_cub3d_pixel_put(t_data *data, int x, int y, int color);
+void			ft_cub3d_pixel_put(t_data *data, int x, int y, int color);
 
 /*
 ** key_events
 */
 
-int			ft_cub3d_check_key_event(int keycode, t_vars *vars);
+int				ft_cub3d_check_key_event(int keycode, t_vars *vars);
+int				ft_cub3d_print_key_code(int keycode, t_vars *vars);
+
+/*
+** kill_process
+*/
+
+int				ft_cub3d_kill_all(t_vars *vars);
 
 #endif

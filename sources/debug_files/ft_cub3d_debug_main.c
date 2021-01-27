@@ -6,18 +6,11 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 13:30:08 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 14:27:25 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <sys/types.h>
-
-int             ft_close(int keycode, t_vars *vars)
-{
-    printf("")
-	return (0);
-}
 
 int             main(void)
 {
@@ -25,7 +18,7 @@ int             main(void)
 
     vars.mlx = mlx_init();
     vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-    mlx_hook(vars.win, 2, 1L<<0, ft_close, &vars);
+    mlx_hook(vars.win, 17, 10001, ft_cub3d_print_key_code, &vars);
     mlx_loop(vars.mlx);
 }
 

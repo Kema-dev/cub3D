@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/27 13:06:40 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/27 14:03:05 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_get_color_info.c \
 				ft_cub3d_shading_utils.c \
 				ft_cub3d_pixel_manipulation.c \
-				ft_cub3d_key_events_manager.c
+				ft_cub3d_key_events_manager.c \
+				ft_cub3d_exit_process.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
