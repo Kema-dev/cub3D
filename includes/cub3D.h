@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 14:16:08 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 13:19:31 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,19 @@
 # include <sys/types.h>
 # include <stdio.h>
 # include <mlx.h>
+# include <stdbool.h>
 
-# define RED	0x00FF0000
-# define GREEN	0x0000FF00
-# define BLUE	0x000000FF
+# define RED				0x00FF0000
+# define GREEN				0x0000FF00
+# define BLUE				0x000000FF
+
+# define W_KEY				13
+# define A_KEY				0
+# define S_KEY				1
+# define D_KEY				2
+# define ESC_KEY			53
+# define LEFT_ARROW_KEY		123
+# define RIGHT_ARROW_KEY	124
 
 typedef struct	s_data {
 	void		*img;
@@ -35,6 +44,16 @@ typedef struct	s_vars {
 	void		*mlx;
 	void		*win;
 }				t_vars;
+
+typedef struct	s_input {
+	bool		W;
+	bool		A;
+	bool		S;
+	bool		D;
+	bool		RIGHT;
+	bool		LEFT;
+	int			OTHER;
+}				t_input;
 
 /*
 ** get_color_info
@@ -63,8 +82,9 @@ void			ft_cub3d_pixel_put(t_data *data, int x, int y, int color);
 ** key_events
 */
 
-int				ft_cub3d_check_key_event(int keycode, t_vars *vars);
-int				ft_cub3d_print_key_code(int keycode, t_vars *vars);
+int				ft_cub3d_check_key_event(int keycode, t_vars *vars, t_input *input_values);
+int				ft_cub3d_invalid_input(int keycode, t_vars *vars, t_input *input_values);
+void			ft_cub3d_reset_input(t_input *input_values);
 
 /*
 ** kill_process

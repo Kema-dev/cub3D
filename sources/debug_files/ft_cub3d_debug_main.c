@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 15:00:16 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 13:05:01 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 int             main(void)
 {
     t_vars    vars;
+    t_input   *input_values;
 
+	if (!(input_values = malloc(sizeof(t_input))))
+		return (-1);
     vars.mlx = mlx_init();
     vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-    mlx_hook(vars.win, 17, 10001, ft_cub3d_print_key_code, &vars);
+	mlx_hook(vars.win, 2, 1L<<0, ft_cub3d_check_key_event, &vars);
+    mlx_hook(vars.win, 17, 10001, ft_cub3d_kill_all, &vars);
     mlx_loop(vars.mlx);
+	return (0);
 }
 // ! 17, 10001 for redcross
 /*
