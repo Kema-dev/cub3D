@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/29 12:29:06 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 17:22:39 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,21 @@ int		ft_cub3d_check_key_event(int keycode, t_vars *vars, t_input *input_values)
 		input_values->RIGHT = true;
 	else
 		return (ft_cub3d_invalid_input(keycode, vars, input_values));
+	ft_cub3d_treat_input(vars, input_values);
 	return (0);
+}
+
+void	ft_cub3d_treat_input(t_vars *vars, t_input *input_values)
+{
+	if (input_values->W == true)
+		input_values->x -= 1;
+	if (input_values->S == true)
+		input_values->x += 1;
+	if (input_values->A == true)
+		input_values->y -= 1;
+	if (input_values->D == true)
+		input_values->y += 1;
+	ft_cub3d_render_next_img(vars, input_values->x, input_values->y);
 }
 
 void	ft_cub3d_reset_input(t_input *input_values)

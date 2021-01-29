@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/29 09:56:09 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 17:05:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct	s_input {
 	bool		RIGHT;
 	bool		LEFT;
 	int			OTHER;
+	int			x;
+	int			y;
 }				t_input;
 
 /*
@@ -85,11 +87,18 @@ void			ft_cub3d_pixel_put(t_data *data, int x, int y, int color);
 int				ft_cub3d_check_key_event(int keycode, t_vars *vars, t_input *input_values);
 int				ft_cub3d_invalid_input(int keycode, t_vars *vars, t_input *input_values);
 void			ft_cub3d_reset_input(t_input *input_values);
+void			ft_cub3d_treat_input(t_vars *vars, t_input *input_values);
 
 /*
 ** kill_process
 */
 
 int				ft_cub3d_kill_all(t_vars *vars);
+
+/*
+** image_creation
+*/
+
+t_data ft_cub3d_render_next_img(t_vars *vars, int x, int y);
 
 #endif
