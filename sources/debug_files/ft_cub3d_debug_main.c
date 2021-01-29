@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/28 13:05:01 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 10:11:39 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,3 @@ int             main(void)
     mlx_loop(vars.mlx);
 	return (0);
 }
-// ! 17, 10001 for redcross
-/*
-** add_shading
-** int	main(void)
-** {
-** 	int	test = RED;
-** 
-** 	printf("base=%.8X\n", test);
-** 	test = ft_cub3d_add_shading_from_distance(test, 0);
-** 	printf("func=%.8X\n", test);
-** }
-*/
