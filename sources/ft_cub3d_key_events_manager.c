@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/28 13:18:59 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 12:29:06 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_cub3d_check_key_event(int keycode, t_vars *vars, t_input *input_values)
 	else if (keycode == RIGHT_ARROW_KEY)
 		input_values->RIGHT = true;
 	else
-		ft_cub3d_invalid_input(keycode, vars, input_values);
+		return (ft_cub3d_invalid_input(keycode, vars, input_values));
 	return (0);
 }
 
