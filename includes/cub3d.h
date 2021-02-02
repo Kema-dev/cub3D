@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/02 10:02:36 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 12:00:49 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,17 @@
 # include <mlx.h>
 # include <stdbool.h>
 
+/*
+** colors
+*/
+
 # define RED				0x00FF0000
 # define GREEN				0x0000FF00
 # define BLUE				0x000000FF
+
+/*
+** keys
+*/
 
 # define W_KEY				13
 # define A_KEY				0
@@ -31,6 +39,23 @@
 # define ESC_KEY			53
 # define LEFT_ARROW_KEY		123
 # define RIGHT_ARROW_KEY	124
+
+/*
+** return values
+*/
+
+# define SUCCESS			0
+# define FAILURE			-1
+# define MALLOC				-2
+# define ARG_NUM			-3
+# define INVALID_ARG		-4
+# define MAP_IS_OPEN		-5
+# define MAP_INVALID_CHAR	-6
+# define MAP_INVALID_ORDER	-7
+# define MAP_INVALID_PATH	-8
+# define MAP_INVALID_COLOR	-9
+# define MAP_INVALID_EXT	-10
+# define MAP_MULTIPLE_POS	-11
 
 typedef struct				s_data {
 	void					*img;
