@@ -6,13 +6,16 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 12:27:27 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 13:07:25 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 10:06:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		ft_cub3d_pixel_put(t_data *data, int x, int y, int color)
+void		ft_cub3d_pixel_put(t_data *data, \
+								int x, \
+								int y, \
+								int color)
 {
 	char	*dst;
 

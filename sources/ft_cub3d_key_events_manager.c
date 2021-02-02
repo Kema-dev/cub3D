@@ -6,13 +6,15 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/29 17:22:39 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 10:04:47 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_cub3d_check_key_event(int keycode, t_vars *vars, t_input *input_values)
+int		ft_cub3d_check_key_event(int keycode, \
+								t_vars *vars, \
+								t_input *input_values)
 {
 	ft_cub3d_reset_input(input_values);
 	if (keycode == ESC_KEY)
@@ -35,7 +37,8 @@ int		ft_cub3d_check_key_event(int keycode, t_vars *vars, t_input *input_values)
 	return (0);
 }
 
-void	ft_cub3d_treat_input(t_vars *vars, t_input *input_values)
+void	ft_cub3d_treat_input(t_vars *vars, \
+							t_input *input_values)
 {
 	if (input_values->W == true)
 		input_values->x -= 1;
@@ -58,7 +61,9 @@ void	ft_cub3d_reset_input(t_input *input_values)
 	input_values->RIGHT = false;
 }
 
-int		ft_cub3d_invalid_input(int keycode, t_vars *vars, t_input *input_values)
+int		ft_cub3d_invalid_input(int keycode, \
+							t_vars *vars, \
+							t_input *input_values)
 {
 	input_values->OTHER = true;
 	printf("keycode %d does nothing!\n", keycode);

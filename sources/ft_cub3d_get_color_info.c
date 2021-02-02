@@ -6,11 +6,14 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:31:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 11:01:05 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 10:05:44 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_cub3d_create_trgb(int t, int r, int g, int b)
+int		ft_cub3d_create_trgb(int t, \
+							int r, \
+							int g, \
+							int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }

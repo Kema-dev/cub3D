@@ -6,18 +6,20 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:00:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/27 12:30:17 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 10:04:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_cub3d_add_shading(int trgb, int t)
+int		ft_cub3d_add_shading(int trgb, \
+							int t)
 {
-	return(t << 24 | trgb);
+	return (t << 24 | trgb);
 }
 
-int		ft_cub3d_add_shading_from_distance(int trgb, double distance)
+int		ft_cub3d_add_shading_from_distance(int trgb, \
+											double distance)
 {
 	int	shading_value;
 
