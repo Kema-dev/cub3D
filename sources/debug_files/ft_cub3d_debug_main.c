@@ -6,25 +6,44 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/02 10:37:33 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 15:29:33 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int				main(void)
+int				main(int argc, char **argv)
 {
-	t_vars		vars;
-	t_input		*input_values;
+	int			save;
+	int			return_value;
+	t_map		*map;
+	t_map_lines	*map_lines;
 
-	if (!(input_values = malloc(sizeof(t_input))))
-		return (-1);
-	input_values->x = 5;
-	input_values->y = 5;
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Leche moi le cub");
-	mlx_hook(vars.win, 2, 1L << 0, ft_cub3d_check_key_event, &vars);
-	mlx_hook(vars.win, 17, 10001, ft_cub3d_kill_all, &vars);
-	mlx_loop(vars.mlx);
-	return (0);
+	if ((!(map = ft_calloc(1, sizeof(t_map)))) || \
+		(!(map_lines = ft_calloc(1, sizeof(t_map_lines)))))
+		return (MALLOC_FAIL);
+	if ((return_value = ft_cub3d_check_arg(argc, argv, &save)) != SUCCESS)
+		return (ft_cub3d_print_errno(return_value));
+	if ((return_value = ft_cub3d_check_map(argv[1], map, &map_lines) != SUCCESS))
+		return (return_value);
+	return (SUCCESS);
 }
+
+/*
+** int				main(void)
+** {
+** 	t_vars		vars;
+** 	t_input		*input_values;
+** 
+** 	if (!(input_values = malloc(sizeof(t_input))))
+** 		return (-1);
+** 	input_values->x = 5;
+** 	input_values->y = 5;
+** 	vars.mlx = mlx_init();
+** 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Leche moi le cub");
+** 	mlx_hook(vars.win, 2, 1L << 0, ft_cub3d_check_key_event, &vars);
+** 	mlx_hook(vars.win, 17, 10001, ft_cub3d_kill_all, &vars);
+** 	mlx_loop(vars.mlx);
+** 	return (0);
+** }
+*/

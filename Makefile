@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/02 10:59:44 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/02 13:26:43 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_pixel_manipulation.c \
 				ft_cub3d_key_events_manager.c \
 				ft_cub3d_exit_process.c \
-				ft_cub3d_image_creater.c
+				ft_cub3d_image_creater.c \
+				ft_cub3d_initial_checks.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
@@ -60,7 +61,7 @@ LIBS		=	-L . -l mlx -framework OpenGL -framework AppKit libs/gnl/libgnl.a libs/l
 
 all:			libft gnl mlx $(NAME)
 
-%.o: 			%.c
+%.o: 			%.c  $(INC_DIR)cub3d.h
 				$(CC) $(FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
@@ -90,11 +91,11 @@ normev2:		fclean
 				norminettev2 libs/libft/
 				norminettev2 sources/
 
-debug:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
+d:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
 				./$(DEBUG_OUT)
 
-cdebug:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
+c:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
 				printf "\033c"
 				@./$(DEBUG_OUT)

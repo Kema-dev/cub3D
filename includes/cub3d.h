@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/02 12:00:49 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 15:28:46 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,24 @@
 */
 
 # define SUCCESS			0
-# define FAILURE			-1
-# define MALLOC				-2
-# define ARG_NUM			-3
-# define INVALID_ARG		-4
-# define MAP_IS_OPEN		-5
-# define MAP_INVALID_CHAR	-6
-# define MAP_INVALID_ORDER	-7
-# define MAP_INVALID_PATH	-8
-# define MAP_INVALID_COLOR	-9
-# define MAP_INVALID_EXT	-10
-# define MAP_MULTIPLE_POS	-11
+# define FAILURE			1
+# define MALLOC_FAIL		2
+# define INVALID_ARG_NUM	3
+# define INVALID_ARG		4
+# define MAP_IS_OPEN		5
+# define MAP_INVALID_CHAR	6
+# define MAP_INVALID_ORDER	7
+# define MAP_INVALID_PATH	8
+# define MAP_INVALID_COLOR	9
+# define MAP_INVALID_EXT	10
+# define MAP_INVALID_POS	11
+# define MAP_INVALID_READ	12
+
+/*
+** GNL
+*/
+
+# define BUFFER_SIZE		16
 
 typedef struct				s_data {
 	void					*img;
@@ -81,6 +88,35 @@ typedef struct				s_input {
 	int						x;
 	int						y;
 }							t_input;
+
+typedef struct				s_map {
+	size_t					res_width;
+	size_t					res_height;
+	char					*north_text;
+	char					*south_text;
+	char					*east_text;
+	char					*west_text;
+	char					*sprite_text;
+	int						floor_color;
+	int						ceilling_color;
+}							t_map;
+
+typedef struct				s_map_lines {
+	char					*line;
+	struct s_map_lines		*next;
+}							t_map_lines;
+
+/*
+** initial_checks
+*/
+
+int							ft_cub3d_check_arg(int argc, \
+												char **argv, \
+												int *save);
+int							ft_cub3d_check_map(char *map_path, \
+												t_map *map, \
+												t_field *field);
+int							ft_cub3d_print_errno(int error_no);
 
 /*
 ** get_color_info
