@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/29 16:51:28 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/02 10:59:44 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ LIBS		=	-L . -l mlx -framework OpenGL -framework AppKit libs/gnl/libgnl.a libs/l
 
 all:			libft gnl mlx $(NAME)
 
-%.o: %.c
+%.o: 			%.c
 				$(CC) $(FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) -c $< -o $@
 
 $(NAME): $(OBJS)
@@ -82,6 +82,13 @@ norme:			fclean
 				norminette libs/gnl/
 				norminette libs/libft/
 				norminette sources/
+
+normev2:		fclean
+				printf "\033c"
+				norminettev2 includes/
+				norminettev2 libs/gnl/
+				norminettev2 libs/libft/
+				norminettev2 sources/
 
 debug:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
