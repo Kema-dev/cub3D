@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/03 13:11:53 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:20:58 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,20 @@
 ** return values
 */
 
-# define SUCCESS			0
-# define FAILURE			1
-# define MALLOC_FAIL		2
-# define INVALID_ARG_NUM	3
-# define INVALID_ARG		4
-# define MAP_IS_OPEN		5
-# define MAP_INVALID_CHAR	6
-# define MAP_INVALID_ORDER	7
-# define MAP_INVALID_PATH	8
-# define MAP_INVALID_COLOR	9
-# define MAP_INVALID_EXT	10
-# define MAP_INVALID_POS	11
-# define MAP_INVALID_READ	12
+# define SUCCESS				0
+# define FAILURE				1
+# define MALLOC_FAIL			2
+# define INVALID_ARG_NUM		3
+# define INVALID_ARG			4
+# define MAP_IS_OPEN			5
+# define MAP_INVALID_CHAR		6
+# define MAP_INVALID_CONFIG		7
+# define MAP_INVALID_PATH		8
+# define MAP_INVALID_COLOR		9
+# define MAP_INVALID_EXT		10
+# define MAP_INVALID_POS		11
+# define MAP_INVALID_READ		12
+# define MAP_INVALID_RES		13
 
 /*
 ** GNL
@@ -99,6 +100,7 @@ typedef struct				s_map_params {
 	char					*sprite_text;
 	int						floor_color;
 	int						ceilling_color;
+	char					*field;
 }							t_map_params;
 
 /*
@@ -114,7 +116,18 @@ int							ft_cub3d_check_map(char *map_path, \
 int							ft_cub3d_print_errno(int error_no);
 
 
-int			ft_cub3d_get_map_params(t_map_params *map_params, char *map_lines);
+int							ft_cub3d_get_map_params(t_map_params *map_params, \
+													char *map_lines);
+int							ft_cub3d_get_next_param(char *tmp, \
+													t_map_params *map_params);
+int							ft_cub3d_get_resolution(char *str, \
+													t_map_params *map_params);
+int							ft_cub3d_get_texture(char *str, \
+													t_map_params *map_params);
+int							ft_cub3d_get_plane(char *str, \
+													t_map_params *map_params);
+int							ft_cub3d_get_field(char *str, \
+													t_map_params *map_params);
 
 /*
 ** get_color_info

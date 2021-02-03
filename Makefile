@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/03 13:18:29 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/03 16:21:14 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_exit_process.c \
 				ft_cub3d_image_creater.c \
 				ft_cub3d_initial_checks.c \
-				ft_cub3d_map_parser.c
+				ft_cub3d_map_parser.c \
+				ft_cub3d_get_map_params.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
