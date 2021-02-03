@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/02 16:03:40 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 13:27:34 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,29 +53,28 @@ int							ft_cub3d_check_arg(int argc,\
 }
 
 int							ft_cub3d_check_map(char *map_path, \
-												t_map *map, \
-												t_field **field)
+												t_map_params *map_params, \
+												char *map_lines)
 {
 	int		fd;
 	int		ret;
 	char	*buf;
 
-	map->ceilling_color = 12;
 	ret = 0;
 	if ((fd = open(map_path, O_RDONLY)) < 0)
 		return (MAP_INVALID_PATH);
 	while ((ret = get_next_line(fd, &buf)) > 0)
 	{
-		ft_lstadd_back(field, ft_lstnew(buf));
+		if (buf[0] != 0)
+		{
+			map_lines = ft_strjoin(map_lines, buf);
+			map_lines = ft_strjoin(map_lines, "\n");
+		}
 	}
-	if (buf)
-		free(buf);
 	if (ret < 0)
 		return (MAP_INVALID_READ);
-	while (field->next)
-	{
-		printf("line=%s\n", field->line);
-		field = field->next;
-	}
+	close(fd);
+	ft_cub3d_get_map_params(map_params, map_lines);
+	(void)map_params;
 	return (SUCCESS);
 }

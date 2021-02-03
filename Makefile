@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/02 13:26:43 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/03 13:18:29 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_key_events_manager.c \
 				ft_cub3d_exit_process.c \
 				ft_cub3d_image_creater.c \
-				ft_cub3d_initial_checks.c
+				ft_cub3d_initial_checks.c \
+				ft_cub3d_map_parser.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
@@ -98,7 +99,7 @@ d:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 c:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
 				printf "\033c"
-				@./$(DEBUG_OUT)
+				@./$(DEBUG_OUT) map.cub
 
 clean:
 				$(RM) $(OBJS)

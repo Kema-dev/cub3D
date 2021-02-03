@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/02 15:28:46 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 13:11:53 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct				s_input {
 	int						y;
 }							t_input;
 
-typedef struct				s_map {
+typedef struct				s_map_params {
 	size_t					res_width;
 	size_t					res_height;
 	char					*north_text;
@@ -99,12 +99,7 @@ typedef struct				s_map {
 	char					*sprite_text;
 	int						floor_color;
 	int						ceilling_color;
-}							t_map;
-
-typedef struct				s_map_lines {
-	char					*line;
-	struct s_map_lines		*next;
-}							t_map_lines;
+}							t_map_params;
 
 /*
 ** initial_checks
@@ -114,9 +109,12 @@ int							ft_cub3d_check_arg(int argc, \
 												char **argv, \
 												int *save);
 int							ft_cub3d_check_map(char *map_path, \
-												t_map *map, \
-												t_field *field);
+												t_map_params *map_params, \
+												char *map_lines);
 int							ft_cub3d_print_errno(int error_no);
+
+
+int			ft_cub3d_get_map_params(t_map_params *map_params, char *map_lines);
 
 /*
 ** get_color_info

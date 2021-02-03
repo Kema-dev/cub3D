@@ -6,25 +6,25 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/02 15:29:33 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 12:22:29 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int				main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
-	int			save;
-	int			return_value;
-	t_map		*map;
-	t_map_lines	*map_lines;
+	int				save;
+	int				return_value;
+	char			*map_lines;
+	t_map_params	*map_params;
 
-	if ((!(map = ft_calloc(1, sizeof(t_map)))) || \
-		(!(map_lines = ft_calloc(1, sizeof(t_map_lines)))))
+	map_lines = NULL;
+	if (!(map_params = ft_calloc(sizeof(t_map_params), 1)))
 		return (MALLOC_FAIL);
 	if ((return_value = ft_cub3d_check_arg(argc, argv, &save)) != SUCCESS)
 		return (ft_cub3d_print_errno(return_value));
-	if ((return_value = ft_cub3d_check_map(argv[1], map, &map_lines) != SUCCESS))
+	if ((return_value = ft_cub3d_check_map(argv[1], map_params, map_lines) != SUCCESS))
 		return (return_value);
 	return (SUCCESS);
 }
