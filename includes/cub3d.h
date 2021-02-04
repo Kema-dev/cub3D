@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 11:16:49 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 12:47:44 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,16 +118,22 @@ int							ft_cub3d_print_errno(int error_no);
 
 int							ft_cub3d_get_map_params(t_map_params *map_params, \
 													char *map_lines);
-int							ft_cub3d_get_next_param(char *tmp, \
+int							ft_cub3d_get_next_param(char **tmp, \
 													t_map_params *map_params);
 int							ft_cub3d_get_resolution(char **str, \
 													t_map_params *map_params);
-int							ft_cub3d_get_texture(char *str, \
+int							ft_cub3d_get_texture(char **str, \
 													t_map_params *map_params);
-int							ft_cub3d_get_plane(char *str, \
+int							ft_cub3d_get_plane(char **str, \
 													t_map_params *map_params);
-int							ft_cub3d_get_field(char *str, \
+int							ft_cub3d_get_field(char **str, \
 													t_map_params *map_params);
+
+/*
+** utils
+*/
+
+int							ft_cub3d_go_next_word(char **str, char sep, char end);
 
 /*
 ** get_color_info

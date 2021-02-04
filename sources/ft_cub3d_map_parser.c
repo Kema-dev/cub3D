@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 11:16:18 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 12:54:53 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			ft_cub3d_get_map_params(t_map_params *map_params, \
 	int		return_value;
 
 	tmp = map_lines;
-	while ((return_value = ft_cub3d_get_next_param(tmp, map_params)) \
+	while ((return_value = ft_cub3d_get_next_param(&tmp, map_params)) \
 															== SUCCESS)
 			;
 	if (return_value != SUCCESS)
@@ -27,37 +27,41 @@ int			ft_cub3d_get_map_params(t_map_params *map_params, \
 	return (SUCCESS);
 }
 
-int			ft_cub3d_get_next_param(char *tmp, \
+int			ft_cub3d_get_next_param(char **tmp, \
 									t_map_params *map_params)
 {
 	int		return_value;
 
-	while (tmp[0] == '\n')
-		tmp++;
-	if (tmp[0] == 'R')
-	{
-		if ((return_value = ft_cub3d_get_resolution(&tmp, map_params)) != SUCCESS)
-			return (return_value);
-	}
-	else if ((strncmp(tmp, "NO", 3) == 0) || (strncmp(tmp, "SO", 3) == 0) || \
-			(strncmp(tmp, "WE", 3) == 0) || (strncmp(tmp, "EA", 3) == 0) || \
-			(strncmp(tmp, "S", 2) == 0))
-			{
-		if ((return_value = ft_cub3d_get_texture(tmp, map_params)) != SUCCESS)
-			return (return_value);
-	}
-	else if ((strncmp(tmp, "F", 2) == 0) || (strncmp(tmp, "C", 2) == 0))
-	{
-		if ((return_value = ft_cub3d_get_plane(tmp, map_params)) != SUCCESS)
-			return (return_value);
-	}
-	else if (ft_isdigit(tmp[0]))
-	{
-		if ((return_value = ft_cub3d_get_field(tmp, map_params)) != SUCCESS)
-			return (return_value);
-	}
-	else
-		return (MAP_INVALID_CONFIG);
+	(void)return_value;
+	(void)map_params;
+	while ((**tmp == '\n') || (**tmp == ' '))
+		(*tmp) += 1;
+
+ 	if (*tmp[0] == 'R')
+ 	{
+ 		if ((return_value = ft_cub3d_get_resolution(tmp, map_params)) != SUCCESS)
+ 			return (return_value);
+ 	}
+ 	else if ((strncmp(*tmp, "NO", 3) == 0) || (strncmp(*tmp, "SO", 3) == 0) || \
+ 			(strncmp(*tmp, "WE", 3) == 0) || (strncmp(*tmp, "EA", 3) == 0) || \
+ 			(strncmp(*tmp, "S", 2) == 0))
+ 			{
+ 		if ((return_value = ft_cub3d_get_texture(tmp, map_params)) != SUCCESS)
+ 			return (return_value);
+ 	}
+ 	else if ((strncmp(*tmp, "F", 2) == 0) || (strncmp(*tmp, "C", 2) == 0))
+ 	{
+ 		if ((return_value = ft_cub3d_get_plane(tmp, map_params)) != SUCCESS)
+ 			return (return_value);
+ 	}
+ 	else if (ft_isdigit(*tmp[0]))
+ 	{
+ 		if ((return_value = ft_cub3d_get_field(tmp, map_params)) != SUCCESS)
+ 			return (return_value);
+ 	}
+ 	else
+ 		return (MAP_INVALID_CONFIG);
+	printf("str=%s\n", *tmp);
 	return (SUCCESS);
 }
 

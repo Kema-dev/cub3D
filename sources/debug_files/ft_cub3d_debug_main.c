@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 11:04:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 12:38:36 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int					main(int argc, char **argv)
 	if ((return_value = ft_cub3d_check_map(argv[1], map_params, map_lines)) != SUCCESS)
 		return (ft_cub3d_print_errno(return_value));
 	printf("field:%s\n", map_params->field);
-	printf("NOtxt:%s\n", map_params->north_text);
+	printf("NO txt:%s\n", map_params->north_text);
 	printf("res:%zu x %zu\n", map_params->res_width, map_params->res_height);
 	return (SUCCESS);
 }

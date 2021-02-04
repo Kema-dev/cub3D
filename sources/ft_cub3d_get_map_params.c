@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 11:25:16 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 12:52:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,17 @@
 int			ft_cub3d_get_resolution(char **str, \
 									t_map_params *map_params)
 {
-	printf("str=%s\n", *str);
+	ft_cub3d_go_next_word(str, ' ', '\n');
 	if ((map_params->res_width = ft_atoi(*str)) <= 0)
 		return (MAP_INVALID_RES);
-	printf("str=%s\n", *str);
-	while (ft_isdigit(**str))
-		str++;
+	ft_cub3d_go_next_word(str, ' ', '\n');
 	if ((map_params->res_height = ft_atoi(*str)) <= 0)
 		return (MAP_INVALID_RES);
-	while (ft_isdigit(**str) || (**str == ' '))
-		str++;
+	ft_cub3d_go_next_word(str, ' ', '\n');
 	return (SUCCESS);
 }
 
-int			ft_cub3d_get_texture(char *tmp, \
+int			ft_cub3d_get_texture(char **str, \
 									t_map_params *map_params)
 {
 	char	*path;
@@ -36,30 +33,33 @@ int			ft_cub3d_get_texture(char *tmp, \
 	size_t	i;
 
 	i = 0;
-	if (strncmp(tmp, "NO", 3) == 0)
+	if (strncmp(*str, "NO", 3) == 0)
 		dest = map_params->north_text;
-	else if (strncmp(tmp, "SO", 3) == 0)
+	else if (strncmp(*str, "SO", 3) == 0)
 		dest = map_params->south_text;
-	else if (strncmp(tmp, "WE", 3) == 0)
+	else if (strncmp(*str, "WE", 3) == 0)
 		dest = map_params->west_text;
-	else if (strncmp(tmp, "EA", 3) == 0)
+	else if (strncmp(*str, "EA", 3) == 0)
 		dest = map_params->east_text;
 	else
 		dest = map_params->sprite_text;
-	while (ft_isalpha(tmp[i]))
-		tmp++;
-	while (tmp[i] == ' ')
-		tmp++;
-	while (ft_isalpha(tmp[i]))
+	while (ft_isalpha(**str))
+		(*str) += 3;
+	while (ft_isalpha(*str[i]))
 		i++;
 	if (!(path = ft_calloc(i + 1, sizeof(char))))
 		return (MALLOC_FAIL);
-	dest = path;
-	tmp += i;
+	while (i > 0)
+	{
+		path[i] = *str[i];
+		i--;
+	}
+	*dest = *path;
+	(*str) += i;
 	return (SUCCESS);
 }
 
-int			ft_cub3d_get_plane(char *tmp, \
+int			ft_cub3d_get_plane(char **str, \
 									t_map_params *map_params)
 {
 	int		*dest;
@@ -72,33 +72,32 @@ int			ft_cub3d_get_plane(char *tmp, \
 	r = 0;
 	g = 0;
 	b = 0;
-	if (strncmp(tmp, "F", 2) == 0)
+	if (strncmp(*str, "F", 2) == 0)
 		dest = &map_params->floor_color;
 	else
 		dest = &map_params->ceilling_color;
-	if ((r = ft_atoi(tmp)) < 0)
+	if ((r = ft_atoi(*str)) < 0)
 		return (MAP_INVALID_COLOR);
-	while (tmp[0] && tmp[0] != ',')
+	while (*str[0] && *str[0] != ',')
 		i++;
-	if ((g = ft_atoi(tmp)) < 0)
+	(*str) += 1;
+	if ((g = ft_atoi(*str)) < 0)
 		return (MAP_INVALID_COLOR);
-	while (tmp[0] && tmp[0] != ',')
+	while (*str[0] && *str[0] != ',')
 		i++;
-	if ((b = ft_atoi(tmp)) < 0)
+	if ((b = ft_atoi(*str)) < 0)
 		return (MAP_INVALID_COLOR);
-	while (tmp[0] && tmp[0] != '\n')
-		i++;
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (MAP_INVALID_COLOR);
-	tmp += i;
+	(*str) += i;
 	*dest = ft_cub3d_create_trgb(0, r, g, b);
 	return (SUCCESS);
 }
 
-int			ft_cub3d_get_field(char *str, \
+int			ft_cub3d_get_field(char **str, \
 								t_map_params *map_params)
 {
-	map_params->field = ft_strjoin(map_params->field, str);
+	map_params->field = ft_strjoin(map_params->field, *str);
 	return (SUCCESS);
 }
 
