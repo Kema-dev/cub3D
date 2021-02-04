@@ -5,59 +5,91 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 15:47:41 by jjourdan         ###   ########lyon.fr   */
+/*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
+/*   Updated: 2021/02/04 16:45:32 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			ft_cub3d_get_map_params(t_map_params *map_params, \
-									char *map_lines)
+int			ft_cub3d_get_resolution(char **str, \
+									t_map_params *map_params)
 {
-	char	*tmp;
-	int		return_value;
-
-	tmp = map_lines;
-	while ((return_value = ft_cub3d_get_next_param(&tmp, map_params)) \
-															== SUCCESS)
-		;
-	if (return_value != SUCCESS)
-		return (return_value);
+	ft_cub3d_go_next_word(str, ' ', '\n');
+	if ((map_params->res_width = ft_atoi(*str)) <= 0)
+		return (MAP_INVALID_RES);
+	ft_cub3d_go_next_word(str, ' ', '\n');
+	if ((map_params->res_height = ft_atoi(*str)) <= 0)
+		return (MAP_INVALID_RES);
+	ft_cub3d_go_next_word(str, ' ', '\n');
 	return (SUCCESS);
 }
 
-int			ft_cub3d_get_next_param(char **tmp, \
+int			ft_cub3d_get_texture(char **str, \
 									t_map_params *map_params)
 {
-	int		return_value;
+	char	*path;
+	char	*dest;
+	ssize_t	i;
 
-	ft_cub3d_go_next_word(tmp, '\n', '\n');
-	if (*tmp[0] == 'R')
-	{
-		if ((return_value = ft_cub3d_get_resolution(tmp, map_params)) \
-															!= SUCCESS)
-			return (return_value);
-	}
-	else if ((strncmp(*tmp, "NO", 2) == 0) || (strncmp(*tmp, "SO", 2) == 0) || \
-			(strncmp(*tmp, "WE", 2) == 0) || (strncmp(*tmp, "EA", 2) == 0) || \
-				(strncmp(*tmp, "S", 1) == 0))
-	{
-		if ((return_value = ft_cub3d_get_texture(tmp, map_params)) != SUCCESS)
-			return (return_value);
-	}
-	else if ((strncmp(*tmp, "F", 2) == 0) || (strncmp(*tmp, "C", 2) == 0))
-	{
-		if ((return_value = ft_cub3d_get_plane(tmp, map_params)) != SUCCESS)
-			return (return_value);
-	}
-	else if (ft_isdigit(*tmp[0]))
-	{
-		if ((return_value = ft_cub3d_get_field(tmp, map_params)) != SUCCESS)
-			return (return_value);
-	}
+	i = 0;
+	dest = ft_cub3d_get_first_word(str, ' ', '\n');
+	ft_cub3d_go_next_word(str, ' ', '\n');
+	path = ft_cub3d_get_first_word(str, ' ', '\n');
+	if (strncmp(dest, "NO", 2) == 0)
+		map_params->north_text = path;
+	else if (strncmp(dest, "SO", 2) == 0)
+		map_params->south_text = path;
+	else if (strncmp(dest, "WE", 2) == 0)
+		map_params->west_text = path;
+	else if (strncmp(dest, "EA", 2) == 0)
+		map_params->east_text = path;
 	else
-		return (MAP_INVALID_CONFIG);
+		map_params->sprite_text = path;
+	return (SUCCESS);
+}
+
+int			ft_cub3d_get_plane(char **str, \
+									t_map_params *map_params)
+{
+	char	*dest;
+	int		r;
+	int		g;
+	int		b;
+	size_t	i;
+
+	i = 0;
+	r = 0;
+	g = 0;
+	b = 0;
+	dest = ft_cub3d_get_first_word(str, ' ', '\n');
+	ft_cub3d_go_next_word(str, ' ', '\n');
+	if ((r = ft_atoi(*str)) < 0)
+		return (MAP_INVALID_COLOR);
+	while (ft_isdigit(*str[0]))
+		(*str) += 1;
+	(*str) += 1;
+	if ((g = ft_atoi(*str)) < 0)
+		return (MAP_INVALID_COLOR);
+	while (ft_isdigit(*str[0]))
+		(*str) += 1;
+	(*str) += 1;
+	if ((b = ft_atoi(*str)) < 0)
+		return (MAP_INVALID_COLOR);
+	if ((r > 255) || (g > 255) || (b > 255))
+		return (MAP_INVALID_COLOR);
+	if (ft_strncmp(dest, "F", 1) == 0)
+		map_params->floor_color = ft_cub3d_create_trgb(0, r, g, b);
+	else
+		map_params->ceiling_color = ft_cub3d_create_trgb(0, r, g, b);
+	return (SUCCESS);
+}
+
+int			ft_cub3d_get_field(char **str, \
+								t_map_params *map_params)
+{
+	map_params->field = ft_strjoin(map_params->field, *str);
+	(*str) += ft_strlen(*str);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 15:48:11 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 16:42:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,40 @@ int							ft_cub3d_check_map(char *map_path, \
 	if ((return_value = ft_cub3d_get_map_params(map_params, \
 												map_lines)) != SUCCESS)
 		return (return_value);
+ 	printf("\nres width:%zu:\n", map_params->res_width);
+ 	printf("res height:%zu:\n", map_params->res_height);
+ 	printf("no texture path:%s:\n", map_params->north_text);
+ 	printf("south texture patht:%s:\n", map_params->south_text);
+ 	printf("east texture path:%s:\n", map_params->east_text);
+ 	printf("west texture path:%s:\n", map_params->west_text);
+ 	printf("sprite texture path:%s:\n", map_params->sprite_text);
+ 	printf("floor col:%d:\n", map_params->floor_color);
+ 	printf("ceiling col:%d:\n", map_params->ceiling_color);
+ 	printf("propermap\n:%s:\n", map_params->field);
 	return (SUCCESS);
 }
+
+/*
+** MAP SAMPLE
+**
+** R 1280 720
+** NO ./textures/bookshelf.xpm
+** SO ./textures/cracked_stone_bricks.xpm
+** WE ./textures/piston_top.xpm
+** EA ./textures/purplestone.xpm
+** S ./textures/barrel.xpm
+** F 155,62,62
+** C 51,204,255
+**
+** 1111111111111111111111111111111111
+** 1000000000010202020100000111110111
+** 1000000000010000000100000000000001
+** 1000101000010202020111111100000001
+** 10001010000100000001000000000000001
+** 1000101000011100111111111110111111
+** 120000W0002000000001      101
+** 10002000000000000021111111101
+** 100000000000000020000000000001
+** 100000200000000000211111111111
+** 11111111111111111111
+*/

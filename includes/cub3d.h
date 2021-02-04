@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 15:42:35 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 16:21:47 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 ** return values
 */
 
+# define PASS					-1
 # define SUCCESS				0
 # define FAILURE				1
 # define MALLOC_FAIL			2
@@ -99,7 +100,7 @@ typedef struct				s_map_params {
 	char					*west_text;
 	char					*sprite_text;
 	int						floor_color;
-	int						ceilling_color;
+	int						ceiling_color;
 	char					*field;
 }							t_map_params;
 
@@ -116,7 +117,7 @@ int							ft_cub3d_check_map(char *map_path, \
 int							ft_cub3d_print_errno(int error_no);
 
 int							ft_cub3d_get_map_params(t_map_params *map_params, \
-													char *map_lines);
+												char *map_lines);
 int							ft_cub3d_get_next_param(char **tmp, \
 													t_map_params *map_params);
 int							ft_cub3d_get_resolution(char **str, \
