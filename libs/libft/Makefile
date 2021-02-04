@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/11 11:26:11 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/23 14:27:03 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/04 10:49:28 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CC			=	gcc
 
 RM			=	rm -f
 
-INC_DIR	=	includes/
+INC_DIR		=	includes/
 
 INCLUDES	=	libft.h
 
@@ -64,6 +64,7 @@ SRCS		=	ft_putchar.c \
 				ft_strcat.c \
 				ft_substr.c \
 				ft_strjoin.c \
+				ft_strjoin_free_s1.c \
 				ft_strtrim.c \
 				ft_my_split.c \
 				ft_split.c \

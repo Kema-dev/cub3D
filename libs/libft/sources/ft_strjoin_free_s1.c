@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin_free_s1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 02:00:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 10:39:30 by jjourdan         ###   ########lyon.fr   */
+/*   Created: 2021/02/04 10:39:45 by jjourdan          #+#    #+#             */
+/*   Updated: 2021/02/04 10:48:47 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_free_s1(char *s1, char *s2)
 {
 	size_t	tot_len;
 	char	*out;
@@ -22,5 +22,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strcat(out, (char *)s1);
 	ft_strcat(out, (char *)s2);
+	free(s1);
 	return (out);
 }

@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/03 16:21:14 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/04 11:11:06 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ CC			=	gcc
 
 FLAGS		=	-Wall -Wextra -Werror
 
-DEBUG_FLAGS	=	-Wall -Wextra -fsanitize=address
+DEBUG_FLAGS	=	-Wall -Wextra #-fsanitize=address
+
+ARGS		=	map.cub
 
 RM			=	rm -f
 
@@ -95,12 +97,12 @@ normev2:		fclean
 
 d:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
-				./$(DEBUG_OUT)
+				./$(DEBUG_OUT) $(ARGS)
 
 c:			libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
 				printf "\033c"
-				@./$(DEBUG_OUT) map.cub
+				@./$(DEBUG_OUT) $(ARGS)
 
 clean:
 				$(RM) $(OBJS)

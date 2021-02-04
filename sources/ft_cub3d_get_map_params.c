@@ -6,27 +6,25 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/03 16:26:50 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 11:25:16 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			ft_cub3d_get_resolution(char *str, \
+int			ft_cub3d_get_resolution(char **str, \
 									t_map_params *map_params)
 {
-	size_t	i;
-
-	i = 0;
-	if ((map_params->res_width = ft_atoi(str)) <= 0)
+	printf("str=%s\n", *str);
+	if ((map_params->res_width = ft_atoi(*str)) <= 0)
 		return (MAP_INVALID_RES);
-	while (ft_isdigit(str[i]) || (str[i] == ' '))
-		i++;
-	if ((map_params->res_height = ft_atoi(str)) <= 0)
+	printf("str=%s\n", *str);
+	while (ft_isdigit(**str))
+		str++;
+	if ((map_params->res_height = ft_atoi(*str)) <= 0)
 		return (MAP_INVALID_RES);
-	while (ft_isdigit(str[i]) || (str[i] == ' '))
-		i++;
-	str += i;
+	while (ft_isdigit(**str) || (**str == ' '))
+		str++;
 	return (SUCCESS);
 }
 

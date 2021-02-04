@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/03 16:20:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 11:16:18 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ int			ft_cub3d_get_map_params(t_map_params *map_params, \
 	int		return_value;
 
 	tmp = map_lines;
-	return_value = SUCCESS;
-	while (tmp[0] != 0)
-		if ((return_value = ft_cub3d_get_next_param(tmp, map_params)) \
-															!= SUCCESS)
-			return (return_value);
-	printf("%s", "oui");
+	while ((return_value = ft_cub3d_get_next_param(tmp, map_params)) \
+															== SUCCESS)
+			;
+	if (return_value != SUCCESS)
+		return (return_value);
 	return (SUCCESS);
 }
 
@@ -33,12 +32,11 @@ int			ft_cub3d_get_next_param(char *tmp, \
 {
 	int		return_value;
 
-	return_value = SUCCESS;
 	while (tmp[0] == '\n')
 		tmp++;
 	if (tmp[0] == 'R')
 	{
-		if ((return_value = ft_cub3d_get_resolution(tmp, map_params)) != SUCCESS)
+		if ((return_value = ft_cub3d_get_resolution(&tmp, map_params)) != SUCCESS)
 			return (return_value);
 	}
 	else if ((strncmp(tmp, "NO", 3) == 0) || (strncmp(tmp, "SO", 3) == 0) || \

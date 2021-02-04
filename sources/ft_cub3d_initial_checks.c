@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/03 13:27:34 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 11:10:11 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int							ft_cub3d_print_errno(int error_no)
 {
-	char	*strings[12];
+	char	*strings[14];
 
 	strings[0] = "SUCCESS";
 	strings[1] = "FAILURE";
@@ -23,11 +23,13 @@ int							ft_cub3d_print_errno(int error_no)
 	strings[4] = "INVALID ARGUMENT! MUST BE '*.cub' OR '*.cub --save'";
 	strings[5] = "MAP IS NOT CLOSED!";
 	strings[6] = "MAP CONTAINS AN INVALID CHAR!";
-	strings[7] = "MAP IS NOT SORTED PROPERLY!";
+	strings[7] = "MAP HAS INVALID PARAMETERS!";
 	strings[8] = "MAP PATH IS NOT REACHABLE!";
 	strings[9] = "INVALID COLOR!";
 	strings[10] = "MAP IS NOT ENDING WITH '.cub'!";
 	strings[11] = "MAP CONTAINS INVALID STARTING POSITION!";
+	strings[12] = "GOT AN INVALID READ ON MAP!";
+	strings[13] = "REQUESTED RESOLUTION IS INVALID!";
 	printf("Error\n%s\n", strings[error_no]);
 	return (error_no);
 }
@@ -57,24 +59,25 @@ int							ft_cub3d_check_map(char *map_path, \
 												char *map_lines)
 {
 	int		fd;
-	int		ret;
+	int		return_value;
 	char	*buf;
 
-	ret = 0;
+	return_value = 0;
 	if ((fd = open(map_path, O_RDONLY)) < 0)
 		return (MAP_INVALID_PATH);
-	while ((ret = get_next_line(fd, &buf)) > 0)
+	while ((return_value = get_next_line(fd, &buf)) > 0)
 	{
 		if (buf[0] != 0)
 		{
-			map_lines = ft_strjoin(map_lines, buf);
-			map_lines = ft_strjoin(map_lines, "\n");
+			map_lines = ft_strjoin_free_s1(map_lines, buf);
+			map_lines = ft_strjoin_free_s1(map_lines, "\n");
 		}
+		free(buf);
 	}
-	if (ret < 0)
+	if (return_value < 0)
 		return (MAP_INVALID_READ);
 	close(fd);
-	ft_cub3d_get_map_params(map_params, map_lines);
-	(void)map_params;
+	if ((return_value = ft_cub3d_get_map_params(map_params, map_lines)) != SUCCESS)
+		return (return_value);
 	return (SUCCESS);
 }

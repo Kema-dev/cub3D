@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/03 16:20:58 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 11:16:49 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int							ft_cub3d_get_map_params(t_map_params *map_params, \
 													char *map_lines);
 int							ft_cub3d_get_next_param(char *tmp, \
 													t_map_params *map_params);
-int							ft_cub3d_get_resolution(char *str, \
+int							ft_cub3d_get_resolution(char **str, \
 													t_map_params *map_params);
 int							ft_cub3d_get_texture(char *str, \
 													t_map_params *map_params);
