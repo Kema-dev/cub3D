@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 13:48:28 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 15:46:35 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,23 @@ int			ft_cub3d_get_texture(char **str, \
 									t_map_params *map_params)
 {
 	char	*path;
-	char	***dest;
+	char	*dest;
 	ssize_t	i;
-	ssize_t	j;
 
 	i = 0;
+	dest = ft_cub3d_get_first_word(str, ' ', '\n');
 	ft_cub3d_go_next_word(str, ' ', '\n');
-	while ((**str) && (**str != '\n'))
-	{
-		(*str) += 1;
-		i++;
-	}
-	j = i;
-	if (!(path = ft_calloc(i + 1, sizeof(char))))
-		return (MALLOC_FAIL);
-	while (i >= 0)
-	{
-		path[i] = **str;
-		if (i > 0)
-			(*str) -= 1;
-		i--;
-	}
-	*dest = &path;
-	(*str) += j;
-	printf("str=%s\n", *dest);
-	printf("path=%s\n", map_params->north_text);
+	path = ft_cub3d_get_first_word(str, ' ', '\n');
+	if (strncmp(dest, "NO", 2) == 0)
+		map_params->north_text = path;
+	else if (strncmp(dest, "SO", 2) == 0)
+		map_params->south_text = path;
+	else if (strncmp(dest, "WE", 2) == 0)
+		map_params->west_text = path;
+	else if (strncmp(dest, "EA", 2) == 0)
+		map_params->east_text = path;
+	else
+		map_params->sprite_text = path;
 	return (SUCCESS);
 }
 
@@ -101,7 +93,7 @@ int			ft_cub3d_get_field(char **str, \
 
 /*
 ** MAP SAMPLE
-** 
+**
 ** R 1280 720
 ** NO ./textures/bookshelf.xpm
 ** SO ./textures/cracked_stone_bricks.xpm
@@ -110,7 +102,7 @@ int			ft_cub3d_get_field(char **str, \
 ** S ./textures/barrel.xpm
 ** F 155,62,62
 ** C 51,204,255
-** 
+**
 ** 1111111111111111111111111111111111
 ** 1000000000010202020100000111110111
 ** 1000000000010000000100000000000001
