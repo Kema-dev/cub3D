@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 12:54:53 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 13:33:43 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,16 @@ int			ft_cub3d_get_next_param(char **tmp, \
 {
 	int		return_value;
 
-	(void)return_value;
-	(void)map_params;
-	while ((**tmp == '\n') || (**tmp == ' '))
-		(*tmp) += 1;
-
+	ft_cub3d_go_next_word(tmp, '\n', '\n');
+	//printf("str:\n%s\n", *tmp);
  	if (*tmp[0] == 'R')
  	{
  		if ((return_value = ft_cub3d_get_resolution(tmp, map_params)) != SUCCESS)
  			return (return_value);
  	}
- 	else if ((strncmp(*tmp, "NO", 3) == 0) || (strncmp(*tmp, "SO", 3) == 0) || \
- 			(strncmp(*tmp, "WE", 3) == 0) || (strncmp(*tmp, "EA", 3) == 0) || \
- 			(strncmp(*tmp, "S", 2) == 0))
+ 	else if ((strncmp(*tmp, "NO", 2) == 0) || (strncmp(*tmp, "SO", 2) == 0) || \
+ 			(strncmp(*tmp, "WE", 2) == 0) || (strncmp(*tmp, "EA", 2) == 0) || \
+ 			(strncmp(*tmp, "S", 1) == 0))
  			{
  		if ((return_value = ft_cub3d_get_texture(tmp, map_params)) != SUCCESS)
  			return (return_value);
@@ -61,7 +58,6 @@ int			ft_cub3d_get_next_param(char **tmp, \
  	}
  	else
  		return (MAP_INVALID_CONFIG);
-	printf("str=%s\n", *tmp);
 	return (SUCCESS);
 }
 

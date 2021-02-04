@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 12:52:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 13:48:28 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,31 @@ int			ft_cub3d_get_texture(char **str, \
 									t_map_params *map_params)
 {
 	char	*path;
-	char	*dest;
-	size_t	i;
+	char	***dest;
+	ssize_t	i;
+	ssize_t	j;
 
 	i = 0;
-	if (strncmp(*str, "NO", 3) == 0)
-		dest = map_params->north_text;
-	else if (strncmp(*str, "SO", 3) == 0)
-		dest = map_params->south_text;
-	else if (strncmp(*str, "WE", 3) == 0)
-		dest = map_params->west_text;
-	else if (strncmp(*str, "EA", 3) == 0)
-		dest = map_params->east_text;
-	else
-		dest = map_params->sprite_text;
-	while (ft_isalpha(**str))
-		(*str) += 3;
-	while (ft_isalpha(*str[i]))
+	ft_cub3d_go_next_word(str, ' ', '\n');
+	while ((**str) && (**str != '\n'))
+	{
+		(*str) += 1;
 		i++;
+	}
+	j = i;
 	if (!(path = ft_calloc(i + 1, sizeof(char))))
 		return (MALLOC_FAIL);
-	while (i > 0)
+	while (i >= 0)
 	{
-		path[i] = *str[i];
+		path[i] = **str;
+		if (i > 0)
+			(*str) -= 1;
 		i--;
 	}
-	*dest = *path;
-	(*str) += i;
+	*dest = &path;
+	(*str) += j;
+	printf("str=%s\n", *dest);
+	printf("path=%s\n", map_params->north_text);
 	return (SUCCESS);
 }
 
