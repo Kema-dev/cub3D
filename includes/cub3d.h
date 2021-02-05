@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 15:28:09 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 15:46:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int							ft_cub3d_2d_map(t_map_params *map_params);
 int							ft_cub3d_is_charset(char **map, char *charset);
 int							ft_cub3d_get_starting_pos(t_map_params *map_params, \
 														char *charset);
-int							ft_cub3d_check_walls(t_map_params map_params, \
+int							ft_cub3d_check_walls(t_map_params *map_params, \
 													char empty, \
 													char wall, \
 													char sprite);
