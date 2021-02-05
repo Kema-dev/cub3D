@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/04 12:35:02 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/05 15:27:15 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CC			=	gcc
 
 FLAGS		=	-Wall -Wextra -Werror
 
-DEBUG_FLAGS	=	-Wall -Wextra #-fsanitize=address
+DEBUG_FLAGS	=	-Wall -Wextra -fsanitize=address
 
 ARGS		=	map.cub
 
@@ -48,7 +48,8 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_initial_checks.c \
 				ft_cub3d_map_parser.c \
 				ft_cub3d_get_map_params.c \
-				ft_cub3d_word_utils.c
+				ft_cub3d_word_utils.c \
+				ft_cub3d_check_walls.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 

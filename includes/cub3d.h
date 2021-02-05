@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 10:33:24 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 15:28:09 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@
 # define MAP_INVALID_POS		11
 # define MAP_INVALID_READ		12
 # define MAP_INVALID_RES		13
+# define MAP_IS_DIR				14
+# define MAP_SPLIT_FAIL			15
+# define MAP_NO_STARTING_POS	16
 
 /*
 ** GNL
@@ -102,6 +105,10 @@ typedef struct				s_map_params {
 	int						floor_color;
 	int						ceiling_color;
 	char					*field;
+	char					**map;
+	char					orientation;
+	int						starting_pos_x;
+	int						starting_pos_y;
 }							t_map_params;
 
 /*
@@ -140,7 +147,20 @@ char						*ft_cub3d_get_first_word(char **str, \
 													char sep, \
 													char end);
 void						ft_cub3d_print_map_params(t_map_params *map_params);
-void						ft_cub3d_pass_digit(char **str);
+int							ft_cub3d_pass_digit(char **str);
+int							ft_cub3d_last_checks(char **tmp);
+int							ft_cub3d_param_return(int return_value);
+int							ft_cub3d_exit_exec(int return_value, \
+												t_map_params *map_params);
+int							ft_cub3d_2d_map(t_map_params *map_params);
+int							ft_cub3d_is_charset(char **map, char *charset);
+int							ft_cub3d_get_starting_pos(t_map_params *map_params, \
+														char *charset);
+int							ft_cub3d_check_walls(t_map_params map_params, \
+													char empty, \
+													char wall, \
+													char sprite);
+char						**ft_cub3d_get_test_map(char **map);
 
 /*
 ** get_color_info

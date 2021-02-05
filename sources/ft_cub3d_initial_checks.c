@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 10:29:28 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 15:14:14 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int							ft_cub3d_print_errno(int error_no)
 {
-	char	*strings[14];
+	char	*strings[17];
 
 	strings[0] = "SUCCESS";
 	strings[1] = "FAILURE";
@@ -30,6 +30,9 @@ int							ft_cub3d_print_errno(int error_no)
 	strings[11] = "MAP CONTAINS INVALID STARTING POSITION!";
 	strings[12] = "GOT AN INVALID READ ON MAP!";
 	strings[13] = "REQUESTED RESOLUTION IS INVALID!";
+	strings[14] = "YOUR SPECIFIED MAP IS A DIRECTORY!";
+	strings[15] = "MAP SPLIT FAILED!";
+	strings[16] = "MAP CONTAINS NO STARTING POSITION!";
 	printf("Error\n%s\n", strings[error_no]);
 	return (error_no);
 }
@@ -63,6 +66,11 @@ int							ft_cub3d_check_map(char *map_path, \
 	char	*buf;
 
 	return_value = 0;
+	if ((fd = open(map_path, O_DIRECTORY)) >= 0)
+	{
+		close(fd);
+		return (MAP_IS_DIR);
+	}
 	if ((fd = open(map_path, O_RDONLY)) < 0)
 		return (MAP_INVALID_PATH);
 	while ((return_value = get_next_line(fd, &buf)) > 0)

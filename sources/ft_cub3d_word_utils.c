@@ -6,17 +6,18 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:33:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 10:33:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 15:07:46 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_cub3d_pass_digit(char **str)
+int		ft_cub3d_pass_digit(char **str)
 {
 	while (ft_isdigit(*str[0]))
 		(*str) += 1;
 	(*str) += 1;
+	return (SUCCESS);
 }
 
 int		ft_cub3d_go_next_word(char **str, char sep, char end)
@@ -62,4 +63,63 @@ char	*ft_cub3d_get_first_word(char **str, char sep, char end)
 	if (j > 0)
 		(*str) += 1;
 	return (word);
+}
+
+int		ft_cub3d_is_charset(char **map, char *charset)
+{
+	ssize_t	i;
+	ssize_t	j;
+	ssize_t	k;
+	int		return_value;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			k = -1;
+			return_value = MAP_INVALID_CHAR;
+			while (charset[++k])
+			{
+				if (map[i][j] == charset[k])
+					return_value = SUCCESS;
+			}
+			if (return_value != SUCCESS)
+				return (return_value);
+		}
+	}
+	return (SUCCESS);
+}
+
+int		ft_cub3d_get_starting_pos(t_map_params *map_params, char *charset)
+{
+	ssize_t	i;
+	ssize_t	j;
+	ssize_t	k;
+
+	i = -1;
+	while (map_params->map[++i])
+	{
+		j = -1;
+		while (map_params->map[i][++j])
+		{
+			k = -1;
+			while (charset[++k])
+			{
+				if (map_params->map[i][j] == charset[k])
+				{
+					if (map_params->orientation == 0)
+					{
+						map_params->orientation = charset[k];
+						map_params->starting_pos_x = j;
+						map_params->starting_pos_y = i;
+					}
+					else
+						return (MAP_INVALID_POS);
+				}
+			}
+		}
+	}
+	return (SUCCESS);
 }

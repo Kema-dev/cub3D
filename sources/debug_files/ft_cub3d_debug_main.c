@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 10:27:15 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 15:03:28 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ void				ft_cub3d_print_map_params(t_map_params *map_params)
 	printf("propermap\n:%s:\n", map_params->field);
 }
 
+int					ft_cub3d_exit_exec(int return_value, \
+										t_map_params *map_params)
+{
+	ssize_t	i;
+
+	i = -1;
+	free(map_params->north_text);
+	free(map_params->south_text);
+	free(map_params->east_text);
+	free(map_params->west_text);
+	free(map_params->sprite_text);
+	free(map_params->field);
+	while (map_params->map[++i])
+		free(map_params->map[i]);
+	free(map_params->map);
+	free(map_params);
+	return (return_value);
+}
+
 int					main(int argc, char **argv)
 {
 	int				save;
@@ -38,11 +57,12 @@ int					main(int argc, char **argv)
 		return (MALLOC_FAIL);
 	if ((return_value = ft_cub3d_check_arg(argc, argv, &save)) != SUCCESS)
 		return (ft_cub3d_print_errno(return_value));
-	if ((return_value = ft_cub3d_check_map(argv[1], map_params, map_lines)) \
-																!= SUCCESS)
+	if ((return_value = ft_cub3d_check_map(argv[1], map_params, \
+											map_lines)) != SUCCESS)
 		return (ft_cub3d_print_errno(return_value));
-	ft_cub3d_print_map_params(map_params);
-	return (SUCCESS);
+	//ft_cub3d_print_map_params(map_params);
+	return_value = ft_cub3d_exit_exec(return_value, map_params);
+	return (return_value);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 10:40:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 15:25:19 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int			ft_cub3d_get_resolution(char **str, \
 	if ((map_params->res_height = ft_atoi(*str)) <= 0)
 		return (MAP_INVALID_RES);
 	ft_cub3d_go_next_word(str, ' ', '\n');
+	if (map_params->res_width > 5120)
+		map_params->res_width = 5120;
+	if (map_params->res_height > 2880)
+		map_params->res_height = 2880;
 	return (SUCCESS);
 }
 
@@ -46,6 +50,7 @@ int			ft_cub3d_get_texture(char **str, \
 		map_params->east_text = path;
 	else
 		map_params->sprite_text = path;
+	free(dest);
 	return (SUCCESS);
 }
 
@@ -76,8 +81,8 @@ int			ft_cub3d_get_plane(char **str, \
 		map_params->floor_color = ft_cub3d_create_trgb(0, r, g, b);
 	else
 		map_params->ceiling_color = ft_cub3d_create_trgb(0, r, g, b);
-	ft_cub3d_pass_digit(str);
-	return (SUCCESS);
+	free(dest);
+	return (ft_cub3d_pass_digit(str));
 }
 
 int			ft_cub3d_get_field(char **str, \
@@ -85,6 +90,25 @@ int			ft_cub3d_get_field(char **str, \
 {
 	map_params->field = ft_strjoin(map_params->field, *str);
 	(*str) += ft_strlen(*str);
+	return (SUCCESS);
+}
+
+int			ft_cub3d_2d_map(t_map_params *map_params)
+{
+	int		return_value;
+
+	if (!(map_params->map = ft_split(map_params->field, '\n')))
+		return (MAP_SPLIT_FAIL);
+	if ((return_value = ft_cub3d_is_charset(map_params->map, "012 NSEW")) != SUCCESS)
+		return (return_value);
+	map_params->starting_pos_x = -1;
+	map_params->starting_pos_y = -1;
+	if ((return_value = ft_cub3d_get_starting_pos(map_params, "NSEW")) != SUCCESS)
+		return (return_value);
+	if ((map_params->starting_pos_x == -1) || (map_params->starting_pos_y == -1))
+		return (MAP_NO_STARTING_POS);
+	if ((return_value = ft_cub3d_check_walls(map_params, '0', '1', '2')) != SUCCESS)
+		return (return_value);
 	return (SUCCESS);
 }
 
