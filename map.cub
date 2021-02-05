@@ -4,7 +4,7 @@ SO ./textures/cracked_stone_bricks.xpm
 WE ./textures/piston_top.xpm
 EA ./textures/purplestone.xpm
 S ./textures/barrel.xpm
-F 155,62,62
+F 255,0,255
 C 51,204,255
 
 1111111111111111111111111111111111

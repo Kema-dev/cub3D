@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 16:45:32 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 10:40:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,19 @@ int			ft_cub3d_get_plane(char **str, \
 	int		r;
 	int		g;
 	int		b;
-	size_t	i;
 
-	i = 0;
 	r = 0;
 	g = 0;
 	b = 0;
 	dest = ft_cub3d_get_first_word(str, ' ', '\n');
 	ft_cub3d_go_next_word(str, ' ', '\n');
-	if ((r = ft_atoi(*str)) < 0)
+	if (((r = ft_atoi(*str)) < 0) || ((r == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
-	while (ft_isdigit(*str[0]))
-		(*str) += 1;
-	(*str) += 1;
-	if ((g = ft_atoi(*str)) < 0)
+	ft_cub3d_pass_digit(str);
+	if (((g = ft_atoi(*str)) < 0) || ((g == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
-	while (ft_isdigit(*str[0]))
-		(*str) += 1;
-	(*str) += 1;
-	if ((b = ft_atoi(*str)) < 0)
+	ft_cub3d_pass_digit(str);
+	if (((b = ft_atoi(*str)) < 0) || ((b == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
 	if ((r > 255) || (g > 255) || (b > 255))
 		return (MAP_INVALID_COLOR);
@@ -82,6 +76,7 @@ int			ft_cub3d_get_plane(char **str, \
 		map_params->floor_color = ft_cub3d_create_trgb(0, r, g, b);
 	else
 		map_params->ceiling_color = ft_cub3d_create_trgb(0, r, g, b);
+	ft_cub3d_pass_digit(str);
 	return (SUCCESS);
 }
 

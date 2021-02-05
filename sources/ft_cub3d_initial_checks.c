@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 16:42:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 10:29:28 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,14 @@ int							ft_cub3d_check_map(char *map_path, \
 		}
 		free(buf);
 	}
+	map_lines = ft_strjoin_free_s1(map_lines, buf);
+	free(buf);
 	if (return_value < 0)
 		return (MAP_INVALID_READ);
 	close(fd);
 	if ((return_value = ft_cub3d_get_map_params(map_params, \
 												map_lines)) != SUCCESS)
 		return (return_value);
- 	printf("\nres width:%zu:\n", map_params->res_width);
- 	printf("res height:%zu:\n", map_params->res_height);
- 	printf("no texture path:%s:\n", map_params->north_text);
- 	printf("south texture patht:%s:\n", map_params->south_text);
- 	printf("east texture path:%s:\n", map_params->east_text);
- 	printf("west texture path:%s:\n", map_params->west_text);
- 	printf("sprite texture path:%s:\n", map_params->sprite_text);
- 	printf("floor col:%d:\n", map_params->floor_color);
- 	printf("ceiling col:%d:\n", map_params->ceiling_color);
- 	printf("propermap\n:%s:\n", map_params->field);
 	return (SUCCESS);
 }
 

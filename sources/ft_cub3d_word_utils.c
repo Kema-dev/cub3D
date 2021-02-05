@@ -6,11 +6,18 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:33:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 16:01:28 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 10:33:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_cub3d_pass_digit(char **str)
+{
+	while (ft_isdigit(*str[0]))
+		(*str) += 1;
+	(*str) += 1;
+}
 
 int		ft_cub3d_go_next_word(char **str, char sep, char end)
 {
@@ -52,5 +59,7 @@ char	*ft_cub3d_get_first_word(char **str, char sep, char end)
 		word[i] = *str[0];
 	}
 	(*str) += j;
+	if (j > 0)
+		(*str) += 1;
 	return (word);
 }

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/04 16:45:45 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 10:43:48 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,22 @@ int			ft_cub3d_get_next_param(char **tmp, \
 {
 	int		return_value;
 
+	while ((*tmp[0] == '\n') || (*tmp[0] == ' '))
+		(*tmp) += 1;
 	if (*tmp[0] == 'R')
 	{
 		if ((return_value = ft_cub3d_get_resolution(tmp, map_params)) \
 															!= SUCCESS)
 			return (return_value);
 	}
-	else if ((strncmp(*tmp, "NO", 2) == 0) || (strncmp(*tmp, "SO", 2) == 0) || \
-			(strncmp(*tmp, "WE", 2) == 0) || (strncmp(*tmp, "EA", 2) == 0) || \
-				(strncmp(*tmp, "S", 1) == 0))
+	else if ((strncmp(*tmp, "NO ", 3) == 0) || (strncmp(*tmp, "SO ", 3) == 0) \
+		|| (strncmp(*tmp, "WE ", 3) == 0) || (strncmp(*tmp, "EA ", 3) == 0) \
+		|| (strncmp(*tmp, "S ", 2) == 0))
 	{
 		if ((return_value = ft_cub3d_get_texture(tmp, map_params)) != SUCCESS)
 			return (return_value);
 	}
-	else if ((strncmp(*tmp, "F", 1) == 0) || (strncmp(*tmp, "C", 1) == 0))
+	else if ((strncmp(*tmp, "F ", 2) == 0) || (strncmp(*tmp, "C ", 2) == 0))
 	{
 		if ((return_value = ft_cub3d_get_plane(tmp, map_params)) != SUCCESS)
 			return (return_value);
@@ -57,7 +59,7 @@ int			ft_cub3d_get_next_param(char **tmp, \
 	}
 	else if (*tmp[0] != 0)
 		return (MAP_INVALID_CONFIG);
-	if (*tmp[0] == 0)
+	else
 		return (PASS);
 	return (SUCCESS);
 }
