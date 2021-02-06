@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:26:51 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/06 14:09:36 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 14:32:32 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void						ft_cub3d_print_map(char **map)
 }
 
 int							ft_cub3d_recursive_wall(char **test_map, \
-													int x, \
-													int y)
+													size_t x, \
+													size_t y)
 {
 	int	return_value;
 
@@ -86,6 +86,8 @@ int							ft_cub3d_recursive_wall(char **test_map, \
 	if ((test_map[y][x] == 'v') || (test_map[y][x] == '1'))
 		return (0);
 	else if (test_map[y][x] == 'X')
+		return (1);
+	if ((ft_strlen(test_map[y - 1]) <= x) || (ft_strlen(test_map[y + 1]) <= x))
 		return (1);
 	else
 	{

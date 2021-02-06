@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/06 13:53:01 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 14:30:22 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ typedef struct				s_input {
 	bool					right;
 	bool					left;
 	int						other;
-	int						x;
-	int						y;
+	size_t					x;
+	size_t					y;
 }							t_input;
 
 typedef struct				s_map_params {
@@ -159,8 +159,8 @@ int							ft_cub3d_get_starting_pos(t_map_params *map_params, \
 int							ft_cub3d_check_walls(t_map_params *map_params);
 char						**ft_cub3d_get_test_map(char **map);
 int							ft_cub3d_recursive_wall(char **test_map, \
-													int x, \
-													int y);
+													size_t x, \
+													size_t y);
 
 /*
 ** get_color_info
