@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:26:51 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 15:58:58 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 10:55:41 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ char						**ft_cub3d_get_test_map(char **map)
 	if (!(test_map[0] = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
 	ft_memset(test_map[0], 'X', len);
-	len = ft_strlen(map[nb_rows]);
-	if (!(test_map[nb_rows + 2] = ft_calloc(len + 1, sizeof(char))))
+	len = ft_strlen(map[nb_rows - 1]);
+	if (!(test_map[nb_rows + 1] = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
-	ft_memset(test_map[nb_rows + 2], 'X', len);
-	printf("=%s=\n", test_map[nb_rows+2]);
+	ft_memset(test_map[nb_rows + 1], 'X', len);
 	while (nb_rows > 0)
 	{
 		if (!(test_map[nb_rows] = ft_calloc(len = ft_strlen(map[nb_rows - 1]) + 1, sizeof(char))))
