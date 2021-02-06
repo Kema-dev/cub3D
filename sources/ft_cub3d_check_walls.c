@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:26:51 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/06 10:55:41 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 14:09:36 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ char						**ft_cub3d_get_test_map(char **map)
 	ft_memset(test_map[nb_rows + 1], 'X', len);
 	while (nb_rows > 0)
 	{
-		if (!(test_map[nb_rows] = ft_calloc(len = ft_strlen(map[nb_rows - 1]) + 1, sizeof(char))))
+		if (!(test_map[nb_rows] = ft_calloc(len = ft_strlen(map[nb_rows - 1]) \
+													+ 1, sizeof(char))))
 			return (NULL);
 		while (--len >= 0)
 		{
@@ -48,23 +49,51 @@ char						**ft_cub3d_get_test_map(char **map)
 		}
 		nb_rows--;
 	}
-	len = -1;
-	while (test_map[++len])
-		printf("%s\n", test_map[len]);
 	return (test_map);
 }
 
-int							ft_cub3d_check_walls(t_map_params *map_params, \
-													char empty, \
-													char wall, \
-													char sprite)
+int							ft_cub3d_check_walls(t_map_params *map_params)
 {
 	char	**test_map;
+	int		return_value;
 
 	if (!(test_map = ft_cub3d_get_test_map(map_params->map)))
 		return (MALLOC_FAIL);
-	(void)empty;
-	(void)wall;
-	(void)sprite;
+	ft_cub3d_print_map(test_map);
+	if ((return_value = ft_cub3d_recursive_wall(test_map, \
+							map_params->starting_pos_x + 1, \
+							map_params->starting_pos_y + 1)) != SUCCESS)
+		return (MAP_IS_OPEN);
 	return (SUCCESS);
+}
+
+void						ft_cub3d_print_map(char **map)
+{
+	ssize_t	i;
+
+	i = -1;
+	while (map[++i])
+		printf("%s\n", map[i]);
+}
+
+int							ft_cub3d_recursive_wall(char **test_map, \
+													int x, \
+													int y)
+{
+	int	return_value;
+
+	return_value = 0;
+	if ((test_map[y][x] == 'v') || (test_map[y][x] == '1'))
+		return (0);
+	else if (test_map[y][x] == 'X')
+		return (1);
+	else
+	{
+		test_map[y][x] = 'v';
+		return_value += ft_cub3d_recursive_wall(test_map, x, y + 1);
+		return_value += ft_cub3d_recursive_wall(test_map, x + 1, y);
+		return_value += ft_cub3d_recursive_wall(test_map, x, y - 1);
+		return_value += ft_cub3d_recursive_wall(test_map, x - 1, y);
+	}
+	return (return_value);
 }
