@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 15:03:28 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 14:40:20 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int					main(int argc, char **argv)
 		return (ft_cub3d_print_errno(return_value));
 	//ft_cub3d_print_map_params(map_params);
 	return_value = ft_cub3d_exit_exec(return_value, map_params);
+	sleep(-1);
 	return (return_value);
 }
 

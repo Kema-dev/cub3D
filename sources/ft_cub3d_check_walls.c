@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:26:51 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/06 14:32:32 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 14:46:27 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int							ft_cub3d_check_walls(t_map_params *map_params)
 {
 	char	**test_map;
 	int		return_value;
+	ssize_t	i;
 
 	if (!(test_map = ft_cub3d_get_test_map(map_params->map)))
 		return (MALLOC_FAIL);
@@ -64,6 +65,10 @@ int							ft_cub3d_check_walls(t_map_params *map_params)
 							map_params->starting_pos_x + 1, \
 							map_params->starting_pos_y + 1)) != SUCCESS)
 		return (MAP_IS_OPEN);
+	i = -1;
+	while (test_map[++i])
+		free(test_map[i]);
+	free(test_map);
 	return (SUCCESS);
 }
 
