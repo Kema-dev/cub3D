@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:26:51 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/06 14:46:27 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 10:02:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int							ft_cub3d_check_walls(t_map_params *map_params)
 
 	if (!(test_map = ft_cub3d_get_test_map(map_params->map)))
 		return (MALLOC_FAIL);
-	ft_cub3d_print_map(test_map);
 	if ((return_value = ft_cub3d_recursive_wall(test_map, \
 							map_params->starting_pos_x + 1, \
 							map_params->starting_pos_y + 1)) != SUCCESS)
