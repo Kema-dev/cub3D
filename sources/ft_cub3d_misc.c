@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/09 10:37:19 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:53:14 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void				ft_cub3d_print_map_params(t_map_params *map_params)
 	printf("floor col            :%d:\n", map_params->floor_color);
 	printf("ceiling col          :%d:\n", map_params->ceiling_color);
 	printf("propermap\n:%s:\n", map_params->field);
+}
+
+int					ft_cub3d_init_rgb(int *r, int *g, int *b)
+{
+	*r = 0;
+	*g = 0;
+	*b = 0;
+	return (SUCCESS);
 }

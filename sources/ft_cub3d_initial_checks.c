@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 15:14:14 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 14:45:05 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int							ft_cub3d_print_errno(int error_no)
 
 int							ft_cub3d_check_arg(int argc,\
 												char **argv, \
-												int *save)
+												bool *save)
 {
 	if ((argc <= 1) || (argc >= 4))
 		return (INVALID_ARG_NUM);
@@ -48,12 +48,24 @@ int							ft_cub3d_check_arg(int argc,\
 		if (ft_strncmp(argv[2], "--save", 7) != SUCCESS)
 			return (INVALID_ARG);
 		else
-			*save = 1;
+			*save = true;
 	}
 	if (ft_strlen(argv[1]) <= 4)
 		return (MAP_INVALID_EXT);
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != SUCCESS)
 		return (MAP_INVALID_EXT);
+	return (SUCCESS);
+}
+
+int							ft_cub3d_check_map_is_dir(char *map_path)
+{
+	int		fd;
+
+	if ((fd = open(map_path, O_DIRECTORY)) >= 0)
+	{
+		close(fd);
+		return (MAP_IS_DIR);
+	}
 	return (SUCCESS);
 }
 
@@ -66,11 +78,6 @@ int							ft_cub3d_check_map(char *map_path, \
 	char	*buf;
 
 	return_value = 0;
-	if ((fd = open(map_path, O_DIRECTORY)) >= 0)
-	{
-		close(fd);
-		return (MAP_IS_DIR);
-	}
 	if ((fd = open(map_path, O_RDONLY)) < 0)
 		return (MAP_INVALID_PATH);
 	while ((return_value = get_next_line(fd, &buf)) > 0)
@@ -93,27 +100,28 @@ int							ft_cub3d_check_map(char *map_path, \
 	return (SUCCESS);
 }
 
-/*
-** MAP SAMPLE
-**
-** R 1280 720
-** NO ./textures/bookshelf.xpm
-** SO ./textures/cracked_stone_bricks.xpm
-** WE ./textures/piston_top.xpm
-** EA ./textures/purplestone.xpm
-** S ./textures/barrel.xpm
-** F 155,62,62
-** C 51,204,255
-**
-** 1111111111111111111111111111111111
-** 1000000000010202020100000111110111
-** 1000000000010000000100000000000001
-** 1000101000010202020111111100000001
-** 10001010000100000001000000000000001
-** 1000101000011100111111111110111111
-** 120000W0002000000001      101
-** 10002000000000000021111111101
-** 100000000000000020000000000001
-** 100000200000000000211111111111
-** 11111111111111111111
-*/
+int							ft_cub3d_start_is_charset(t_map_params \
+												*map_params, \
+												ssize_t i, \
+												ssize_t j, \
+												char *charset)
+{
+	ssize_t	k;
+
+	k = -1;
+	while (charset[++k])
+	{
+		if (map_params->map[i][j] == charset[k])
+		{
+			if (map_params->orientation == 0)
+			{
+				map_params->orientation = charset[k];
+				map_params->starting_pos_x = j;
+				map_params->starting_pos_y = i;
+			}
+			else
+				return (MAP_INVALID_POS);
+		}
+	}
+	return (SUCCESS);
+}

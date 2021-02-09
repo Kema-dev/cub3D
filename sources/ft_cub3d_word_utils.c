@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:33:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/05 15:07:46 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 14:45:24 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ int		ft_cub3d_is_charset(char **map, char *charset)
 	return (SUCCESS);
 }
 
-int		ft_cub3d_get_starting_pos(t_map_params *map_params, char *charset)
+int		ft_cub3d_get_starting_pos(t_map_params *map_params, \
+								char *charset)
 {
 	ssize_t	i;
 	ssize_t	j;
-	ssize_t	k;
 
 	i = -1;
 	while (map_params->map[++i])
@@ -104,21 +104,9 @@ int		ft_cub3d_get_starting_pos(t_map_params *map_params, char *charset)
 		j = -1;
 		while (map_params->map[i][++j])
 		{
-			k = -1;
-			while (charset[++k])
-			{
-				if (map_params->map[i][j] == charset[k])
-				{
-					if (map_params->orientation == 0)
-					{
-						map_params->orientation = charset[k];
-						map_params->starting_pos_x = j;
-						map_params->starting_pos_y = i;
-					}
-					else
-						return (MAP_INVALID_POS);
-				}
-			}
+			if ((ft_cub3d_start_is_charset(map_params, i, j, charset)) \
+														!= SUCCESS)
+				return (MAP_INVALID_POS);
 		}
 	}
 	return (SUCCESS);

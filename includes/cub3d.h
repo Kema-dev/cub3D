@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/06 14:30:22 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 14:46:17 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@
 ** colors
 */
 
-# define RED				0x00FF0000
-# define GREEN				0x0000FF00
-# define BLUE				0x000000FF
+# define RED					0x00FF0000
+# define GREEN					0x0000FF00
+# define BLUE					0x000000FF
 
 /*
 ** keys
 */
 
-# define W_KEY				13
-# define A_KEY				0
-# define S_KEY				1
-# define D_KEY				2
-# define ESC_KEY			53
-# define LEFT_ARROW_KEY		123
-# define RIGHT_ARROW_KEY	124
+# define W_KEY					13
+# define A_KEY					0
+# define S_KEY					1
+# define D_KEY					2
+# define ESC_KEY				53
+# define LEFT_ARROW_KEY			123
+# define RIGHT_ARROW_KEY		124
 
 /*
 ** return values
@@ -117,7 +117,7 @@ typedef struct				s_map_params {
 
 int							ft_cub3d_check_arg(int argc, \
 												char **argv, \
-												int *save);
+												bool *save);
 int							ft_cub3d_check_map(char *map_path, \
 												t_map_params *map_params, \
 												char *map_lines);
@@ -146,6 +146,7 @@ int							ft_cub3d_go_next_word(char **str, \
 char						*ft_cub3d_get_first_word(char **str, \
 													char sep, \
 													char end);
+int							ft_cub3d_check_map_is_dir(char *map_path);
 void						ft_cub3d_print_map_params(t_map_params *map_params);
 int							ft_cub3d_pass_digit(char **str);
 int							ft_cub3d_last_checks(char **tmp);
@@ -154,10 +155,13 @@ int							ft_cub3d_exit_exec(int return_value, \
 												t_map_params *map_params);
 int							ft_cub3d_2d_map(t_map_params *map_params);
 int							ft_cub3d_is_charset(char **map, char *charset);
-int							ft_cub3d_get_starting_pos(t_map_params *map_params, \
-														char *charset);
+int							ft_cub3d_get_starting_pos(t_map_params \
+												*map_params, char *charset);
 int							ft_cub3d_check_walls(t_map_params *map_params);
 char						**ft_cub3d_get_test_map(char **map);
+char						**ft_cub3d_fill_test_map(ssize_t nb_rows, \
+													char **map, \
+													char **test_map);
 int							ft_cub3d_recursive_wall(char **test_map, \
 													size_t x, \
 													size_t y);
@@ -226,5 +230,20 @@ t_data						ft_cub3d_render_next_img(t_vars *vars, \
 */
 
 void						ft_cub3d_print_map(char **map);
+
+/*
+** image_rendering
+*/
+
+int							ft_cub3d_launch_game(t_map_params *map_params);
+int							ft_cub3d_save_file(t_map_params *map_params);
+int							ft_cub3d_init_rgb(int *r, \
+											int *g, \
+											int *b);
+int							ft_cub3d_start_is_charset(t_map_params \
+													*map_params, \
+													ssize_t i, \
+													ssize_t j, \
+													char *charset);
 
 #endif

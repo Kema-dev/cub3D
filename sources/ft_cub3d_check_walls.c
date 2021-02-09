@@ -6,11 +6,35 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:26:51 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/09 10:02:57 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:42:08 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+char						**ft_cub3d_fill_test_map(ssize_t nb_rows, \
+													char **map, \
+													char **test_map)
+{
+	ssize_t	len;
+
+	len = 0;
+	while (nb_rows > 0)
+	{
+		len = ft_strlen(map[nb_rows - 1]);
+		if (!(test_map[nb_rows] = ft_calloc(len + 1, sizeof(char))))
+			return (NULL);
+		while (--len >= 0)
+		{
+			if (map[nb_rows - 1][len] == ' ')
+				test_map[nb_rows][len] = 'X';
+			else
+				test_map[nb_rows][len] = map[nb_rows - 1][len];
+		}
+		nb_rows--;
+	}
+	return (test_map);
+}
 
 char						**ft_cub3d_get_test_map(char **map)
 {
@@ -35,20 +59,7 @@ char						**ft_cub3d_get_test_map(char **map)
 	if (!(test_map[nb_rows + 1] = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
 	ft_memset(test_map[nb_rows + 1], 'X', len);
-	while (nb_rows > 0)
-	{
-		if (!(test_map[nb_rows] = ft_calloc(len = ft_strlen(map[nb_rows - 1]) \
-													+ 1, sizeof(char))))
-			return (NULL);
-		while (--len >= 0)
-		{
-			if (map[nb_rows - 1][len] == ' ')
-				test_map[nb_rows][len] = 'X';
-			else
-				test_map[nb_rows][len] = map[nb_rows - 1][len];
-		}
-		nb_rows--;
-	}
+	test_map = ft_cub3d_fill_test_map(nb_rows, map, test_map);
 	return (test_map);
 }
 

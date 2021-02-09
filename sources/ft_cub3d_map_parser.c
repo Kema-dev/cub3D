@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/06 13:42:26 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:54:13 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ int			ft_cub3d_get_plane(char **str, \
 	int		g;
 	int		b;
 
-	r = 0;
-	g = 0;
-	b = 0;
+	ft_cub3d_init_rgb(&r, &g, &b);
 	dest = ft_cub3d_get_first_word(str, ' ', '\n');
 	ft_cub3d_go_next_word(str, ' ', '\n');
 	if (((r = ft_atoi(*str)) < 0) || ((r == 0) && ((*str[0] != '0'))))
@@ -99,13 +97,16 @@ int			ft_cub3d_2d_map(t_map_params *map_params)
 
 	if (!(map_params->map = ft_split(map_params->field, '\n')))
 		return (MAP_SPLIT_FAIL);
-	if ((return_value = ft_cub3d_is_charset(map_params->map, "012 NSEW")) != SUCCESS)
+	if ((return_value = ft_cub3d_is_charset(map_params->map, \
+											"012 NSEW")) != SUCCESS)
 		return (return_value);
 	map_params->starting_pos_x = -1;
 	map_params->starting_pos_y = -1;
-	if ((return_value = ft_cub3d_get_starting_pos(map_params, "NSEW")) != SUCCESS)
+	if ((return_value = ft_cub3d_get_starting_pos(map_params, \
+											"NSEW")) != SUCCESS)
 		return (return_value);
-	if ((map_params->starting_pos_x == -1) || (map_params->starting_pos_y == -1))
+	if ((map_params->starting_pos_x == -1) || \
+				(map_params->starting_pos_y == -1))
 		return (MAP_NO_STARTING_POS);
 	if ((return_value = ft_cub3d_check_walls(map_params)) != SUCCESS)
 		return (MAP_IS_OPEN);
