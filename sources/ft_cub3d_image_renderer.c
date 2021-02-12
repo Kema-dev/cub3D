@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 11:19:55 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 11:29:59 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 		return (MALLOC_FAIL);
 	if ((return_value = ft_cub3d_init_mlx(data, map_params)) != SUCCESS)
 		return (return_value);
-	
 	return (SUCCESS);
 }
 

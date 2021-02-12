@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 11:19:26 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 11:34:10 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 ** return values
 */
 
+# define EXIT					-2
 # define PASS					-1
 # define SUCCESS				0
 # define FAILURE				1
@@ -200,13 +201,15 @@ void						ft_cub3d_pixel_put(t_data *data, \
 
 int							ft_cub3d_check_key_event(int keycode, \
 													t_data *data, \
-													t_input *input_values);
+													t_input *input_values \
+													t_map_params *map_params)
 int							ft_cub3d_invalid_input(int keycode, \
 													t_data *data, \
 													t_input *input_values);
 void						ft_cub3d_reset_input(t_input *input_values);
 void						ft_cub3d_treat_input(t_data *data, \
-													t_input *input_values);
+												t_input *input_values \
+												t_map_params *map_params)
 
 /*
 ** kill_process
@@ -218,9 +221,10 @@ int							ft_cub3d_kill_all(t_data *data);
 ** image_creation
 */
 
-t_data						ft_cub3d_render_next_img(t_data *data, \
-											int x, \
-											int y);
+t_data						*ft_cub3d_render_next_img(t_data *data, \
+									t_params *map_params, \
+									int x, \
+									int y);
 
 /*
 ** misc

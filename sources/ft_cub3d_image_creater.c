@@ -6,17 +6,18 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 16:32:11 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 11:16:43 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 11:32:09 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_data		ft_cub3d_render_next_img(t_data *data, \
+t_data		*ft_cub3d_render_next_img(t_data *data, \
+									t_params *map_params, \
 									int x, \
 									int y)
 {
-	data->img = mlx_new_image(data->mlx, data->res_width, data->res_height);
+	data->img = mlx_new_image(data->mlx, map_params->res_width, map_params->res_height);
 	data->addr = mlx_get_data_addr(data->img, data->bits_per_pixel, \
 								data->line_length, data->endian);
 	ft_cub3d_pixel_put(data, y, x, GREEN);
