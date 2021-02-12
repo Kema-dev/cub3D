@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/09 14:46:16 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/12 15:18:04 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_pixel_manipulation.c \
 				ft_cub3d_key_events_manager.c \
 				ft_cub3d_exit_process.c \
-				ft_cub3d_image_creater.c \
 				ft_cub3d_initial_checks.c \
 				ft_cub3d_map_parser.c \
 				ft_cub3d_get_map_params.c \

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 14:28:28 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 15:21:40 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,12 @@ typedef struct				s_data {
 	int						bits_per_pixel;
 	int						line_length;
 	int						endian;
+}							t_data;
+
+typedef struct				s_vars {
 	void					*mlx;
 	void					*mlx_win;
-}							t_data;
+}							t_vars;
 
 typedef struct				s_input {
 	bool					w;
@@ -136,7 +139,7 @@ int							ft_cub3d_get_field(char **str, \
 													t_map_params *map_params);
 
 /*
-** utils
+** parsing_utils
 */
 
 int							ft_cub3d_go_next_word(char **str, \
@@ -197,41 +200,23 @@ void						ft_cub3d_pixel_put(t_data *data, \
 											int color);
 
 /*
-** key_events
-*/
-
-int							ft_cub3d_check_key_event(int keycode, \
-													t_data *data, \
-													t_input *input_values, \
-													t_map_params *map_params);
-int							ft_cub3d_invalid_input(int keycode, \
-													t_data *data, \
-													t_input *input_values);
-void						ft_cub3d_reset_input(t_input *input_values);
-void						ft_cub3d_treat_input(t_data *data, \
-												t_input *input_values, \
-												t_map_params *map_params);
-
-/*
 ** kill_process
 */
 
-int							ft_cub3d_kill_all(t_data *data);
-
-/*
-** image_creation
-*/
-
-t_data						*ft_cub3d_render_next_img(t_data *data, \
-													t_map_params *map_params, \
-													int x, \
-													int y);
+int							ft_cub3d_kill_all(t_vars vars);
 
 /*
 ** misc
 */
 
 void						ft_cub3d_print_map(char **map);
+
+/*
+** key_events_manager
+*/
+
+int							ft_cub3d_check_key_event(t_map_params *map_params, \
+													t_vars vars, int keycode);
 
 /*
 ** image_rendering
@@ -247,6 +232,6 @@ int							ft_cub3d_start_is_charset(t_map_params \
 													ssize_t i, \
 													ssize_t j, \
 													char *charset);
-t_data						*ft_cub3d_init_data(void);
+t_data						*ft_cub3d_init_data(t_data *data);
 
 #endif
