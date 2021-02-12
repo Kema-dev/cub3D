@@ -6,19 +6,19 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/02 10:30:33 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 11:17:04 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 int		ft_cub3d_check_key_event(int keycode, \
-								t_vars *vars, \
+								t_data *data, \
 								t_input *input_values)
 {
 	ft_cub3d_reset_input(input_values);
 	if (keycode == ESC_KEY)
-		ft_cub3d_kill_all(vars);
+		ft_cub3d_kill_all(data);
 	else if (keycode == W_KEY)
 		input_values->w = true;
 	else if (keycode == A_KEY)
@@ -32,12 +32,12 @@ int		ft_cub3d_check_key_event(int keycode, \
 	else if (keycode == RIGHT_ARROW_KEY)
 		input_values->right = true;
 	else
-		return (ft_cub3d_invalid_input(keycode, vars, input_values));
-	ft_cub3d_treat_input(vars, input_values);
+		return (ft_cub3d_invalid_input(keycode, data, input_values));
+	ft_cub3d_treat_input(data, input_values);
 	return (0);
 }
 
-void	ft_cub3d_treat_input(t_vars *vars, \
+void	ft_cub3d_treat_input(t_data *data, \
 							t_input *input_values)
 {
 	if (input_values->w == true)
@@ -48,7 +48,7 @@ void	ft_cub3d_treat_input(t_vars *vars, \
 		input_values->y -= 1;
 	if (input_values->d == true)
 		input_values->y += 1;
-	ft_cub3d_render_next_img(vars, input_values->x, input_values->y);
+	ft_cub3d_render_next_img(data, input_values->x, input_values->y);
 }
 
 void	ft_cub3d_reset_input(t_input *input_values)
@@ -62,11 +62,11 @@ void	ft_cub3d_reset_input(t_input *input_values)
 }
 
 int		ft_cub3d_invalid_input(int keycode, \
-							t_vars *vars, \
+							t_data *data, \
 							t_input *input_values)
 {
 	input_values->other = true;
 	printf("keycode %d does nothing!\n", keycode);
-	(void)vars;
+	(void)data;
 	return (0);
 }
