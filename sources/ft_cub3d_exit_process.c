@@ -6,15 +6,15 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:01:00 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 15:16:06 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 16:40:45 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_cub3d_kill_all(t_vars vars)
+int		ft_cub3d_kill_all(t_data *data)
 {
-	mlx_destroy_window(vars.mlx, vars.mlx_win);
+	mlx_destroy_window(data->mlx, data->mlx_win);
 	printf("%s\n", "YOU KILLED ME D:");
 	return (EXIT);
 }

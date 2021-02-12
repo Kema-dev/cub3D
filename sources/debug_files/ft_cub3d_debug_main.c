@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:19 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 15:28:11 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 16:34:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** 	int				return_value;
 ** 	char			*map_lines;
 ** 	t_map_params	*map_params;
-** 
+**
 ** 	map_lines = NULL;
 ** 	if (!(map_params = ft_calloc(sizeof(t_map_params), 1)))
 ** 		return (MALLOC_FAIL);
@@ -36,16 +36,11 @@
 int				main(void)
 {
 	t_vars		vars;
-	t_input		*input_values;
 
-	if (!(input_values = malloc(sizeof(t_input))))
-		return (-1);
-	input_values->x = 5;
-	input_values->y = 5;
 	vars.mlx = mlx_init();
 	vars.mlx_win = mlx_new_window(vars.mlx, 1920, 1080, "Leche moi le cub");
 	mlx_hook(vars.mlx_win, 2, 1L << 0, ft_cub3d_check_key_event, &vars);
 	mlx_hook(vars.mlx_win, 17, 10001, ft_cub3d_kill_all, &vars);
 	mlx_loop(vars.mlx);
-	return (0);
+	return (SUCCESS);
 }

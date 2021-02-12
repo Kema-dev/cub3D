@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:33:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/09 14:45:24 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 16:17:13 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ char	*ft_cub3d_get_first_word(char **str, char sep, char end)
 		if (i >= 0)
 			(*str) -= 1;
 		i--;
-		word[i] = *str[0];
+		if (i >= 0)
+			word[i] = *str[0];
 	}
 	(*str) += j;
 	if (j > 0)
