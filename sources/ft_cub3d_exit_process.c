@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:01:00 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 11:28:32 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 13:26:01 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_cub3d_kill_all(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_window(data->mlx, data->mlx_win);
 	printf("%s\n", "YOU KILLED ME D:");
 	return (EXIT);
 }

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 11:34:10 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 14:28:28 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define MAP_IS_DIR				14
 # define MAP_SPLIT_FAIL			15
 # define MAP_NO_STARTING_POS	16
+# define MLX_INIT_FAIL			17
 
 /*
 ** GNL
@@ -77,7 +78,7 @@ typedef struct				s_data {
 	int						line_length;
 	int						endian;
 	void					*mlx;
-	void					*win;
+	void					*mlx_win;
 }							t_data;
 
 typedef struct				s_input {
@@ -201,15 +202,15 @@ void						ft_cub3d_pixel_put(t_data *data, \
 
 int							ft_cub3d_check_key_event(int keycode, \
 													t_data *data, \
-													t_input *input_values \
-													t_map_params *map_params)
+													t_input *input_values, \
+													t_map_params *map_params);
 int							ft_cub3d_invalid_input(int keycode, \
 													t_data *data, \
 													t_input *input_values);
 void						ft_cub3d_reset_input(t_input *input_values);
 void						ft_cub3d_treat_input(t_data *data, \
-												t_input *input_values \
-												t_map_params *map_params)
+												t_input *input_values, \
+												t_map_params *map_params);
 
 /*
 ** kill_process
@@ -222,9 +223,9 @@ int							ft_cub3d_kill_all(t_data *data);
 */
 
 t_data						*ft_cub3d_render_next_img(t_data *data, \
-									t_params *map_params, \
-									int x, \
-									int y);
+													t_map_params *map_params, \
+													int x, \
+													int y);
 
 /*
 ** misc
@@ -246,7 +247,6 @@ int							ft_cub3d_start_is_charset(t_map_params \
 													ssize_t i, \
 													ssize_t j, \
 													char *charset);
-int							ft_cub3d_init_mlx(t_data *data, \
-												t_map_params *map_params);
+t_data						*ft_cub3d_init_data(void);
 
 #endif
