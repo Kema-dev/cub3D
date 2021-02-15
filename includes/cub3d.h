@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 16:34:13 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 10:18:41 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void						ft_cub3d_pixel_put(t_data *data, \
 ** kill_process
 */
 
-int							ft_cub3d_kill_all(t_data *data);
+int							ft_cub3d_kill_all(t_data *data, t_map_params *map_params);
 
 /*
 ** misc

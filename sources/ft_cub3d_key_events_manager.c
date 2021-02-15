@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 16:34:27 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 10:20:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_cub3d_check_key_event(int keycode, \
 {
 	ft_cub3d_reset_input(input_values);
 	if (keycode == ESC_KEY)
-		ft_cub3d_kill_all(data);
+		ft_cub3d_kill_all(data, map_params);
 	else if (keycode == W_KEY)
 		input_values->w = true;
 	else if (keycode == A_KEY)

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/12 16:35:17 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 10:18:42 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int							ft_cub3d_launch_game(t_map_params *map_params)
 	if (!(data = ft_calloc(1, sizeof(data) + 1)))
 		return (MALLOC_FAIL);
 	data->mlx = mlx_init();
-	data->mlx_win = mlx_new_window(data->mlx, 1920, 1080, "Leche moi le cub3d");
+	data->mlx_win = mlx_new_window(data->mlx, map_params->res_width, map_params->res_height, "Cub3D");
 	mlx_hook(data->mlx_win, 2, 1L << 0, ft_cub3d_check_key_event, &data);
 	mlx_hook(data->mlx_win, 17, 10001, ft_cub3d_kill_all, &data);
 	mlx_loop(data->mlx);

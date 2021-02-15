@@ -1,4 +1,4 @@
-R 1280 720
+R 3200 1755
 NO ./textures/bookshelf.xpm
 SO ./textures/cracked_stone_bricks.xpm
 WE ./textures/piston_top.xpm
