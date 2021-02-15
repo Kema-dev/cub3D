@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:26:51 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/09 13:42:08 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:37:14 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ int							ft_cub3d_check_walls(t_map_params *map_params)
 	if ((return_value = ft_cub3d_recursive_wall(test_map, \
 							map_params->starting_pos_x + 1, \
 							map_params->starting_pos_y + 1)) != SUCCESS)
-		return (MAP_IS_OPEN);
+		return_value = MAP_IS_OPEN;
 	i = -1;
 	while (test_map[++i])
 		free(test_map[i]);
 	free(test_map);
-	return (SUCCESS);
+	return (return_value);
 }
 
 void						ft_cub3d_print_map(char **map)

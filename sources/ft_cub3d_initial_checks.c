@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/09 14:45:05 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:17:58 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int							ft_cub3d_print_errno(int error_no)
 {
-	char	*strings[17];
+	char	*strings[18];
 
 	strings[0] = "SUCCESS";
 	strings[1] = "FAILURE";
@@ -33,6 +33,7 @@ int							ft_cub3d_print_errno(int error_no)
 	strings[14] = "YOUR SPECIFIED MAP IS A DIRECTORY!";
 	strings[15] = "MAP SPLIT FAILED!";
 	strings[16] = "MAP CONTAINS NO STARTING POSITION!";
+	strings[17] = "YOU KILLED ME D:";
 	printf("Error\n%s\n", strings[error_no]);
 	return (error_no);
 }

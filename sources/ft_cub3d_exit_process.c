@@ -6,12 +6,11 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:01:00 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 10:35:51 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:53:48 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 int					ft_cub3d_exit_exec(int return_value, \
 										t_map_params *map_params)
@@ -32,10 +31,8 @@ int					ft_cub3d_exit_exec(int return_value, \
 	return (return_value);
 }
 
-int		ft_cub3d_kill_all(t_data *data, t_map_params *map_params)
+int					ft_cub3d_exit(void)
 {
-	(void)data;
-	(void)map_params;
 	printf("%s\n", "YOU KILLED ME D:");
 	exit(SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 10:18:41 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:39:14 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,6 @@
 
 # define BUFFER_SIZE		16
 
-typedef struct				s_data {
-	void					*img;
-	char					*addr;
-	int						bits_per_pixel;
-	int						line_length;
-	int						endian;
-	void					*mlx;
-	void					*mlx_win;
-}							t_data;
-
 typedef struct				s_input {
 	bool					w;
 	bool					a;
@@ -109,6 +99,17 @@ typedef struct				s_map_params {
 	int						starting_pos_x;
 	int						starting_pos_y;
 }							t_map_params;
+
+typedef struct				s_data {
+	void					*img;
+	char					*addr;
+	int						bits_per_pixel;
+	int						line_length;
+	int						endian;
+	void					*mlx;
+	void					*mlx_win;
+	t_map_params			*map_params;
+}							t_data;
 
 /*
 ** initial_checks
@@ -153,8 +154,6 @@ void						ft_cub3d_print_map_params(t_map_params *map_params);
 int							ft_cub3d_pass_digit(char **str);
 int							ft_cub3d_last_checks(char **tmp);
 int							ft_cub3d_param_return(int return_value);
-int							ft_cub3d_exit_exec(int return_value, \
-												t_map_params *map_params);
 int							ft_cub3d_2d_map(t_map_params *map_params);
 int							ft_cub3d_is_charset(char **map, char *charset);
 int							ft_cub3d_get_starting_pos(t_map_params \
@@ -205,12 +204,6 @@ void						ft_cub3d_pixel_put(t_data *data, \
 											int color);
 
 /*
-** kill_process
-*/
-
-int							ft_cub3d_kill_all(t_data *data, t_map_params *map_params);
-
-/*
 ** misc
 */
 
@@ -221,24 +214,32 @@ void						ft_cub3d_print_map(char **map);
 */
 
 int							ft_cub3d_check_key_event(int keycode, \
-								t_data *data, \
-								t_input *input_values, \
-								t_map_params *map_params);
+													t_data *data, \
+													t_input *input_values, \
+													t_map_params *map_params);
 void						ft_cub3d_treat_input(t_data *data, \
-							t_input *input_values, \
-							t_map_params *map_params);
-void						ft_cub3d_reset_input(t_input *input_values);
+												t_input *input_values, \
+												t_map_params *map_params);
 int							ft_cub3d_invalid_input(int keycode, \
-							t_data *data, \
-							t_input *input_values);
+												t_data *data, \
+												t_input *input_values);
 
 /*
 ** image_rendering
 */
 
+int							ft_cub3d_exit_exec(int return_value, \
+											t_map_params *map_params);
+int							ft_cub3d_exit(void);
 int							ft_cub3d_render_next_img(t_data *data, \
 										t_map_params *map_params, int x, int y);
 int							ft_cub3d_launch_game(t_map_params *map_params);
 int							ft_cub3d_save_file(t_map_params *map_params);
+
+/*
+** ray_casting
+*/
+
+int							ft_cub3d_cast_rays(t_data *data);
 
 #endif

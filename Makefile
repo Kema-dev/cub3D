@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/12 16:41:32 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/15 14:53:41 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_word_utils.c \
 				ft_cub3d_check_walls.c \
 				ft_cub3d_misc.c \
-				ft_cub3d_image_renderer.c
+				ft_cub3d_image_renderer.c \
+				ft_cub3d_cast_rays.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
@@ -91,12 +92,12 @@ norme:			fclean
 				norminette libs/libft/
 				norminette sources/
 
-normev2:		fclean
+normecount:		fclean
 				printf "\033c"
-				norminettev2 includes/
-				norminettev2 libs/gnl/
-				norminettev2 libs/libft/
-				norminettev2 sources/
+				norminette includes/ | grep -v -o 'norminette\|Norme\|valid file' | wc -l
+				norminette libs/gnl/ | grep -v -o 'norminette\|Norme\|valid file' | wc -l
+				norminette libs/libft/ | grep -v -o 'norminette\|Norme\|valid file' | wc -l
+				norminette sources/ | grep -v -o 'norminette\|Norme\|valid file' | wc -l
 
 d:				libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)
@@ -107,9 +108,13 @@ c:				libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				printf "\033c"
 				@./$(DEBUG_OUT) $(ARGS)
 
-e:				libft gnl mlx $(OBJS) $(OBJS)
+e:				libft gnl mlx $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(OBJS) -o $(DEBUG_OUT)
-				./$(DEBUG_OUT) $(ARGS)
+				./$(DEBUG_OUT) $(ARGS)\
+
+l:				all
+				printf "\033c"
+				leaks --atExit -- ./Cub3D map.cub
 
 clean:
 				$(RM) $(OBJS)

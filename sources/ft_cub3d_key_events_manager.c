@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 10:20:57 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:53:45 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ int		ft_cub3d_check_key_event(int keycode, \
 								t_input *input_values, \
 								t_map_params *map_params)
 {
-	ft_cub3d_reset_input(input_values);
 	if (keycode == ESC_KEY)
-		ft_cub3d_kill_all(data, map_params);
+		ft_cub3d_exit();
 	else if (keycode == W_KEY)
 		input_values->w = true;
 	else if (keycode == A_KEY)
@@ -50,17 +49,8 @@ void	ft_cub3d_treat_input(t_data *data, \
 		input_values->y -= 1;
 	if (input_values->d == true)
 		input_values->y += 1;
-	ft_cub3d_render_next_img(data, map_params, input_values->x, input_values->y);
-}
-
-void	ft_cub3d_reset_input(t_input *input_values)
-{
-	input_values->w = false;
-	input_values->a = false;
-	input_values->s = false;
-	input_values->d = false;
-	input_values->left = false;
-	input_values->right = false;
+	ft_cub3d_render_next_img(data, map_params, input_values->x, \
+							input_values->y);
 }
 
 int		ft_cub3d_invalid_input(int keycode, \
