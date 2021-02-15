@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/15 14:53:41 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/15 14:59:55 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,11 +110,12 @@ c:				libft gnl mlx $(DEBUG_FULL) $(OBJS)
 
 e:				libft gnl mlx $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(OBJS) -o $(DEBUG_OUT)
-				./$(DEBUG_OUT) $(ARGS)\
+				printf "\033c"
+				./$(DEBUG_OUT) $(ARGS)
 
 l:				all
 				printf "\033c"
-				leaks --atExit -- ./Cub3D map.cub
+				leaks --atExit -- ./$(NAME) $(ARGS)
 
 clean:
 				$(RM) $(OBJS)

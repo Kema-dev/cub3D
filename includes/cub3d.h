@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 14:39:14 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 15:59:06 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <stdbool.h>
+# include <math.h>
+# include <time.h>
 
 /*
 ** colors
@@ -108,7 +110,28 @@ typedef struct				s_data {
 	int						endian;
 	void					*mlx;
 	void					*mlx_win;
-	t_map_params			*map_params;
+	clock_t					time;
+	clock_t					prev_time;
+	float					frame_rate;
+	double					pos_x;
+	double					pos_y;
+	double					dir_x;
+	double					dir_y;
+	double					plane_x;
+	double					plane_y;
+	double					camera_x;
+	double					camera_y;
+	double					ray_dir_x;
+	double					ray_dir_y;
+	double					map_x;
+	double					map_y;
+	double					side_dist_x;
+	double					side_dist_y;
+	double					perp_wall_dist;
+	int						step_x;
+	int						step_y;
+	int						hit;
+	int						side;
 }							t_data;
 
 /*
@@ -228,11 +251,9 @@ int							ft_cub3d_invalid_input(int keycode, \
 ** image_rendering
 */
 
-int							ft_cub3d_exit_exec(int return_value, \
-											t_map_params *map_params);
 int							ft_cub3d_exit(void);
 int							ft_cub3d_render_next_img(t_data *data, \
-										t_map_params *map_params, int x, int y);
+										t_map_params *map_params);
 int							ft_cub3d_launch_game(t_map_params *map_params);
 int							ft_cub3d_save_file(t_map_params *map_params);
 
@@ -240,6 +261,11 @@ int							ft_cub3d_save_file(t_map_params *map_params);
 ** ray_casting
 */
 
-int							ft_cub3d_cast_rays(t_data *data);
+int							ft_cub3d_cast_rays(t_data *data, \
+											t_map_params *map_params);
+int							ft_cub3D_init_player(t_data *data, \
+											t_map_params *map_params);
+int							ft_cub3D_init_walls(t_data *data, \
+											t_map_params *map_params);
 
 #endif
