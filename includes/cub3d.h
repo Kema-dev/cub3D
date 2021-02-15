@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 15:59:06 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 16:07:19 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ typedef struct				s_data {
 	double					map_y;
 	double					side_dist_x;
 	double					side_dist_y;
+	double					delta_dist_x;
+	double					delta_dist_y;
 	double					perp_wall_dist;
 	int						step_x;
 	int						step_y;
@@ -263,9 +265,9 @@ int							ft_cub3d_save_file(t_map_params *map_params);
 
 int							ft_cub3d_cast_rays(t_data *data, \
 											t_map_params *map_params);
-int							ft_cub3D_init_player(t_data *data, \
+int							ft_cub3d_init_player(t_data *data, \
 											t_map_params *map_params);
-int							ft_cub3D_init_walls(t_data *data, \
+int							ft_cub3d_init_walls(t_data *data, \
 											t_map_params *map_params);
 
 #endif
