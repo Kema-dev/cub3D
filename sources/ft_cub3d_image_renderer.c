@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 13:38:42 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:42:21 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void						ft_cub3d_get_text_addr(t_data *data)
 
 int							ft_cub3d_raycast_load_text(t_data *data)
 {
+	if (ft_cub3d_get_text_infos(data) != SUCCESS)
+		return (TEXT_FAILURE);
 	if (!(data->texture[0].img = mlx_xpm_to_image(data->mlx, data->text_north, \
 						data->texture[0].width, data->texture[0].height)))
 		return (TEXT_FAILURE);

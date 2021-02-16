@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 13:33:35 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:34:38 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,16 @@ typedef struct				s_map_params {
 typedef struct				s_tex_data {
 	void					*img;
 	char					*addr;
-	char					*path;
 	double					wall_x;
 	double					pos;
 	double					step;
 	int						x;
 	int						y;
+	int						col;
+	int						rows;
+	int						colors;
+	int						bits_per_pixel;
+	char					**line;
 }							t_tex_data;
 
 typedef struct				s_data {
@@ -227,6 +231,8 @@ int							ft_cub3d_start_is_charset(t_map_params \
 */
 
 unsigned long				ft_cub3d_create_rgb_3(int r, int g, int b)
+
+void						ft_cub3d_get_text_infos(t_data *data);
 
 /*
 ** shading_utils
