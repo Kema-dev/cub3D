@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:05:08 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:50:09 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,30 @@ void						ft_cub3d_print_map_params(t_map_params *map_params)
 	printf("propermap\n:%s:\n", map_params->field);
 }
 
+void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y)
+{
+	data->addr[*y * data->line_length + x *\
+			(data->bits_per_pixel) / 8] =
+		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
+		data->texture[data->tex_val.dir].col + data->tex_val.x *\
+		(data->texture[data->tex_val.dir].bits_per_pixel) / 8];
+	data->addr[*y * data->line_length + x *\
+			(data->bits_per_pixel) / 8 + 1] =
+		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
+		data->texture[data->tex_val.dir].col + data->tex_val.x *\
+		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 1];
+	data->addr[*y * data->line_length + x *\
+			(data->bits_per_pixel) / 8 + 2] =
+		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
+		data->texture[data->tex_val.dir].col + data->tex_val.x *\
+		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 2];
+	data->addr[*y * data->line_length + x *\
+			(data->bits_per_pixel) / 8 + 3] =
+		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
+		data->texture[data->tex_val.dir].col + data->tex_val.x *\
+		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 3];
+}
+
 int							ft_cub3d_parse_text_infos(t_data *data, \
 													int fd, int i)
 {
@@ -37,7 +61,7 @@ int							ft_cub3d_parse_text_infos(t_data *data, \
 	{
 		if (str)
 			free(str);
-		str = get_next_line(fd, str);
+		get_next_line(fd, &str);
 	}
 	while ((str[0] > '9') || (str[0] < '0'))
 		str++;
@@ -53,7 +77,7 @@ int							ft_cub3d_parse_text_infos(t_data *data, \
 	if (!(data->texture[i].line = ft_calloc(data->texture[i].rows, \
 					sizeof(data->texture[i].line))))
 		return (MALLOC_FAIL);
-	while ((get_next_line(fd, str) != 0) && (j < data->texture[i].rows))
+	while ((get_next_line(fd, &str) != 0) && (j < data->texture[i].rows))
 		data->texture[i].line[j++] = str;
 	return (SUCCESS);
 }
@@ -64,30 +88,30 @@ int							ft_cub3d_get_text_infos(t_data *data)
 	int		i;
 
 	i = -1;
-	if ((ft_check_map_is_dir(data->map_params->north_text)) \
-		+ (ft_check_map_is_dir(data->map_params->south_text)) \
-		+ (ft_check_map_is_dir(data->map_params->east_text)) \
-		+ (ft_check_map_is_dir(data->map_params->west_text)) \
-		+ (ft_check_map_is_dir(data->map_params->sprite_text)) != 0)
+	if ((ft_cub3d_check_map_is_dir(data->map_params->north_text)) \
+		+ (ft_cub3d_check_map_is_dir(data->map_params->south_text)) \
+		+ (ft_cub3d_check_map_is_dir(data->map_params->east_text)) \
+		+ (ft_cub3d_check_map_is_dir(data->map_params->west_text)) \
+		+ (ft_cub3d_check_map_is_dir(data->map_params->sprite_text)) != 0)
 		return (TEXT_FAILURE);
 	if ((fd = open(data->map_params->north_text, O_RDONLY)) < 0)
 		return (TEXT_FAILURE);
-	ft_cub3d_pars_text_infos(data, fd, ++i);
+	ft_cub3d_parse_text_infos(data, fd, ++i);
 	if ((fd = open(data->map_params->south_text, O_RDONLY)) < 0)
 		return (TEXT_FAILURE);
-	ft_cub3d_pars_text_infos(data, fd, ++i);
+	ft_cub3d_parse_text_infos(data, fd, ++i);
 	close(fd);
 	if ((fd = open(data->map_params->east_text, O_RDONLY)) < 0)
 		return (TEXT_FAILURE);
-	ft_cub3d_pars_text_infos(data, fd, ++i);
+	ft_cub3d_parse_text_infos(data, fd, ++i);
 	close(fd);
 	if ((fd = open(data->map_params->west_text, O_RDONLY)) < 0)
 		return (TEXT_FAILURE);
-	ft_cub3d_pars_text_infos(data, fd, ++i);
+	ft_cub3d_parse_text_infos(data, fd, ++i);
 	close(fd);
 	if ((fd = open(data->map_params->sprite_text, O_RDONLY)) < 0)
 		return (TEXT_FAILURE);
-	ft_cub3d_pars_text_infos(data, fd, ++i);
+	ft_cub3d_parse_text_infos(data, fd, ++i);
 	close(fd);
 	return (SUCCESS);
 }

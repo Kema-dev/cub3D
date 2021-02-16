@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:01:34 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:02:48 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:37:31 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 int							ft_cub3d_create_bmp(t_data *data)
 {
+	(void)data;
 	return (SUCCESS);
 }

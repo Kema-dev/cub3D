@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:23:23 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:46:59 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,7 @@ int							ft_cub3d_get_text_infos(t_data *data);
 ** key_events_manager
 */
 
-void						ft_cub3d_check_key_event(int keycode, \
+int							ft_cub3d_check_key_event(int keycode, \
 													t_data *data);
 void						ft_cub3d_treat_input(t_data *data);
 void						ft_cub3d_invalid_input(int keycode, \
@@ -300,9 +300,13 @@ int							ft_cub3d_raycast_load_text(t_data *data);
 void						ft_cub3d_get_text_addr(t_data *data);
 void						ft_cub3d_hitbox(t_data *data);
 void						ft_cub3d_draw_ray(t_data *data);
-void						ft_cub3d_pixel_creation(t_data *data, int *x);
+void						ft_cub3d_pixel_creation(t_data *data, ssize_t *x);
 
-void						ft_cub3d_put_texture(t_data *data, int x, int *i);
+void						ft_cub3d_put_texture(t_data *data, \
+										int x, ssize_t *i);
 void						ft_cub3d_text_init(t_data *data);
+int							ft_cub3d_parse_text_infos(t_data *data, \
+													int fd, int i);
+void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 14:53:40 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:48:09 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_cub3d_invalid_input(int keycode, \
 	printf("keycode %d does nothing!\n", keycode);
 }
 
-void		ft_cub3d_check_key_event(int keycode, \
+int			ft_cub3d_check_key_event(int keycode, \
 								t_data *data)
 {
 	ft_cub3d_reset_input(data);
@@ -50,6 +50,7 @@ void		ft_cub3d_check_key_event(int keycode, \
 		data->rot_right = true;
 	else
 		ft_cub3d_invalid_input(keycode, data);
+	return (SUCCESS);
 }
 
 void		ft_cub3d_treat_input(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:06:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:45:53 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void						ft_cub3d_draw_ray(t_data *data)
 	if (data->draw_start < 0)
 		data->draw_start = 0;
 	data->draw_end = data->line_height / 2 + data->map_params->res_height / 2;
-	if (data->draw_end >= data->map_params->res_height)
+	if (data->draw_end >= (ssize_t)data->map_params->res_height)
 		data->draw_end = data->map_params->res_height - 1;
 }
 
@@ -62,7 +62,7 @@ void						ft_cub3d_pixel_put(t_data *data, int x, int y, \
 	*(unsigned int *)pixel = color;
 }
 
-void						ft_cub3d_pixel_creation(t_data *data, int *x)
+void						ft_cub3d_pixel_creation(t_data *data, ssize_t *x)
 {
 	ssize_t	i;
 	int		color;
@@ -77,10 +77,10 @@ void						ft_cub3d_pixel_creation(t_data *data, int *x)
 	else if ((data->side == 1) && (data->ray_dir_x >= 0))
 		color = ft_cub3d_create_rgb_3(200, 0, 200);
 	i = -1;
-	while (++i < data->map_params->res_height)
+	while (++i < (ssize_t)data->map_params->res_height)
 		ft_cub3d_pixel_put(data, *x, i, data->map_params->ceiling_color);
 	if (i <= data->draw_end)
 		ft_cub3d_put_texture(data, *x, &i);
-	while (++i < data->map_params->res_height)
+	while (++i < (ssize_t)data->map_params->res_height)
 		ft_cub3d_pixel_put(data, *x, i, data->map_params->floor_color);
 }

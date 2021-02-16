@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:04:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:23:10 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:47:33 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void						ft_cub3d_text_init(t_data *data)
 	data->tex_val.wall_x -= floor((data->tex_val.wall_x));
 }
 
-void						ft_cub3d_put_texture(t_data *data, int x, int *i)
+void						ft_cub3d_put_texture(t_data *data, \
+										int x, ssize_t *i)
 {
 	*i = data->draw_start - 1;
 	ft_cub3d_text_init(data);
@@ -52,7 +53,8 @@ void						ft_cub3d_put_texture(t_data *data, int x, int *i)
 		data->tex_val.y = (int)data->tex_val.pos &\
 			(data->texture[data->tex_val.dir].rows - 1);
 		data->tex_val.pos += data->tex_val.step;
-		if (*i < data->map_params->res_width && x < data->map_params->res_width)
-			ft_swap_addr(data, x, i);
+		if (*i < (ssize_t)data->map_params->res_width && \
+				(size_t)x < data->map_params->res_width)
+			ft_cub3d_swap_addr(data, x, i);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 13:33:39 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:48:23 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int			ft_cub3d_get_plane(char **str, \
 	int		g;
 	int		b;
 
-	ft_cub3d_init_rgb(&r, &g, &b);
 	dest = ft_cub3d_get_first_word(str, ' ', '\n');
 	ft_cub3d_go_next_word(str, ' ', '\n');
 	if (((r = ft_atoi(*str)) < 0) || ((r == 0) && ((*str[0] != '0'))))
