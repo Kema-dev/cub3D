@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 16:07:19 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 11:13:12 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,27 +113,8 @@ typedef struct				s_data {
 	clock_t					time;
 	clock_t					prev_time;
 	float					frame_rate;
-	double					pos_x;
-	double					pos_y;
-	double					dir_x;
-	double					dir_y;
-	double					plane_x;
-	double					plane_y;
-	double					camera_x;
-	double					camera_y;
-	double					ray_dir_x;
-	double					ray_dir_y;
-	double					map_x;
-	double					map_y;
-	double					side_dist_x;
-	double					side_dist_y;
-	double					delta_dist_x;
-	double					delta_dist_y;
-	double					perp_wall_dist;
-	int						step_x;
-	int						step_y;
-	int						hit;
-	int						side;
+	t_map_params			*map_params;
+
 }							t_data;
 
 /*
@@ -254,8 +235,7 @@ int							ft_cub3d_invalid_input(int keycode, \
 */
 
 int							ft_cub3d_exit(void);
-int							ft_cub3d_render_next_img(t_data *data, \
-										t_map_params *map_params);
+int							ft_cub3d_render_next_img(t_data *data);
 int							ft_cub3d_launch_game(t_map_params *map_params);
 int							ft_cub3d_save_file(t_map_params *map_params);
 
@@ -263,11 +243,6 @@ int							ft_cub3d_save_file(t_map_params *map_params);
 ** ray_casting
 */
 
-int							ft_cub3d_cast_rays(t_data *data, \
-											t_map_params *map_params);
-int							ft_cub3d_init_player(t_data *data, \
-											t_map_params *map_params);
-int							ft_cub3d_init_walls(t_data *data, \
-											t_map_params *map_params);
+int							ft_cub3d_cast_rays(t_data *data);
 
 #endif
