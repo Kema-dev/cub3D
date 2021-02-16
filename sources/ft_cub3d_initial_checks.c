@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 14:17:58 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 12:32:54 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int							ft_cub3d_print_errno(int error_no)
 {
-	char	*strings[18];
+	char	*strings[19];
 
 	strings[0] = "SUCCESS";
 	strings[1] = "FAILURE";
@@ -34,6 +34,7 @@ int							ft_cub3d_print_errno(int error_no)
 	strings[15] = "MAP SPLIT FAILED!";
 	strings[16] = "MAP CONTAINS NO STARTING POSITION!";
 	strings[17] = "YOU KILLED ME D:";
+	strings[18] = "TEXTURE LOADING FAILED!";
 	printf("Error\n%s\n", strings[error_no]);
 	return (error_no);
 }

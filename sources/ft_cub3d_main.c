@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 13:32:58 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 14:53:43 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 12:33:45 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int					main(int argc, char **argv)
 	if (save == true)
 	{
 		if ((return_value = (ft_cub3d_save_file(map_params)) != SUCCESS))
-			exit(return_value);
+			exit(ft_cub3d_print_errno(return_value));
 	}
 	else
 	{
 		if ((return_value = (ft_cub3d_launch_game(map_params)) != SUCCESS))
-			exit(return_value);
+			exit(ft_cub3d_print_errno(return_value));
 	}
 	exit(SUCCESS);
 }

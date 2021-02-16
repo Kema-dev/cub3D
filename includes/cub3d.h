@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 11:13:12 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 13:33:35 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@
 # define MAP_SPLIT_FAIL			15
 # define MAP_NO_STARTING_POS	16
 # define MLX_INIT_FAIL			17
+# define TEXT_FAILURE			18
 
 /*
 ** GNL
@@ -102,6 +103,17 @@ typedef struct				s_map_params {
 	int						starting_pos_y;
 }							t_map_params;
 
+typedef struct				s_tex_data {
+	void					*img;
+	char					*addr;
+	char					*path;
+	double					wall_x;
+	double					pos;
+	double					step;
+	int						x;
+	int						y;
+}							t_tex_data;
+
 typedef struct				s_data {
 	void					*img;
 	char					*addr;
@@ -114,7 +126,39 @@ typedef struct				s_data {
 	clock_t					prev_time;
 	float					frame_rate;
 	t_map_params			*map_params;
-
+	t_tex_data				texture[5];
+	bool					forward;
+	bool					backward;
+	bool					left;
+	bool					right;
+	bool					rot_left;
+	bool					rot_right;
+	bool					other;
+	double					pos_x;
+	double					pos_y;
+	double					dir_x;
+	double					dir_y;
+	double					plane_x;
+	double					plane_y;
+	double					camera_x;
+	double					ray_dir_x;
+	double					ray_dir_y;
+	double					side_dist_x;
+	double					side_dist_y;
+	double					delta_dist_x;
+	double					delta_dist_y;
+	double					perp_wall_dist;
+	double					move_speed;
+	double					rot_speed;
+	int						map_x;
+	int						map_y;
+	int						step_x;
+	int						step_y;
+	int						hit;
+	int						side;
+	int						line_height;
+	int						draw_start;
+	int						draw_end;
 }							t_data;
 
 /*
@@ -182,14 +226,7 @@ int							ft_cub3d_start_is_charset(t_map_params \
 ** get_color_info
 */
 
-int							ft_cub3d_create_trgb(int t, \
-												int r, \
-												int g, \
-												int b);
-int							ft_cub3d_get_t(int trgb);
-int							ft_cub3d_get_r(int trgb);
-int							ft_cub3d_get_g(int trgb);
-int							ft_cub3d_get_b(int trgb);
+unsigned long				ft_cub3d_create_rgb_3(int r, int g, int b)
 
 /*
 ** shading_utils
@@ -219,16 +256,12 @@ void						ft_cub3d_print_map(char **map);
 ** key_events_manager
 */
 
-int							ft_cub3d_check_key_event(int keycode, \
-													t_data *data, \
-													t_input *input_values, \
-													t_map_params *map_params);
-void						ft_cub3d_treat_input(t_data *data, \
-												t_input *input_values, \
-												t_map_params *map_params);
-int							ft_cub3d_invalid_input(int keycode, \
-												t_data *data, \
-												t_input *input_values);
+void						ft_cub3d_check_key_event(int keycode, \
+													t_data *data);
+void						ft_cub3d_treat_input(t_data *data);
+void						ft_cub3d_invalid_input(int keycode, \
+												t_data *data);
+void						ft_cub3d_reset_input(t_data *data);
 
 /*
 ** image_rendering
@@ -244,5 +277,14 @@ int							ft_cub3d_save_file(t_map_params *map_params);
 */
 
 int							ft_cub3d_cast_rays(t_data *data);
+void						ft_cub3d_raycast_param(t_data *data);
+void						ft_cub3d_raycast_init(t_data *data, ssize_t *x);
+void						ft_cub3d_raycast_side(t_data *data);
+void						ft_cub3d_raycast_orientation(t_data *data);
+int							ft_cub3d_raycast_load_text(t_data *data);
+void						ft_cub3d_get_text_addr(t_data *data);
+void						ft_cub3d_hitbox(t_data *data);
+void						ft_cub3d_draw_ray(t_data *data);
+void						ft_cub3d_pixel_creation(t_data *data, int *x);
 
 #endif
