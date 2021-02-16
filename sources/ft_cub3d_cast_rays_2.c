@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 13:37:53 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 13:38:39 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void						ft_cub3d_pixel_put(t_data *data, int x, int y, \
 {
 	char	*pixel;
 
-	pixel = data->addr + (y * data->line_lenght + x * (data->bits_per_pixel / 8));
+	pixel = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)pixel = color;
 }
 
