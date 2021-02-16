@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 14:42:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:05:15 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,49 +36,48 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 	return (SUCCESS);
 }
 
-
 void						ft_cub3d_get_text_addr(t_data *data)
 {
 	data->texture[0].addr = mlx_get_data_addr(data->texture[0].img, \
 											data->texture[0].bits_per_pixel, \
-											data->texture[0].line_length, \
-											data->texture[0].endian);
+											data->texture[0].rows, \
+											data->endian);
 	data->texture[1].addr = mlx_get_data_addr(data->texture[1].img, \
 											data->texture[1].bits_per_pixel, \
-											data->texture[1].line_length, \
-											data->texture[1].endian);
+											data->texture[1].rows, \
+											data->endian);
 	data->texture[2].addr = mlx_get_data_addr(data->texture[2].img, \
 											data->texture[2].bits_per_pixel, \
-											data->texture[2].line_length, \
-											data->texture[2].endian);
+											data->texture[2].rows, \
+											data->endian);
 	data->texture[3].addr = mlx_get_data_addr(data->texture[3].img, \
 											data->texture[3].bits_per_pixel, \
-											data->texture[3].line_length, \
-											data->texture[3].endian);
+											data->texture[3].rows, \
+											data->endian);
 	data->texture[4].addr = mlx_get_data_addr(data->texture[4].img, \
 											data->texture[4].bits_per_pixel, \
-											data->texture[4].line_length, \
-											data->texture[4].endian);
+											data->texture[4].rows, \
+											data->endian);
 }
 
 int							ft_cub3d_raycast_load_text(t_data *data)
 {
 	if (ft_cub3d_get_text_infos(data) != SUCCESS)
 		return (TEXT_FAILURE);
-	if (!(data->texture[0].img = mlx_xpm_to_image(data->mlx, data->text_north, \
-						data->texture[0].width, data->texture[0].height)))
+	if (!(data->texture[0].img = mlx_xpm_to_image(data->mlx, \
+		data->texture[0].line, data->texture[0].col, data->texture[0].rows)))
 		return (TEXT_FAILURE);
-	if (!(data->texture[1].img = mlx_xpm_to_image(data->mlx, data->text_south, \
-						data->texture[1].width, data->texture[1].height)))
+	if (!(data->texture[1].img = mlx_xpm_to_image(data->mlx, \
+		data->texture[1].line, data->texture[1].col, data->texture[1].rows)))
 		return (TEXT_FAILURE);
-	if (!(data->texture[2].img = mlx_xpm_to_image(data->mlx, data->text_east, \
-						data->texture[2].width, data->texture[2].height)))
+	if (!(data->texture[2].img = mlx_xpm_to_image(data->mlx, \
+		data->texture[2].line, data->texture[2].col, data->texture[2].rows)))
 		return (TEXT_FAILURE);
-	if (!(data->texture[3].img = mlx_xpm_to_image(data->mlx, data->text_west, \
-						data->texture[3].width, data->texture[3].height)))
+	if (!(data->texture[3].img = mlx_xpm_to_image(data->mlx, \
+		data->texture[3].line, data->texture[3].col, data->texture[3].rows)))
 		return (TEXT_FAILURE);
-	if (!(data->texture[4].img = mlx_xpm_to_image(data->mlx, data->text_sprite, \
-						data->texture[4].width, data->texture[4].height)))
+	if (!(data->texture[4].img = mlx_xpm_to_image(data->mlx, \
+		data->texture[4].line, data->texture[4].col, data->texture[4].rows)))
 		return (TEXT_FAILURE);
 	ft_cub3d_get_text_addr(data);
 	return (SUCCESS);
@@ -94,7 +93,7 @@ int							ft_cub3d_launch_game(t_map_params *map_params)
 	ft_cub3d_raycast_param(data);
 	ft_cub3d_raycast_orientation(data);
 	data->mlx = mlx_init();
-	if ((ft_cub3d_raycast_load_text(data))!= SUCCESS)
+	if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
 		return (TEXT_FAILURE);
 	data->mlx_win = mlx_new_window(data->mlx, data->map_params->res_width, \
 									data->map_params->res_height, "Cub3D");

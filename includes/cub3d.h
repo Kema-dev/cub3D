@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 14:34:38 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:23:23 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,21 @@ typedef struct				s_map_params {
 typedef struct				s_tex_data {
 	void					*img;
 	char					*addr;
-	double					wall_x;
-	double					pos;
-	double					step;
-	int						x;
-	int						y;
 	int						col;
 	int						rows;
 	int						colors;
 	int						bits_per_pixel;
 	char					**line;
 }							t_tex_data;
+
+typedef struct				s_tex_val {
+	int						dir;
+	int						x;
+	int						y;
+	double					wall_x;
+	double					step;
+	double					pos;
+}							t_tex_val;
 
 typedef struct				s_data {
 	void					*img;
@@ -130,6 +134,7 @@ typedef struct				s_data {
 	clock_t					prev_time;
 	float					frame_rate;
 	t_map_params			*map_params;
+	t_tex_val				tex_val;
 	t_tex_data				texture[5];
 	bool					forward;
 	bool					backward;
@@ -230,9 +235,9 @@ int							ft_cub3d_start_is_charset(t_map_params \
 ** get_color_info
 */
 
-unsigned long				ft_cub3d_create_rgb_3(int r, int g, int b)
+unsigned long				ft_cub3d_create_rgb_3(int r, int g, int b);
 
-void						ft_cub3d_get_text_infos(t_data *data);
+int							ft_cub3d_get_text_infos(t_data *data);
 
 /*
 ** shading_utils
@@ -257,6 +262,10 @@ void						ft_cub3d_pixel_put(t_data *data, \
 */
 
 void						ft_cub3d_print_map(char **map);
+int							ft_cub3d_create_bmp(t_data *data);
+int							ft_cub3d_parse_text_infos(t_data *data, \
+													int fd, int i);
+int							ft_cub3d_get_text_infos(t_data *data);
 
 /*
 ** key_events_manager
@@ -292,5 +301,8 @@ void						ft_cub3d_get_text_addr(t_data *data);
 void						ft_cub3d_hitbox(t_data *data);
 void						ft_cub3d_draw_ray(t_data *data);
 void						ft_cub3d_pixel_creation(t_data *data, int *x);
+
+void						ft_cub3d_put_texture(t_data *data, int x, int *i);
+void						ft_cub3d_text_init(t_data *data);
 
 #endif

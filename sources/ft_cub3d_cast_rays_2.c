@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 13:38:39 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:06:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void						ft_cub3d_hitbox(t_data *data)
 			data->map_y += data->step_y;
 			data->side = 1;
 		}
-		if (map[data->map_x][data->map_y] == '1')
+		if (data->map_params->map[data->map_x][data->map_y] == '1')
 			data->hit = 1;
 	}
 }
@@ -41,13 +41,15 @@ void						ft_cub3d_draw_ray(t_data *data)
 	else
 		data->perp_wall_dist = (data->map_y - data->pos_y \
 				+ (1 - data->step_y) / 2) / data->ray_dir_y;
-	data->line_height = (int)(data->res_height / data->perp_wall_dist);
-	data->draw_start = -data->line_height / 2 + data->res_y / 2;
+	data->line_height = (int)(data->map_params->res_height \
+							/ data->perp_wall_dist);
+	data->draw_start = -data->line_height / 2 \
+					+ data->map_params->res_height / 2;
 	if (data->draw_start < 0)
 		data->draw_start = 0;
-	data->drawend = data->line_height / 2 + data->res_y / 2;
-	if (data->draw_end >= data->res_height)
-		data->draw_end = data->res_y - 1;
+	data->draw_end = data->line_height / 2 + data->map_params->res_height / 2;
+	if (data->draw_end >= data->map_params->res_height)
+		data->draw_end = data->map_params->res_height - 1;
 }
 
 void						ft_cub3d_pixel_put(t_data *data, int x, int y, \
@@ -55,7 +57,8 @@ void						ft_cub3d_pixel_put(t_data *data, int x, int y, \
 {
 	char	*pixel;
 
-	pixel = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	pixel = data->addr + (y * data->line_length \
+			+ x * (data->bits_per_pixel / 8));
 	*(unsigned int *)pixel = color;
 }
 
@@ -64,7 +67,7 @@ void						ft_cub3d_pixel_creation(t_data *data, int *x)
 	ssize_t	i;
 	int		color;
 
-	data->draw_end = data->res_height - data->draw_start;
+	data->draw_end = data->map_params->res_height - data->draw_start;
 	if ((data->side == 0) && (data->ray_dir_x < 0))
 		color = ft_cub3d_create_rgb_3(200, 0, 0);
 	else if ((data->side == 0) && (data->ray_dir_x >= 0))
@@ -74,10 +77,10 @@ void						ft_cub3d_pixel_creation(t_data *data, int *x)
 	else if ((data->side == 1) && (data->ray_dir_x >= 0))
 		color = ft_cub3d_create_rgb_3(200, 0, 200);
 	i = -1;
-	while (++i < data->res_height)
-		ft_cub3d_pixel_put(data, *x, i, data->map_params->ceiling_color)
+	while (++i < data->map_params->res_height)
+		ft_cub3d_pixel_put(data, *x, i, data->map_params->ceiling_color);
 	if (i <= data->draw_end)
 		ft_cub3d_put_texture(data, *x, &i);
-	while (++i < data->res_height)
-		ft_cub3d_pixel_put(data, *x, i, data->map_params->floor_color)
+	while (++i < data->map_params->res_height)
+		ft_cub3d_pixel_put(data, *x, i, data->map_params->floor_color);
 }

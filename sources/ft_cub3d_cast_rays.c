@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 11:02:33 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 13:37:54 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:05:33 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void						ft_cub3d_raycast_side(t_data *data)
 	if (data->ray_dir_y < 0)
 	{
 		data->step_y = -1;
-		data->side_dist_y = (data->pos_y - data->map_y)	* data->delta_dist_y;
+		data->side_dist_y = (data->pos_y - data->map_y)	\
+							* data->delta_dist_y;
 	}
 	else
 	{

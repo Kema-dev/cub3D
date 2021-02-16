@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/16 12:57:01 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/16 15:04:26 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,9 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_misc.c \
 				ft_cub3d_image_renderer.c \
 				ft_cub3d_cast_rays.c \
-				ft_cub3d_cast_rays_2.c
+				ft_cub3d_cast_rays_2.c \
+				ft_cub3d_create_bmp.c \
+				ft_cub3d_draw_texture.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 

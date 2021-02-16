@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 11:54:26 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:53:40 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void		ft_cub3d_reset_input(t_data *data)
 {
-		data->forward = false;
-		data->left = false;
-		data->backward = false;
-		data->right = false;
-		data->rot_left = false;
-		data->rot_right = false;
-		data->other = false;
+	data->forward = false;
+	data->left = false;
+	data->backward = false;
+	data->right = false;
+	data->rot_left = false;
+	data->rot_right = false;
+	data->other = false;
 }
 
 void		ft_cub3d_invalid_input(int keycode, \
@@ -52,8 +52,7 @@ void		ft_cub3d_check_key_event(int keycode, \
 		ft_cub3d_invalid_input(keycode, data);
 }
 
-void	ft_cub3d_treat_input(t_data *data)
+void		ft_cub3d_treat_input(t_data *data)
 {
 	(void)data;
 }
-
