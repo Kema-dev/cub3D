@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 11:02:33 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:34:05 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 15:14:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void						ft_cub3d_raycast_param(t_data *data)
 	data->left = 0;
 	data->rot_left = 0;
 	data->rot_right = 0;
-	data->pos_x = (double)data->map_params->starting_pos_y + 0.5;
-	data->pos_y = (double)data->map_params->starting_pos_x + 0.5;
+	data->pos_x = (double)data->map_params->starting_pos_x + 1.5;
+	data->pos_y = (double)data->map_params->starting_pos_y + 1.5;
 	data->dir_x = 0;
 	data->dir_y = 0;
 	data->plane_x = 0;

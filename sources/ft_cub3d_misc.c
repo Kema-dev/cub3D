@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:50:09 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 15:53:52 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,9 @@ int							ft_cub3d_parse_text_infos(t_data *data, \
 	char	*str;
 	int		j;
 
-	str = NULL;
-	while (str[0] != '"')
-	{
-		if (str)
-			free(str);
+	j = -1;
+	while (++j < 4)
 		get_next_line(fd, &str);
-	}
 	while ((str[0] > '9') || (str[0] < '0'))
 		str++;
 	data->texture[i].col = ft_atoi(str);
@@ -72,7 +68,6 @@ int							ft_cub3d_parse_text_infos(t_data *data, \
 	data->texture[i].colors = ft_atoi(str);
 	ft_cub3d_pass_digit(&str);
 	data->texture[i].bits_per_pixel = ft_atoi(str);
-	free(str);
 	j = 0;
 	if (!(data->texture[i].line = ft_calloc(data->texture[i].rows, \
 					sizeof(data->texture[i].line))))

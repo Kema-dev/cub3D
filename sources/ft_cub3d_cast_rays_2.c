@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:45:53 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 15:09:08 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 void						ft_cub3d_hitbox(t_data *data)
 {
+	printf("x=%f\n", data->pos_x);
+	printf("y=%f\n", data->pos_y);
 	while (data->hit == 0)
 	{
 		if (data->side_dist_x < data->side_dist_y)
 		{
 			data->side_dist_x += data->delta_dist_x;
-			data->map_x += data->step_x;
+			data->pos_x += data->step_x;
 			data->side = 0;
 		}
 		else
 		{
 			data->side_dist_y += data->delta_dist_y;
-			data->map_y += data->step_y;
+			data->pos_y += data->step_y;
 			data->side = 1;
 		}
-		if (data->map_params->map[data->map_x][data->map_y] == '1')
+		if (data->map_params->map[(int)data->pos_x][(int)data->pos_y] == '1')
 			data->hit = 1;
 	}
 }
