@@ -6,17 +6,24 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 13:00:14 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 14:02:35 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void						ft_mon_map(char **map)
+{
+	ssize_t i = -1;
+	while (map[++i])
+		printf("%s\n", map[i]);
+}
+
 void						ft_cub3d_hitbox(t_data *data)
 {
-	printf("x=%f\n", data->pos_x);
-	printf("y=%f\n", data->pos_y);
-	printf("map = %s\n", data->map_params->map[0]);
+	printf("x=%f, ", data->pos_x);
+	printf("y=%f, ", data->pos_y);
+	printf("case=%c\n", data->map_params->map[(int)floor(data->pos_y)][(int)floor(data->pos_x)]);
 	while (data->hit == 0)
 	{
 		if (data->side_dist_x < data->side_dist_y)
@@ -31,8 +38,10 @@ void						ft_cub3d_hitbox(t_data *data)
 			data->pos_y += data->step_y;
 			data->side = 1;
 		}
-		printf("case=%c\n", data->map_params->map[(int)floor(data->pos_x)][(int)floor(data->pos_y)]);
-		if (data->map_params->map[(int)floor(data->pos_y) + 1][(int)floor(data->pos_x) + 1] == '1')
+		printf("x=%f, ", data->pos_x);
+		printf("y=%f, ", data->pos_y);
+		printf("case=%c\n", data->map_params->map[(int)floor(data->pos_y)][(int)floor(data->pos_x)]);
+		if (data->map_params->map[(int)floor(data->pos_y)][(int)floor(data->pos_x)] == '1')
 			data->hit = 1;
 	}
 	printf("%s on %d x %d\n", "HIT!", (int)floor(data->pos_x), (int)floor(data->pos_y));
