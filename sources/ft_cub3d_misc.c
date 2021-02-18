@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/17 15:53:52 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 11:28:24 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ int							ft_cub3d_parse_text_infos(t_data *data, \
 		return (MALLOC_FAIL);
 	while ((get_next_line(fd, &str) != 0) && (j < data->texture[i].rows))
 		data->texture[i].line[j++] = str;
+	close(fd);
+	//printf("%d\n", data->texture[i].rows);
+	printf("str=%s\n", str);
 	return (SUCCESS);
 }
 
@@ -83,28 +86,22 @@ int							ft_cub3d_get_text_infos(t_data *data)
 	int		i;
 
 	i = -1;
-	if ((ft_cub3d_check_map_is_dir(data->map_params->north_text)) \
-		+ (ft_cub3d_check_map_is_dir(data->map_params->south_text)) \
-		+ (ft_cub3d_check_map_is_dir(data->map_params->east_text)) \
-		+ (ft_cub3d_check_map_is_dir(data->map_params->west_text)) \
-		+ (ft_cub3d_check_map_is_dir(data->map_params->sprite_text)) != 0)
-		return (TEXT_FAILURE);
-	if ((fd = open(data->map_params->north_text, O_RDONLY)) < 0)
+	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->north_text)) < 0)
 		return (TEXT_FAILURE);
 	ft_cub3d_parse_text_infos(data, fd, ++i);
-	if ((fd = open(data->map_params->south_text, O_RDONLY)) < 0)
+	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->south_text)) < 0)
 		return (TEXT_FAILURE);
 	ft_cub3d_parse_text_infos(data, fd, ++i);
 	close(fd);
-	if ((fd = open(data->map_params->east_text, O_RDONLY)) < 0)
+	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->east_text)) < 0)
 		return (TEXT_FAILURE);
 	ft_cub3d_parse_text_infos(data, fd, ++i);
 	close(fd);
-	if ((fd = open(data->map_params->west_text, O_RDONLY)) < 0)
+	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->west_text)) < 0)
 		return (TEXT_FAILURE);
 	ft_cub3d_parse_text_infos(data, fd, ++i);
 	close(fd);
-	if ((fd = open(data->map_params->sprite_text, O_RDONLY)) < 0)
+	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->sprite_text)) < 0)
 		return (TEXT_FAILURE);
 	ft_cub3d_parse_text_infos(data, fd, ++i);
 	close(fd);

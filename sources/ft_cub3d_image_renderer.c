@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/17 15:58:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 11:17:07 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int							ft_cub3d_launch_game(t_map_params *map_params)
 	data->mlx = mlx_init();
 	ft_cub3d_raycast_param(data);
 	ft_cub3d_raycast_orientation(data);
-	//if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
-	//	return (TEXT_FAILURE);
+	if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
+		return (TEXT_FAILURE);
 	data->mlx_win = mlx_new_window(data->mlx, data->map_params->res_width, \
 									data->map_params->res_height, "Cub3D");
 	data->img = mlx_new_image(data->mlx, data->map_params->res_width, \

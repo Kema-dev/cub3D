@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 12:32:54 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 11:22:09 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int							ft_cub3d_check_map_is_dir(char *map_path)
 		close(fd);
 		return (MAP_IS_DIR);
 	}
-	return (SUCCESS);
+	else
+		fd = open(map_path, O_RDONLY);
+	return (fd);
 }
 
 int							ft_cub3d_check_map(char *map_path, \
