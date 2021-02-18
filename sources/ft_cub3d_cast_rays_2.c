@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 14:02:35 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 14:51:11 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void						ft_cub3d_pixel_put(t_data *data, int x, int y, \
 	*(unsigned int *)pixel = color;
 }
 
-void						ft_cub3d_pixel_creation(t_data *data, ssize_t *x)
+void						ft_cub3d_pixel_creation(t_data *data, ssize_t x)
 {
 	ssize_t	i;
 	int		color;
@@ -92,9 +92,9 @@ void						ft_cub3d_pixel_creation(t_data *data, ssize_t *x)
 		color = ft_cub3d_create_rgb_3(200, 0, 200);
 	i = -1;
 	while (++i < (ssize_t)data->map_params->res_height)
-		ft_cub3d_pixel_put(data, *x, i, data->map_params->ceiling_color);
+		ft_cub3d_pixel_put(data, x, i, data->map_params->ceiling_color);
 	//if (i <= data->draw_end)
 	//	ft_cub3d_put_texture(data, *x, &i);
 	while (++i < (ssize_t)data->map_params->res_height)
-		ft_cub3d_pixel_put(data, *x, i, data->map_params->floor_color);
+		ft_cub3d_pixel_put(data, x, i, data->map_params->floor_color);
 }

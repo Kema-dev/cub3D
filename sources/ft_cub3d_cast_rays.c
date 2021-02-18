@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 11:02:33 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 14:14:17 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 14:50:13 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void						ft_cub3d_raycast_param(t_data *data)
 	data->plane_y = 0;
 }
 
-void						ft_cub3d_raycast_init(t_data *data, ssize_t *x)
+void						ft_cub3d_raycast_init(t_data *data, ssize_t x)
 {
-	data->camera_x = 2 * (*x) / (double)data->map_params->res_width - 1;
+	data->camera_x = 2 * x / (double)data->map_params->res_width - 1;
 	data->ray_dir_x = data->dir_x + data->plane_x * data->camera_x;
 	data->ray_dir_y = data->dir_y + data->plane_y * data->camera_x;
 	data->map_x = (int)data->pos_x;
@@ -100,11 +100,11 @@ int							ft_cub3d_cast_rays(t_data *data)
 	x = -1;
 	while ((size_t)++x < data->map_params->res_width)
 	{
-		ft_cub3d_raycast_init(data, &x);
+		ft_cub3d_raycast_init(data, x);
 		ft_cub3d_raycast_side(data);
 		ft_cub3d_hitbox(data);
 		ft_cub3d_draw_ray(data);
-		ft_cub3d_pixel_creation(data, &x);
+		ft_cub3d_pixel_creation(data, x);
 	}
 	return (SUCCESS);
 }

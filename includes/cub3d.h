@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 13:44:34 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 14:50:20 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,14 +293,14 @@ int							ft_cub3d_save_file(t_map_params *map_params);
 
 int							ft_cub3d_cast_rays(t_data *data);
 void						ft_cub3d_raycast_param(t_data *data);
-void						ft_cub3d_raycast_init(t_data *data, ssize_t *x);
+void						ft_cub3d_raycast_init(t_data *data, ssize_t x);
 void						ft_cub3d_raycast_side(t_data *data);
 void						ft_cub3d_raycast_orientation(t_data *data);
 int							ft_cub3d_raycast_load_text(t_data *data);
 void						ft_cub3d_get_text_addr(t_data *data);
 void						ft_cub3d_hitbox(t_data *data);
 void						ft_cub3d_draw_ray(t_data *data);
-void						ft_cub3d_pixel_creation(t_data *data, ssize_t *x);
+void						ft_cub3d_pixel_creation(t_data *data, ssize_t x);
 
 void						ft_cub3d_put_texture(t_data *data, \
 										int x, ssize_t *i);
