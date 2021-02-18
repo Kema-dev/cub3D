@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 11:17:07 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 12:50:45 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,23 @@ int							ft_cub3d_raycast_load_text(t_data *data)
 		return (TEXT_FAILURE);
 	if (!(data->texture[0].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->north_text, \
-					&data->texture[0].col, &data->texture[0].rows)))
+					&data->texture[0].cols, &data->texture[0].rows)))
 		return (TEXT_FAILURE);
 	if (!(data->texture[1].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->south_text, \
-					&data->texture[1].col, &data->texture[1].rows)))
+					&data->texture[1].cols, &data->texture[1].rows)))
 		return (TEXT_FAILURE);
 	if (!(data->texture[2].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->east_text, \
-					&data->texture[2].col, &data->texture[2].rows)))
+					&data->texture[2].cols, &data->texture[2].rows)))
 		return (TEXT_FAILURE);
 	if (!(data->texture[3].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->west_text, \
-					&data->texture[3].col, &data->texture[3].rows)))
+					&data->texture[3].cols, &data->texture[3].rows)))
 		return (TEXT_FAILURE);
 	if (!(data->texture[4].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->sprite_text, \
-					&data->texture[4].col, &data->texture[4].rows)))
+					&data->texture[4].cols, &data->texture[4].rows)))
 		return (TEXT_FAILURE);
 	ft_cub3d_get_text_addr(data);
 	return (SUCCESS);
@@ -98,8 +98,8 @@ int							ft_cub3d_launch_game(t_map_params *map_params)
 	data->mlx = mlx_init();
 	ft_cub3d_raycast_param(data);
 	ft_cub3d_raycast_orientation(data);
-	if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
-		return (TEXT_FAILURE);
+	//if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
+	//	return (TEXT_FAILURE);
 	data->mlx_win = mlx_new_window(data->mlx, data->map_params->res_width, \
 									data->map_params->res_height, "Cub3D");
 	data->img = mlx_new_image(data->mlx, data->map_params->res_width, \
@@ -108,7 +108,7 @@ int							ft_cub3d_launch_game(t_map_params *map_params)
 									&data->line_length, &data->endian);
 	mlx_hook(data->mlx_win, 2, 1L << 0, ft_cub3d_check_key_event, data);
 	mlx_hook(data->mlx_win, 17, 10001, ft_cub3d_exit, &data);
-	//mlx_loop_hook(data->mlx, ft_cub3d_render_next_img, data);
+	mlx_loop_hook(data->mlx, ft_cub3d_render_next_img, data);
 	mlx_loop(data->mlx);
 	return (SUCCESS);
 }

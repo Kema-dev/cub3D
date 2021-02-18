@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:46:59 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 13:44:34 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct				s_map_params {
 	int						ceiling_color;
 	char					*field;
 	char					**map;
+	char					**map_save;
 	char					orientation;
 	int						starting_pos_x;
 	int						starting_pos_y;
@@ -106,7 +107,7 @@ typedef struct				s_map_params {
 typedef struct				s_tex_data {
 	void					*img;
 	char					*addr;
-	int						col;
+	int						cols;
 	int						rows;
 	int						colors;
 	int						bits_per_pixel;
@@ -219,8 +220,7 @@ int							ft_cub3d_get_starting_pos(t_map_params \
 												*map_params, char *charset);
 int							ft_cub3d_check_walls(t_map_params *map_params);
 char						**ft_cub3d_get_test_map(char **map);
-char						**ft_cub3d_fill_test_map(ssize_t nb_rows, \
-													char **map, \
+void						ft_cub3d_fill_test_map(char **map, \
 													char **test_map);
 int							ft_cub3d_recursive_wall(char **test_map, \
 													size_t x, \

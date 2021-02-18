@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/17 15:09:08 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 13:00:14 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void						ft_cub3d_hitbox(t_data *data)
 {
 	printf("x=%f\n", data->pos_x);
 	printf("y=%f\n", data->pos_y);
+	printf("map = %s\n", data->map_params->map[0]);
 	while (data->hit == 0)
 	{
 		if (data->side_dist_x < data->side_dist_y)
@@ -30,9 +31,11 @@ void						ft_cub3d_hitbox(t_data *data)
 			data->pos_y += data->step_y;
 			data->side = 1;
 		}
-		if (data->map_params->map[(int)data->pos_x][(int)data->pos_y] == '1')
+		printf("case=%c\n", data->map_params->map[(int)floor(data->pos_x)][(int)floor(data->pos_y)]);
+		if (data->map_params->map[(int)floor(data->pos_y) + 1][(int)floor(data->pos_x) + 1] == '1')
 			data->hit = 1;
 	}
+	printf("%s on %d x %d\n", "HIT!", (int)floor(data->pos_x), (int)floor(data->pos_y));
 }
 
 void						ft_cub3d_draw_ray(t_data *data)
@@ -81,8 +84,8 @@ void						ft_cub3d_pixel_creation(t_data *data, ssize_t *x)
 	i = -1;
 	while (++i < (ssize_t)data->map_params->res_height)
 		ft_cub3d_pixel_put(data, *x, i, data->map_params->ceiling_color);
-	if (i <= data->draw_end)
-		ft_cub3d_put_texture(data, *x, &i);
+	//if (i <= data->draw_end)
+	//	ft_cub3d_put_texture(data, *x, &i);
 	while (++i < (ssize_t)data->map_params->res_height)
 		ft_cub3d_pixel_put(data, *x, i, data->map_params->floor_color);
 }

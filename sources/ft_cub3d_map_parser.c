@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:48:23 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 13:47:19 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int			ft_cub3d_get_resolution(char **str, \
 	if ((map_params->res_height = ft_atoi(*str)) <= 0)
 		return (MAP_INVALID_RES);
 	ft_cub3d_go_next_word(str, ' ', '\n');
-	if (map_params->res_width > 5120)
-		map_params->res_width = 5120;
-	if (map_params->res_height > 2880)
-		map_params->res_height = 2880;
+	if (map_params->res_width > 2560)
+		map_params->res_width = 2560;
+	if (map_params->res_height > 1395)
+		map_params->res_height = 1395;
 	return (SUCCESS);
 }
 
