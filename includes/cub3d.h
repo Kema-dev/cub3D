@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 14:50:20 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:15:21 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct				s_data {
 	void					*mlx_win;
 	clock_t					time;
 	clock_t					prev_time;
-	float					frame_rate;
+	float					frame_time;
 	t_map_params			*map_params;
 	t_tex_val				tex_val;
 	t_tex_data				texture[5];
@@ -169,6 +169,7 @@ typedef struct				s_data {
 	int						line_height;
 	int						draw_start;
 	int						draw_end;
+	int						frame_uni;
 }							t_data;
 
 /*

@@ -6,13 +6,13 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 11:02:33 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 14:50:13 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:42:19 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void						ft_cub3d_raycast_param(t_data *data)
+void							ft_cub3d_raycast_param(t_data *data)
 {
 	data->move_speed = 0.1;
 	data->rot_speed = 0.06;
@@ -28,11 +28,12 @@ void						ft_cub3d_raycast_param(t_data *data)
 	data->dir_y = 0;
 	data->plane_x = 0;
 	data->plane_y = 0;
+	data->frame_uni = 0;
 }
 
-void						ft_cub3d_raycast_init(t_data *data, ssize_t x)
+void							ft_cub3d_raycast_init(t_data *data, ssize_t x)
 {
-	data->camera_x = 2 * x / (double)data->map_params->res_width - 1;
+	data->camera_x = 2 * x / ((double)data->map_params->res_width - 1); // ? (double)data->map_params->res_width - 1
 	data->ray_dir_x = data->dir_x + data->plane_x * data->camera_x;
 	data->ray_dir_y = data->dir_y + data->plane_y * data->camera_x;
 	data->map_x = (int)data->pos_x;
@@ -74,28 +75,28 @@ void						ft_cub3d_raycast_orientation(t_data *data)
 	if (data->map_params->orientation == 'N')
 	{
 		data->dir_y = -1;
-		data->plane_y = -0.60;
+		data->plane_y = 0.60;
 	}
 	else if (data->map_params->orientation == 'S')
 	{
 		data->dir_y = 1;
-		data->plane_y = 0.60;
+		data->plane_y = -0.60;
 	}
 	else if (data->map_params->orientation == 'W')
 	{
 		data->dir_x = -1;
-		data->plane_x = 0.60;
+		data->plane_x = -0.60;
 	}
 	else if (data->map_params->orientation == 'E')
 	{
 		data->dir_x = 1;
-		data->plane_x = -0.60;
+		data->plane_x = 0.60;
 	}
 }
 
 int							ft_cub3d_cast_rays(t_data *data)
 {
-	ssize_t	x;
+	int	x;
 
 	x = -1;
 	while ((size_t)++x < data->map_params->res_width)

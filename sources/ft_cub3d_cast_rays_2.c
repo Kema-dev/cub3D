@@ -6,45 +6,31 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 14:51:11 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:41:22 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void						ft_mon_map(char **map)
-{
-	ssize_t i = -1;
-	while (map[++i])
-		printf("%s\n", map[i]);
-}
-
 void						ft_cub3d_hitbox(t_data *data)
 {
-	printf("x=%f, ", data->pos_x);
-	printf("y=%f, ", data->pos_y);
-	printf("case=%c\n", data->map_params->map[(int)floor(data->pos_y)][(int)floor(data->pos_x)]);
 	while (data->hit == 0)
 	{
 		if (data->side_dist_x < data->side_dist_y)
 		{
 			data->side_dist_x += data->delta_dist_x;
-			data->pos_x += data->step_x;
+			data->map_x += data->step_x;
 			data->side = 0;
 		}
 		else
 		{
 			data->side_dist_y += data->delta_dist_y;
-			data->pos_y += data->step_y;
+			data->map_y += data->step_y;
 			data->side = 1;
 		}
-		printf("x=%f, ", data->pos_x);
-		printf("y=%f, ", data->pos_y);
-		printf("case=%c\n", data->map_params->map[(int)floor(data->pos_y)][(int)floor(data->pos_x)]);
-		if (data->map_params->map[(int)floor(data->pos_y)][(int)floor(data->pos_x)] == '1')
+		if (data->map_params->map[data->map_y][data->map_x] == '1')
 			data->hit = 1;
 	}
-	printf("%s on %d x %d\n", "HIT!", (int)floor(data->pos_x), (int)floor(data->pos_y));
 }
 
 void						ft_cub3d_draw_ray(t_data *data)
@@ -79,19 +65,9 @@ void						ft_cub3d_pixel_put(t_data *data, int x, int y, \
 void						ft_cub3d_pixel_creation(t_data *data, ssize_t x)
 {
 	ssize_t	i;
-	int		color;
 
-	data->draw_end = data->map_params->res_height - data->draw_start;
-	if ((data->side == 0) && (data->ray_dir_x < 0))
-		color = ft_cub3d_create_rgb_3(200, 0, 0);
-	else if ((data->side == 0) && (data->ray_dir_x >= 0))
-		color = ft_cub3d_create_rgb_3(0, 200, 0);
-	else if ((data->side == 1) && (data->ray_dir_x < 0))
-		color = ft_cub3d_create_rgb_3(0, 0, 200);
-	else if ((data->side == 1) && (data->ray_dir_x >= 0))
-		color = ft_cub3d_create_rgb_3(200, 0, 200);
 	i = -1;
-	while (++i < (ssize_t)data->map_params->res_height)
+	while (++i < data->draw_start)
 		ft_cub3d_pixel_put(data, x, i, data->map_params->ceiling_color);
 	//if (i <= data->draw_end)
 	//	ft_cub3d_put_texture(data, *x, &i);

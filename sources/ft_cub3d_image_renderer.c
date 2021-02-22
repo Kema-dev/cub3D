@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/18 14:02:26 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:24:36 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@ int							ft_cub3d_render_next_img(t_data *data)
 {
 	ft_cub3d_cast_rays(data);
 	data->time = clock();
-	data->frame_rate = (float)(data->prev_time - data->time) / CLOCKS_PER_SEC;
+	data->frame_time = (float)(data->time - data->prev_time) / CLOCKS_PER_SEC;
+	if (++data->frame_uni > 30)
+	{
+		printf("\rfps:%.2f", 1 / data->frame_time);
+		fflush(stdout);
+		data->frame_uni = 0;
+	}
 	data->prev_time = data->time;
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	mlx_do_sync(data->mlx);
@@ -27,9 +33,12 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 {
 	t_data	*data;
 
-	if (!(data = ft_calloc(1, sizeof(data) + 1)))
+	if (!(data = ft_calloc(1, sizeof(data))))
 		return (MALLOC_FAIL);
 	data->map_params = map_params;
+	data->mlx = mlx_init();
+	ft_cub3d_raycast_param(data);
+	ft_cub3d_raycast_orientation(data);
 	ft_cub3d_cast_rays(data);
 	ft_cub3d_create_bmp(data);
 	printf("%s\n", "IMAGE SAVED TO \"image.bmp\"!");
