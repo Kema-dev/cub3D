@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/16 15:48:09 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:51:31 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,4 @@ int			ft_cub3d_check_key_event(int keycode, \
 	else
 		ft_cub3d_invalid_input(keycode, data);
 	return (SUCCESS);
-}
-
-void		ft_cub3d_treat_input(t_data *data)
-{
-	(void)data;
 }

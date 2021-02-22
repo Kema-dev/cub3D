@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/22 16:15:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:52:34 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,7 +274,6 @@ int							ft_cub3d_get_text_infos(t_data *data);
 
 int							ft_cub3d_check_key_event(int keycode, \
 													t_data *data);
-void						ft_cub3d_treat_input(t_data *data);
 void						ft_cub3d_invalid_input(int keycode, \
 												t_data *data);
 void						ft_cub3d_reset_input(t_data *data);
@@ -309,5 +308,13 @@ void						ft_cub3d_text_init(t_data *data);
 int							ft_cub3d_parse_text_infos(t_data *data, \
 													int fd, int i);
 void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y);
+
+/*
+** moving
+*/
+
+int						ft_cub3d_move_rotate(t_data *data);
+int						ft_cub3d_move_horiz(t_data *data);
+int						ft_cub3d_move_vert(t_data *data);
 
 #endif

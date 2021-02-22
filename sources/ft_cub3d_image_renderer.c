@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/22 16:24:36 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:48:43 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int							ft_cub3d_render_next_img(t_data *data)
 	data->prev_time = data->time;
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	mlx_do_sync(data->mlx);
+	ft_cub3d_move_vert(data);
+	ft_cub3d_move_horiz(data);
+	ft_cub3d_move_rotate(data);
 	return (SUCCESS);
 }
 
