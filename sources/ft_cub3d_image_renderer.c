@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/24 11:11:05 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 15:21:13 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int							ft_cub3d_render_next_img(t_data *data)
 	ft_cub3d_move_vert(data);
 	ft_cub3d_move_horiz(data);
 	ft_cub3d_move_rotate(data);
+	ft_cub3d_reset_input(data);
 	return (SUCCESS);
 }
 

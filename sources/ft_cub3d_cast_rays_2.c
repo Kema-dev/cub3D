@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/22 16:41:22 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 15:21:09 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,34 @@ void						ft_cub3d_hitbox(t_data *data)
 {
 	while (data->hit == 0)
 	{
-		if (data->side_dist_x < data->side_dist_y)
+		if (data->side_dist_y < data->side_dist_x)
 		{
-			data->side_dist_x += data->delta_dist_x;
-			data->map_x += data->step_x;
+			data->side_dist_y += data->delta_dist_y;
+			data->map_y += data->step_y;
 			data->side = 0;
 		}
 		else
 		{
-			data->side_dist_y += data->delta_dist_y;
-			data->map_y += data->step_y;
+			data->side_dist_x += data->delta_dist_x;
+			data->map_x += data->step_x;
 			data->side = 1;
 		}
 		if (data->map_params->map[data->map_y][data->map_x] == '1')
+		{
 			data->hit = 1;
+			printf("HIT in y=%d x =%d\n", data->map_y, data->map_x);
+		}
 	}
 }
 
 void						ft_cub3d_draw_ray(t_data *data)
 {
 	if (data->side == 0)
-		data->perp_wall_dist = (data->map_x - data->pos_x \
-				+ (1 - data->step_x) / 2) / data->ray_dir_x;
-	else
 		data->perp_wall_dist = (data->map_y - data->pos_y \
 				+ (1 - data->step_y) / 2) / data->ray_dir_y;
+	else
+		data->perp_wall_dist = (data->map_x - data->pos_x \
+				+ (1 - data->step_x) / 2) / data->ray_dir_x;
 	data->line_height = (int)(data->map_params->res_height \
 							/ data->perp_wall_dist);
 	data->draw_start = -data->line_height / 2 \
@@ -69,8 +72,12 @@ void						ft_cub3d_pixel_creation(t_data *data, ssize_t x)
 	i = -1;
 	while (++i < data->draw_start)
 		ft_cub3d_pixel_put(data, x, i, data->map_params->ceiling_color);
-	//if (i <= data->draw_end)
-	//	ft_cub3d_put_texture(data, *x, &i);
+	while (++i <= data->draw_end)
+		ft_cub3d_pixel_put(data, x, i, GREEN);
+	// ! if (i <= data->draw_end)
+	// ! 	ft_cub3d_put_texture(data, x, &i);
 	while (++i < (ssize_t)data->map_params->res_height)
 		ft_cub3d_pixel_put(data, x, i, data->map_params->floor_color);
+	// ? printf("pos_y = %f, pos_x = %f\n", data->pos_y, data->pos_x);
+	// ? printf("dir_y = %f, dir_x = %f\n", data->dir_y, data->dir_x);
 }
