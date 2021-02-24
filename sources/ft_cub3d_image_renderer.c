@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/24 15:21:13 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 16:36:32 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 	data->mlx = mlx_init();
 	ft_cub3d_raycast_param(data);
 	ft_cub3d_raycast_orientation(data);
+	data->img = mlx_new_image(data->mlx, data->map_params->res_width, \
+								data->map_params->res_height);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
+									&data->line_length, &data->endian);
 	ft_cub3d_cast_rays(data);
 	ft_cub3d_create_bmp(data);
 	printf("%s\n", "IMAGE SAVED TO \"image.bmp\"!");
