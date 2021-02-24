@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/22 16:52:34 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 11:12:32 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,9 @@ typedef struct				s_map_params {
 typedef struct				s_tex_data {
 	void					*img;
 	char					*addr;
-	int						cols;
-	int						rows;
-	int						colors;
+	int						x;
+	int						y;
 	int						bits_per_pixel;
-	char					**line;
 }							t_tex_data;
 
 typedef struct				s_tex_val {
@@ -241,15 +239,6 @@ unsigned long				ft_cub3d_create_rgb_3(int r, int g, int b);
 int							ft_cub3d_get_text_infos(t_data *data);
 
 /*
-** shading_utils
-*/
-
-int							ft_cub3d_add_shading(int trgb, \
-												int t);
-int							ft_cub3d_add_shading_from_distance(int trgb, \
-															double distance);
-
-/*
 ** pixel_manipulation
 */
 
@@ -305,16 +294,15 @@ void						ft_cub3d_pixel_creation(t_data *data, ssize_t x);
 void						ft_cub3d_put_texture(t_data *data, \
 										int x, ssize_t *i);
 void						ft_cub3d_text_init(t_data *data);
-int							ft_cub3d_parse_text_infos(t_data *data, \
-													int fd, int i);
 void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y);
+int							ft_cub3d_init_text_infos(t_data *data);
 
 /*
 ** moving
 */
 
-int						ft_cub3d_move_rotate(t_data *data);
-int						ft_cub3d_move_horiz(t_data *data);
-int						ft_cub3d_move_vert(t_data *data);
+int							ft_cub3d_move_rotate(t_data *data);
+int							ft_cub3d_move_horiz(t_data *data);
+int							ft_cub3d_move_vert(t_data *data);
 
 #endif

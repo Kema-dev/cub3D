@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/22 16:48:43 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 11:11:05 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,23 @@ void						ft_cub3d_get_text_addr(t_data *data)
 {
 	data->texture[0].addr = mlx_get_data_addr(data->texture[0].img, \
 											&data->texture[0].bits_per_pixel, \
-											&data->texture[0].rows, \
+											&data->texture[0].x, \
 											&data->endian);
 	data->texture[1].addr = mlx_get_data_addr(data->texture[1].img, \
 											&data->texture[1].bits_per_pixel, \
-											&data->texture[1].rows, \
+											&data->texture[1].x, \
 											&data->endian);
 	data->texture[2].addr = mlx_get_data_addr(data->texture[2].img, \
 											&data->texture[2].bits_per_pixel, \
-											&data->texture[2].rows, \
+											&data->texture[2].x, \
 											&data->endian);
 	data->texture[3].addr = mlx_get_data_addr(data->texture[3].img, \
 											&data->texture[3].bits_per_pixel, \
-											&data->texture[3].rows, \
+											&data->texture[3].x, \
 											&data->endian);
 	data->texture[4].addr = mlx_get_data_addr(data->texture[4].img, \
 											&data->texture[4].bits_per_pixel, \
-											&data->texture[4].rows, \
+											&data->texture[4].x, \
 											&data->endian);
 }
 
@@ -78,23 +78,23 @@ int							ft_cub3d_raycast_load_text(t_data *data)
 		return (TEXT_FAILURE);
 	if (!(data->texture[0].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->north_text, \
-					&data->texture[0].cols, &data->texture[0].rows)))
+					&data->texture[0].x, &data->texture[0].y)))
 		return (TEXT_FAILURE);
 	if (!(data->texture[1].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->south_text, \
-					&data->texture[1].cols, &data->texture[1].rows)))
+					&data->texture[1].x, &data->texture[1].y)))
 		return (TEXT_FAILURE);
 	if (!(data->texture[2].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->east_text, \
-					&data->texture[2].cols, &data->texture[2].rows)))
+					&data->texture[2].x, &data->texture[2].y)))
 		return (TEXT_FAILURE);
 	if (!(data->texture[3].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->west_text, \
-					&data->texture[3].cols, &data->texture[3].rows)))
+					&data->texture[3].x, &data->texture[3].y)))
 		return (TEXT_FAILURE);
 	if (!(data->texture[4].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->sprite_text, \
-					&data->texture[4].cols, &data->texture[4].rows)))
+					&data->texture[4].x, &data->texture[4].y)))
 		return (TEXT_FAILURE);
 	ft_cub3d_get_text_addr(data);
 	return (SUCCESS);
