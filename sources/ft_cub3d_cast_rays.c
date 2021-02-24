@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 11:02:33 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/24 15:21:12 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 16:01:01 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,22 @@ void						ft_cub3d_raycast_orientation(t_data *data)
 	if (data->map_params->orientation == 'N')
 	{
 		data->dir_y = -1;
-		data->plane_y = 0.60;
+		data->plane_x = -0.60;
 	}
 	else if (data->map_params->orientation == 'S')
 	{
 		data->dir_y = 1;
-		data->plane_y = -0.60;
+		data->plane_x = 0.60;
 	}
 	else if (data->map_params->orientation == 'W')
 	{
 		data->dir_x = -1;
-		data->plane_x = 0.60;
+		data->plane_y = 0.60;
 	}
 	else if (data->map_params->orientation == 'E')
 	{
 		data->dir_x = 1;
-		data->plane_x = -0.60;
+		data->plane_y = -0.60;
 	}
 }
 
