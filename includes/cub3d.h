@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/24 11:12:32 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/26 12:43:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,20 @@
 # define MAP_NO_STARTING_POS	16
 # define MLX_INIT_FAIL			17
 # define TEXT_FAILURE			18
+# define BMP_FAIL				19
 
 /*
 ** GNL
 */
 
 # define BUFFER_SIZE		16
+
+struct						s_bmp_header {
+	char	bitmapSignatureBytes[2];
+	size_t	sizeOfBitmapFile;
+	size_t	reservedBytes;
+	size_t	pixelDataOffset;
+} 							t_bmp_header;
 
 typedef struct				s_input {
 	bool					w;

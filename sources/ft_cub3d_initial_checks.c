@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/22 16:23:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/26 12:30:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int							ft_cub3d_print_errno(int error_no)
 {
-	char	*strings[19];
+	char	*strings[20];
 
 	strings[0] = "SUCCESS";
 	strings[1] = "FAILURE";
@@ -35,6 +35,7 @@ int							ft_cub3d_print_errno(int error_no)
 	strings[16] = "MAP CONTAINS NO STARTING POSITION!";
 	strings[17] = "YOU KILLED ME D:";
 	strings[18] = "TEXTURE LOADING FAILED!";
+	strings[19] = "BMP FILE CREATION FAILED!";
 	printf("Error\n%s\n", strings[error_no]);
 	return (error_no);
 }
