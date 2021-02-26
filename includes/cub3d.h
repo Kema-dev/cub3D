@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/26 12:43:57 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/26 13:45:59 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "get_next_line.h"
 # include "libft.h"
 # include <sys/types.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <mlx.h>
 # include <stdbool.h>
@@ -73,14 +74,7 @@
 ** GNL
 */
 
-# define BUFFER_SIZE		16
-
-struct						s_bmp_header {
-	char	bitmapSignatureBytes[2];
-	size_t	sizeOfBitmapFile;
-	size_t	reservedBytes;
-	size_t	pixelDataOffset;
-} 							t_bmp_header;
+# define BUFFER_SIZE			16
 
 typedef struct				s_input {
 	bool					w;
@@ -260,7 +254,6 @@ void						ft_cub3d_pixel_put(t_data *data, \
 */
 
 void						ft_cub3d_print_map(char **map);
-int							ft_cub3d_create_bmp(t_data *data);
 int							ft_cub3d_parse_text_infos(t_data *data, \
 													int fd, int i);
 int							ft_cub3d_get_text_infos(t_data *data);
@@ -312,5 +305,7 @@ int							ft_cub3d_init_text_infos(t_data *data);
 int							ft_cub3d_move_rotate(t_data *data);
 int							ft_cub3d_move_horiz(t_data *data);
 int							ft_cub3d_move_vert(t_data *data);
+
+int							ft_cub3d_create_bmp(t_data *data, int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/26 12:45:19 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/26 15:26:46 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int							ft_cub3d_render_next_img(t_data *data)
 int							ft_cub3d_save_file(t_map_params *map_params)
 {
 	t_data	*data;
+	int		fd;
 
 	if (!(data = ft_calloc(1, sizeof(data))))
 		return (MALLOC_FAIL);
@@ -48,7 +49,9 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 									&data->line_length, &data->endian);
 	ft_cub3d_cast_rays(data);
-	ft_cub3d_create_bmp(data);
+	if ((fd = open("image.bmp", O_CREAT | O_TRUNC | O_WRONLY, 0777)) <= 0)
+		exit(ft_cub3d_print_errno(BMP_FAIL));
+	ft_cub3d_create_bmp(data, fd);
 	printf("%s\n", "IMAGE SAVED TO \"image.bmp\"!");
 	return (SUCCESS);
 }

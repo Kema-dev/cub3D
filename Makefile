@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/24 16:36:40 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/26 14:52:30 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FLAGS		=	-Wall -Wextra -Werror
 
 DEBUG_FLAGS	=	-Wall -Wextra -fsanitize=address
 
-ARGS		=	map.cub
+ARGS		=	map.cub --save
 
 RM			=	rm -f
 
