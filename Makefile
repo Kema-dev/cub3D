@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/02/26 14:52:30 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/02/26 15:42:51 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FLAGS		=	-Wall -Wextra -Werror
 
 DEBUG_FLAGS	=	-Wall -Wextra -fsanitize=address
 
-ARGS		=	map.cub --save
+ARGS		=	map.cub
 
 RM			=	rm -f
 
@@ -132,6 +132,7 @@ fclean:
 				$(RM) $(DEBUG_FULL)
 				$(RM) $(DEBUG_OUT)
 				$(RM) libmlx.dylib
+				$(RM) image.bmp
 				$(MAKE_SUB)libft/ fclean
 				$(MAKE_SUB)gnl/ fclean
 				$(MAKE_SUB)mlx/mms/ clean

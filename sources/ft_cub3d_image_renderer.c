@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/26 15:26:46 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/02/26 16:21:23 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int							ft_cub3d_launch_game(t_map_params *map_params)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 									&data->line_length, &data->endian);
 	mlx_hook(data->mlx_win, 2, 1L << 0, ft_cub3d_check_key_event, data);
-	mlx_hook(data->mlx_win, 17, 10001, ft_cub3d_exit, &data);
+	mlx_hook(data->mlx_win, 17, 10001, ft_cub3d_exit, data);
 	mlx_loop_hook(data->mlx, ft_cub3d_render_next_img, data);
 	mlx_loop(data->mlx);
 	return (SUCCESS);
