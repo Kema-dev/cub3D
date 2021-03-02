@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/26 13:45:59 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 10:46:42 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,7 +293,7 @@ void						ft_cub3d_draw_ray(t_data *data);
 void						ft_cub3d_pixel_creation(t_data *data, ssize_t x);
 
 void						ft_cub3d_put_texture(t_data *data, \
-										int x, ssize_t *i);
+										int x, ssize_t *y);
 void						ft_cub3d_text_init(t_data *data);
 void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y);
 int							ft_cub3d_init_text_infos(t_data *data);
