@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/26 16:12:04 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 10:24:55 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,8 @@ void						ft_cub3d_pixel_creation(t_data *data, ssize_t x)
 	i = -1;
 	while (++i < data->draw_start)
 		ft_cub3d_pixel_put(data, x, i, data->map_params->ceiling_color);
-	while (++i <= data->draw_end)
-		ft_cub3d_pixel_put(data, x, i, GREEN);
-	// ! if (i <= data->draw_end)
-	// ! 	ft_cub3d_put_texture(data, x, &i);
+	if (i <= data->draw_end)
+		ft_cub3d_put_texture(data, x, &i);
 	while (++i < (ssize_t)data->map_params->res_height)
 		ft_cub3d_pixel_put(data, x, i, data->map_params->floor_color);
-	// ? printf("pos_y = %f, pos_x = %f\n", data->pos_y, data->pos_x);
-	// ? printf("dir_y = %f, dir_x = %f\n", data->dir_y, data->dir_x);
 }
