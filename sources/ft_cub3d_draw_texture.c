@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:04:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 13:33:43 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 13:37:03 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,28 @@ void						ft_cub3d_put_texture(t_data *data, \
 				(size_t)x < data->map_params->res_width)
 			ft_cub3d_swap_addr(data, x, y);
 	}
+}
+
+void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y)
+{
+	data->addr[*y * data->line_length + x *\
+			(data->bits_per_pixel) / 8] =
+		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
+		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
+		(data->texture[data->tex_val.dir].bits_per_pixel) / 8];
+	data->addr[*y * data->line_length + x *\
+			(data->bits_per_pixel) / 8 + 1] =
+		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
+		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
+		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 1];
+	data->addr[*y * data->line_length + x *\
+			(data->bits_per_pixel) / 8 + 2] =
+		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
+		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
+		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 2];
+	data->addr[*y * data->line_length + x *\
+			(data->bits_per_pixel) / 8 + 3] =
+		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
+		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
+		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 3];
 }

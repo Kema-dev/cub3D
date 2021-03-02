@@ -6,39 +6,11 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/26 12:30:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 13:38:38 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int							ft_cub3d_print_errno(int error_no)
-{
-	char	*strings[20];
-
-	strings[0] = "SUCCESS";
-	strings[1] = "FAILURE";
-	strings[2] = "MALLOC FAILED!";
-	strings[3] = "WRONG NUMBER OF ARGUMENTS! MUST BE '*.cub' OR '*.cub --save'";
-	strings[4] = "INVALID ARGUMENT! MUST BE '*.cub' OR '*.cub --save'";
-	strings[5] = "MAP IS NOT CLOSED!";
-	strings[6] = "MAP CONTAINS AN INVALID CHAR!";
-	strings[7] = "MAP HAS INVALID PARAMETERS!";
-	strings[8] = "MAP PATH IS NOT REACHABLE!";
-	strings[9] = "INVALID COLOR!";
-	strings[10] = "MAP IS NOT ENDING WITH '.cub'!";
-	strings[11] = "MAP CONTAINS INVALID STARTING POSITION!";
-	strings[12] = "GOT AN INVALID READ ON MAP!";
-	strings[13] = "REQUESTED RESOLUTION IS INVALID!";
-	strings[14] = "YOUR SPECIFIED MAP IS A DIRECTORY!";
-	strings[15] = "MAP SPLIT FAILED!";
-	strings[16] = "MAP CONTAINS NO STARTING POSITION!";
-	strings[17] = "YOU KILLED ME D:";
-	strings[18] = "TEXTURE LOADING FAILED!";
-	strings[19] = "BMP FILE CREATION FAILED!";
-	printf("Error\n%s\n", strings[error_no]);
-	return (error_no);
-}
 
 int							ft_cub3d_check_arg(int argc,\
 												char **argv, \

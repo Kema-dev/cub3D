@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 13:35:05 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 13:38:49 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,84 +26,42 @@ void						ft_cub3d_print_map_params(t_map_params *map_params)
 	printf("propermap\n:%s:\n", map_params->field);
 }
 
-void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y)
+int					ft_cub3d_exit(void)
 {
-	data->addr[*y * data->line_length + x *\
-			(data->bits_per_pixel) / 8] =
-		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
-		(data->texture[data->tex_val.dir].bits_per_pixel) / 8];
-	data->addr[*y * data->line_length + x *\
-			(data->bits_per_pixel) / 8 + 1] =
-		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
-		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 1];
-	data->addr[*y * data->line_length + x *\
-			(data->bits_per_pixel) / 8 + 2] =
-		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
-		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 2];
-	data->addr[*y * data->line_length + x *\
-			(data->bits_per_pixel) / 8 + 3] =
-		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
-		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 3];
+	printf("\n%s\n", "YOU KILLED ME D:");
+	printf("uptime : %zu sec\n", clock() / CLOCKS_PER_SEC);
+	exit(SUCCESS);
 }
 
-/*
-** int							ft_cub3d_init_text_infos(t_data *data)
-** {
-** 	int		fd;
-** 	int		i;
-** 
-** 	i = -1;
-** 	while (++i < 5)
-** 	{
-** 		data->texture[i].x = 0;
-** 		data->texture[i].y = 0;
-** 		data->texture[i].bits_per_pixel = 0;
-** 	}
-** 	if ((fd = open(data->map_params->north_text, O_RDONLY)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	if ((fd = open(data->map_params->south_text, O_RDONLY)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	if ((fd = open(data->map_params->east_text, O_RDONLY)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	if ((fd = open(data->map_params->west_text, O_RDONLY)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	if ((fd = open(data->map_params->sprite_text, O_RDONLY)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	return (SUCCESS);
-** }
-** 
-** int							ft_cub3d_get_text_infos(t_data *data)
-** {
-** 	int		fd;
-** 	int		i;
-** 
-** 	i = -1;
-** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->north_text)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->south_text)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->east_text)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->west_text)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->sprite_text)) < 0)
-** 		return (TEXT_FAILURE);
-** 	close(fd);
-** 	ft_cub3d_init_text_infos(data);
-** 	return (SUCCESS);
-** }
-** 
-*/
+unsigned long	ft_cub3d_create_rgb_3(int r, int g, int b)
+{
+	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+}
+
+int							ft_cub3d_print_errno(int error_no)
+{
+	char	*strings[20];
+
+	strings[0] = "SUCCESS";
+	strings[1] = "FAILURE";
+	strings[2] = "MALLOC FAILED!";
+	strings[3] = "WRONG NUMBER OF ARGUMENTS! MUST BE '*.cub' OR '*.cub --save'";
+	strings[4] = "INVALID ARGUMENT! MUST BE '*.cub' OR '*.cub --save'";
+	strings[5] = "MAP IS NOT CLOSED!";
+	strings[6] = "MAP CONTAINS AN INVALID CHAR!";
+	strings[7] = "MAP HAS INVALID PARAMETERS!";
+	strings[8] = "MAP PATH IS NOT REACHABLE!";
+	strings[9] = "INVALID COLOR!";
+	strings[10] = "MAP IS NOT ENDING WITH '.cub'!";
+	strings[11] = "MAP CONTAINS INVALID STARTING POSITION!";
+	strings[12] = "GOT AN INVALID READ ON MAP!";
+	strings[13] = "REQUESTED RESOLUTION IS INVALID!";
+	strings[14] = "YOUR SPECIFIED MAP IS A DIRECTORY!";
+	strings[15] = "MAP SPLIT FAILED!";
+	strings[16] = "MAP CONTAINS NO STARTING POSITION!";
+	strings[17] = "YOU KILLED ME D:";
+	strings[18] = "TEXTURE LOADING FAILED!";
+	strings[19] = "BMP FILE CREATION FAILED!";
+	printf("Error\n%s\n", strings[error_no]);
+	return (error_no);
+}
