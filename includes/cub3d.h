@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 10:46:42 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 13:16:49 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ typedef struct				s_tex_data {
 	int						x;
 	int						y;
 	int						bits_per_pixel;
+	int						size_line;
+	int						endian;
 }							t_tex_data;
 
 typedef struct				s_tex_val {

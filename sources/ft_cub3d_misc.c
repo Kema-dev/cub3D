@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/24 12:36:33 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 13:35:05 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,76 +31,79 @@ void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y)
 	data->addr[*y * data->line_length + x *\
 			(data->bits_per_pixel) / 8] =
 		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].x + data->tex_val.x *\
+		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
 		(data->texture[data->tex_val.dir].bits_per_pixel) / 8];
 	data->addr[*y * data->line_length + x *\
 			(data->bits_per_pixel) / 8 + 1] =
 		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].x + data->tex_val.x *\
+		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
 		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 1];
 	data->addr[*y * data->line_length + x *\
 			(data->bits_per_pixel) / 8 + 2] =
 		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].x + data->tex_val.x *\
+		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
 		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 2];
 	data->addr[*y * data->line_length + x *\
 			(data->bits_per_pixel) / 8 + 3] =
 		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].x + data->tex_val.x *\
+		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
 		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 3];
 }
 
-int							ft_cub3d_init_text_infos(t_data *data)
-{
-	int		fd;
-	int		i;
-
-	i = -1;
-	while (++i < 5)
-	{
-		data->texture[i].x = 0;
-		data->texture[i].y = 0;
-		data->texture[i].bits_per_pixel = 0;
-	}
-	if ((fd = open(data->map_params->north_text, O_RDONLY)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	if ((fd = open(data->map_params->south_text, O_RDONLY)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	if ((fd = open(data->map_params->east_text, O_RDONLY)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	if ((fd = open(data->map_params->west_text, O_RDONLY)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	if ((fd = open(data->map_params->sprite_text, O_RDONLY)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	return (SUCCESS);
-}
-
-int							ft_cub3d_get_text_infos(t_data *data)
-{
-	int		fd;
-	int		i;
-
-	i = -1;
-	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->north_text)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->south_text)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->east_text)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->west_text)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->sprite_text)) < 0)
-		return (TEXT_FAILURE);
-	close(fd);
-	ft_cub3d_init_text_infos(data);
-	return (SUCCESS);
-}
+/*
+** int							ft_cub3d_init_text_infos(t_data *data)
+** {
+** 	int		fd;
+** 	int		i;
+** 
+** 	i = -1;
+** 	while (++i < 5)
+** 	{
+** 		data->texture[i].x = 0;
+** 		data->texture[i].y = 0;
+** 		data->texture[i].bits_per_pixel = 0;
+** 	}
+** 	if ((fd = open(data->map_params->north_text, O_RDONLY)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	if ((fd = open(data->map_params->south_text, O_RDONLY)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	if ((fd = open(data->map_params->east_text, O_RDONLY)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	if ((fd = open(data->map_params->west_text, O_RDONLY)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	if ((fd = open(data->map_params->sprite_text, O_RDONLY)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	return (SUCCESS);
+** }
+** 
+** int							ft_cub3d_get_text_infos(t_data *data)
+** {
+** 	int		fd;
+** 	int		i;
+** 
+** 	i = -1;
+** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->north_text)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->south_text)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->east_text)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->west_text)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	if ((fd = ft_cub3d_check_map_is_dir(data->map_params->sprite_text)) < 0)
+** 		return (TEXT_FAILURE);
+** 	close(fd);
+** 	ft_cub3d_init_text_infos(data);
+** 	return (SUCCESS);
+** }
+** 
+*/

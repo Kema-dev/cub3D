@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 10:31:54 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 13:16:58 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,32 @@ void						ft_cub3d_get_text_addr(t_data *data)
 {
 	data->texture[0].addr = mlx_get_data_addr(data->texture[0].img, \
 											&data->texture[0].bits_per_pixel, \
-											&data->texture[0].x, \
-											&data->endian);
+											&data->texture[0].size_line, \
+											&data->texture[0].endian);
 	data->texture[1].addr = mlx_get_data_addr(data->texture[1].img, \
 											&data->texture[1].bits_per_pixel, \
-											&data->texture[1].x, \
-											&data->endian);
+											&data->texture[1].size_line, \
+											&data->texture[1].endian);
 	data->texture[2].addr = mlx_get_data_addr(data->texture[2].img, \
 											&data->texture[2].bits_per_pixel, \
-											&data->texture[2].x, \
-											&data->endian);
+											&data->texture[2].size_line, \
+											&data->texture[2].endian);
 	data->texture[3].addr = mlx_get_data_addr(data->texture[3].img, \
 											&data->texture[3].bits_per_pixel, \
-											&data->texture[3].x, \
-											&data->endian);
+											&data->texture[3].size_line, \
+											&data->texture[3].endian);
 	data->texture[4].addr = mlx_get_data_addr(data->texture[4].img, \
 											&data->texture[4].bits_per_pixel, \
-											&data->texture[4].x, \
-											&data->endian);
+											&data->texture[4].size_line, \
+											&data->texture[4].endian);
 }
 
 int							ft_cub3d_raycast_load_text(t_data *data)
 {
-	if (ft_cub3d_get_text_infos(data) != SUCCESS)
-		return (TEXT_FAILURE);
+/*
+** 	if (ft_cub3d_get_text_infos(data) != SUCCESS)
+** 		return (TEXT_FAILURE);
+*/
 	if (!(data->texture[0].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->north_text, \
 					&data->texture[0].x, &data->texture[0].y)))

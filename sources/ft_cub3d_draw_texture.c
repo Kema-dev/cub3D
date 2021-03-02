@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:04:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 12:27:04 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 13:33:43 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void						ft_cub3d_text_init(t_data *data)
 {
 	if (data->side == 0 && data->ray_dir_y < 0)
 		data->tex_val.dir = 0;
-	if (data->side == 0 && data->ray_dir_y >= 0)
+	else if (data->side == 0)
 		data->tex_val.dir = 1;
 	if (data->side == 1 && data->ray_dir_x < 0)
 		data->tex_val.dir = 2;
-	if (data->side == 1 && data->ray_dir_x >= 0)
+	else if (data->side == 1)
 		data->tex_val.dir = 3;
 	if (data->side == 0)
 		data->tex_val.wall_x = data->pos_x + data->perp_wall_dist \
@@ -39,13 +39,13 @@ void						ft_cub3d_put_texture(t_data *data, \
 	data->tex_val.step = (double)data->texture[data->tex_val.dir].y \
 		/ data->line_height;
 	data->tex_val.x = (int)(data->tex_val.wall_x * \
-			data->texture[data->tex_val.dir].x);
+			(double)data->texture[data->tex_val.dir].x);
 	if (data->side == 0 && data->ray_dir_x > 0)
 		data->tex_val.x = data->texture[data->tex_val.dir].x -\
-			data->tex_val.x;
+			data->tex_val.x - 1;
 	if (data->side == 1 && data->ray_dir_y < 0)
 		data->tex_val.x = data->texture[data->tex_val.dir].x -\
-			data->tex_val.x;
+			data->tex_val.x - 1;
 	data->tex_val.pos = (data->draw_start - data->map_params->res_height / 2 +\
 			data->line_height / 2) * data->tex_val.step;
 	while (++*y <= data->draw_end)
