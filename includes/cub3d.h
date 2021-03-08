@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 13:16:49 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 14:44:31 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,20 @@ typedef struct				s_tex_val {
 	double					pos;
 }							t_tex_val;
 
+typedef struct				s_coord {
+	double					x;
+	double					y;
+	int						d;
+}							t_coord;
+
+typedef struct				s_sprite {
+	size_t					count;
+	double					*z_buffer;
+	int						*order;
+	double					*dist;
+	t_coord					*coord;
+}							t_sprite;
+
 typedef struct				s_data {
 	void					*img;
 	char					*addr;
@@ -172,6 +186,7 @@ typedef struct				s_data {
 	int						draw_start;
 	int						draw_end;
 	int						frame_uni;
+	t_sprite				*sprite;
 }							t_data;
 
 /*
@@ -309,5 +324,13 @@ int							ft_cub3d_move_horiz(t_data *data);
 int							ft_cub3d_move_vert(t_data *data);
 
 int							ft_cub3d_create_bmp(t_data *data, int fd);
+
+/*
+** sprites
+*/
+
+t_sprite					*ft_cub3d_init_sprites(t_data *data);
+void						ft_cub3d_fill_sprites(t_data *data, t_sprite *sprite);
+void						ft_cub3d_sort_sprites(t_data *data, t_sprite *sprite);
 
 #endif
