@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/08 14:44:31 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 16:41:53 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,18 @@ typedef struct				s_sprite {
 	int						*order;
 	double					*dist;
 	t_coord					*coord;
+	double					x;
+	double					y;
+	double					inv_det;
+	double					trans_x;
+	double					trans_y;
+	int						screen;
+	int						height;
+	int						width;
+	int						start_x;
+	int						start_y;
+	int						end_x;
+	int						end_y;
 }							t_sprite;
 
 typedef struct				s_data {
@@ -332,5 +344,9 @@ int							ft_cub3d_create_bmp(t_data *data, int fd);
 t_sprite					*ft_cub3d_init_sprites(t_data *data);
 void						ft_cub3d_fill_sprites(t_data *data, t_sprite *sprite);
 void						ft_cub3d_sort_sprites(t_data *data, t_sprite *sprite);
+void						ft_cub3d_project_sprites(t_data *data, \
+													t_sprite *sprite);
+void						ft_cub3d_put_sprites(t_data *data, \
+												t_sprite *sprite);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/08 14:44:48 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 16:34:26 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int							ft_cub3d_render_next_img(t_data *data)
 {
 	ft_cub3d_cast_rays(data);
 	ft_cub3d_sort_sprites(data, data->sprite);
+	ft_cub3d_project_sprites(data, data->sprite);
 	data->time = clock();
 	data->frame_time = (float)(data->time - data->prev_time) / CLOCKS_PER_SEC;
 	if (++data->frame_uni > 30)
@@ -86,10 +87,6 @@ void						ft_cub3d_get_text_addr(t_data *data)
 
 int							ft_cub3d_raycast_load_text(t_data *data)
 {
-/*
-** 	if (ft_cub3d_get_text_infos(data) != SUCCESS)
-** 		return (TEXT_FAILURE);
-*/
 	if (!(data->texture[0].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->north_text, \
 					&data->texture[0].x, &data->texture[0].y)))

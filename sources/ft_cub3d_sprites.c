@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:05:16 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/08 15:30:48 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 16:42:00 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_sprite					*ft_cub3d_init_sprites(t_data *data)
 		}
 	}
 	if (!(sprite->order = ft_calloc(sprite->count, sizeof(int))))
+		exit(ft_cub3d_print_errno(MALLOC_FAIL));
+	if (!(sprite->z_buffer = ft_calloc(sprite->count, sizeof(double))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
 	if (!(sprite->dist = ft_calloc(sprite->count, sizeof(double))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
@@ -88,10 +90,8 @@ void						ft_cub3d_sort_sprites(t_data *data, t_sprite *sprite)
 		if (sprite->dist[i] > sprite->dist[i + 1])
 		{
 			ft_cub3d_swap_array(sprite, i);
-			i = -1;
+			i -= 2;
 		}
 	}
 	i = -1;
-	while (++i < (ssize_t)sprite->count)
-		printf("%f\n", sprite->dist[i]);
 }
