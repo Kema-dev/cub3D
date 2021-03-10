@@ -6,19 +6,18 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:05:16 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/08 16:42:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 16:32:58 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_sprite					*ft_cub3d_init_sprites(t_data *data)
+void						ft_cub3d_init_sprites(t_data *data)
 {
 	ssize_t		i;
 	ssize_t		j;
-	t_sprite	*sprite;
 
-	if (!(sprite = ft_calloc(1, sizeof(t_sprite))))
+	if (!(data->sprite = ft_calloc(1, sizeof(t_sprite))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
 	i = -1;
 	while (data->map_params->map[++i])
@@ -27,22 +26,23 @@ t_sprite					*ft_cub3d_init_sprites(t_data *data)
 		while (data->map_params->map[i][++j])
 		{
 			if (data->map_params->map[i][j] == '2')
-				sprite->count++;
+			{
+				data->sprite->count++;
+			}
 		}
 	}
-	if (!(sprite->order = ft_calloc(sprite->count, sizeof(int))))
+	if (!(data->sprite->order = ft_calloc(data->sprite->count, sizeof(int))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
-	if (!(sprite->z_buffer = ft_calloc(sprite->count, sizeof(double))))
+	if (!(data->sprite->dist = ft_calloc(data->sprite->count, sizeof(double))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
-	if (!(sprite->dist = ft_calloc(sprite->count, sizeof(double))))
+	if (!(data->sprite->coord = ft_calloc(data->sprite->count, sizeof(t_coord))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
-	if (!(sprite->coord = ft_calloc(sprite->count, sizeof(t_coord))))
+	if (!(data->sprite->z_buffer = ft_calloc(data->map_params->res_width, sizeof(double))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
-	ft_cub3d_fill_sprites(data, sprite);
-	return (sprite);
+	ft_cub3d_fill_sprites(data);
 }
 
-void						ft_cub3d_fill_sprites(t_data *data, t_sprite *sprite)
+void						ft_cub3d_fill_sprites(t_data *data)
 {
 	ssize_t	i;
 	ssize_t	j;
@@ -57,41 +57,55 @@ void						ft_cub3d_fill_sprites(t_data *data, t_sprite *sprite)
 		{
 			if (data->map_params->map[i][j] == '2')
 			{
-				sprite->coord[k].y = (double)i + 0.5;
-				sprite->coord[k].x = (double)j + 0.5;
+				data->sprite->coord[k].y = (double)i + 0.5;
+				data->sprite->coord[k].x = (double)j + 0.5;
 				k++;
 			}
 		}
 	}
 }
 
-static void					ft_cub3d_swap_array(t_sprite *sprite, ssize_t i)
+void						ft_cub3d_swap_array(t_data *data, ssize_t i)
 {
-	double	tmp;
-	tmp = sprite->dist[i];
-	sprite->dist[i] = sprite->dist[i + 1];
-	sprite->dist[i + 1] = tmp;
+	int		tmp_int;
+	double	tmp_double;
+	t_coord	tmp_coord;
+
+	tmp_double = data->sprite->dist[i];
+	data->sprite->dist[i] = data->sprite->dist[i + 1];
+	data->sprite->dist[i + 1] = tmp_double;
+	tmp_int = data->sprite->order[i];
+	data->sprite->order[i] = data->sprite->order[i + 1];
+	data->sprite->order[i + 1] = tmp_int;
+	tmp_coord = data->sprite->coord[i];
+	data->sprite->coord[i] = data->sprite->coord[i + 1];
+	data->sprite->coord[i + 1] = tmp_coord;
 }
 
-void						ft_cub3d_sort_sprites(t_data *data, t_sprite *sprite)
+void						ft_cub3d_sort_sprites(t_data *data)
 {
-	ssize_t	i;
+	int	i;
 	i = -1;
-	while (++i < (ssize_t)sprite->count)
+	while (++i < data->sprite->count)
 	{
-		sprite->order[i] = (int)i;
-		sprite->dist[i] = ((data->pos_x - sprite->coord[i].x) * (data->pos_x \
-				- sprite->coord[i].x) + (data->pos_y - sprite->coord[i].y) \
-				* (data->pos_y - sprite->coord[i].y));
+		data->sprite->order[i] = i;
+		data->sprite->dist[i] = ((data->pos_x - data->sprite->coord[i].x) * (data->pos_x \
+				- data->sprite->coord[i].x) + (data->pos_y - data->sprite->coord[i].y) \
+				* (data->pos_y - data->sprite->coord[i].y));
 	}
 	i = -1;
-	while (++i < (ssize_t)sprite->count - 1)
+	while (++i < data->sprite->count - 1)
 	{
-		if (sprite->dist[i] > sprite->dist[i + 1])
+		if (data->sprite->dist[i] < data->sprite->dist[i + 1])
 		{
-			ft_cub3d_swap_array(sprite, i);
-			i -= 2;
+			ft_cub3d_swap_array(data, i);
+			i--;
 		}
 	}
-	i = -1;
+	//i = -1;
+	//while (++i < data->sprite->count)
+	//{
+	//	printf("y:%f x x:%f dist:%f\n", data->sprite->coord[i].y, data->sprite->coord[i].x, data->sprite->dist[i]);
+	//}
+	//printf("\n");
 }

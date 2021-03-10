@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 13:37:08 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 13:40:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ void						ft_cub3d_pixel_creation(t_data *data, ssize_t x)
 		ft_cub3d_put_texture(data, x, &i);
 	while (++i < (ssize_t)data->map_params->res_height)
 		ft_cub3d_pixel_put(data, x, i, data->map_params->floor_color);
+	data->sprite->z_buffer[x] = data->perp_wall_dist;
 }

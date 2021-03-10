@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/08 16:34:26 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 17:18:23 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int							ft_cub3d_render_next_img(t_data *data)
 {
 	ft_cub3d_cast_rays(data);
-	ft_cub3d_sort_sprites(data, data->sprite);
-	ft_cub3d_project_sprites(data, data->sprite);
+	ft_cub3d_sort_sprites(data);
+	ft_cub3d_project_sprites(data);
 	data->time = clock();
 	data->frame_time = (float)(data->time - data->prev_time) / CLOCKS_PER_SEC;
 	if (++data->frame_uni > 30)
@@ -46,7 +46,6 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 	data->mlx = mlx_init();
 	ft_cub3d_raycast_param(data);
 	ft_cub3d_raycast_orientation(data);
-	data->sprite = ft_cub3d_init_sprites(data);
 	if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
 		return (TEXT_FAILURE);
 	data->img = mlx_new_image(data->mlx, data->map_params->res_width, \
@@ -121,7 +120,7 @@ int							ft_cub3d_launch_game(t_map_params *map_params)
 	data->mlx = mlx_init();
 	ft_cub3d_raycast_param(data);
 	ft_cub3d_raycast_orientation(data);
-	data->sprite = ft_cub3d_init_sprites(data);
+	ft_cub3d_init_sprites(data);
 	if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
 		return (TEXT_FAILURE);
 	data->mlx_win = mlx_new_window(data->mlx, data->map_params->res_width, \
