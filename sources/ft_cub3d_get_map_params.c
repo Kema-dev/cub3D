@@ -6,11 +6,24 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/15 14:33:16 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 16:13:45 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int							ft_cub3d_check_init_params(t_map_params *map_params)
+{
+	if ((!map_params->res_width) || (!map_params->res_height) \
+				|| (!map_params->north_text) || (!map_params->south_text) \
+				|| (!map_params->east_text) || (!map_params->west_text) \
+				|| (!map_params->sprite_text) || (!map_params->floor_color) \
+				|| (!map_params->ceiling_color) || (!map_params->field) \
+				|| (!map_params->orientation) || (!map_params->starting_pos_x) \
+				|| (!map_params->starting_pos_y))
+		return (MISSING_PARAM);
+	return (SUCCESS);
+}
 
 int			ft_cub3d_get_map_params(t_map_params *map_params, \
 									char *map_lines)
@@ -26,6 +39,8 @@ int			ft_cub3d_get_map_params(t_map_params *map_params, \
 		return (return_value);
 	free(map_lines);
 	if ((return_value = ft_cub3d_2d_map(map_params)) != SUCCESS)
+		return (return_value);
+	if ((return_value = ft_cub3d_check_init_params(map_params)) != SUCCESS)
 		return (return_value);
 	return (SUCCESS);
 }

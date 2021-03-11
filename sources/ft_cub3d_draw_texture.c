@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:04:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 11:56:35 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 14:49:44 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void						ft_cub3d_put_texture(t_data *data, \
 			(data->texture[data->tex_val.dir].y - 1);
 		data->tex_val.pos += data->tex_val.step;
 		if (*y < (ssize_t)data->map_params->res_height && \
-				(size_t)x < data->map_params->res_width)
+				x < data->map_params->res_width)
 			ft_cub3d_swap_addr(data, x, y);
 	}
 }

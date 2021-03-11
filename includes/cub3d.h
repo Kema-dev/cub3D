@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 11:24:26 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 16:03:59 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@
 # define MLX_INIT_FAIL			17
 # define TEXT_FAILURE			18
 # define BMP_FAIL				19
+# define DOUBLE_DEF				20
+# define MISSING_PARAM			21
 
 /*
 ** GNL
@@ -89,8 +91,8 @@ typedef struct				s_input {
 }							t_input;
 
 typedef struct				s_map_params {
-	size_t					res_width;
-	size_t					res_height;
+	int						res_width;
+	int						res_height;
 	char					*north_text;
 	char					*south_text;
 	char					*east_text;
@@ -218,6 +220,8 @@ int							ft_cub3d_get_next_param(char **tmp, \
 													t_map_params *map_params);
 int							ft_cub3d_get_resolution(char **str, \
 													t_map_params *map_params);
+int							ft_cub3d_get_resolution_2(char **str, \
+									t_map_params *map_params);
 int							ft_cub3d_get_texture(char **str, \
 													t_map_params *map_params);
 int							ft_cub3d_get_plane(char **str, \
@@ -243,6 +247,7 @@ void						ft_cub3d_print_map_params(t_map_params *map_params);
 int							ft_cub3d_pass_digit(char **str);
 int							ft_cub3d_last_checks(char **tmp);
 int							ft_cub3d_param_return(int return_value);
+int							ft_cub3d_check_init_params(t_map_params *map_params);
 int							ft_cub3d_2d_map(t_map_params *map_params);
 int							ft_cub3d_is_charset(char **map, char *charset);
 int							ft_cub3d_get_starting_pos(t_map_params \

@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/03/08 16:15:58 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/03/11 14:27:53 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ ARGS		=	map.cub
 
 RM			=	rm -f
 
-NAME		=	Cub3D
+NAME		=	cub3D
 
 MAKE_SUB	=	make -C libs/
 

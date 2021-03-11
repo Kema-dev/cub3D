@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 11:00:34 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 15:50:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void						ft_cub3d_print_map_params(t_map_params *map_params)
 {
-	printf("\nres width            :%zu:\n", map_params->res_width);
-	printf("res height           :%zu:\n", map_params->res_height);
+	printf("\nres width            :%d:\n", map_params->res_width);
+	printf("res height           :%d:\n", map_params->res_height);
 	printf("north texture path   :%s:\n", map_params->north_text);
 	printf("south texture path   :%s:\n", map_params->south_text);
 	printf("east texture path    :%s:\n", map_params->east_text);
@@ -40,7 +40,7 @@ unsigned long				ft_cub3d_create_rgb_3(int r, int g, int b)
 
 int							ft_cub3d_print_errno(int error_no)
 {
-	char	*strings[20];
+	char	*strings[22];
 
 	strings[0] = "SUCCESS";
 	strings[1] = "FAILURE";
@@ -62,6 +62,8 @@ int							ft_cub3d_print_errno(int error_no)
 	strings[17] = "YOU KILLED ME D:";
 	strings[18] = "TEXTURE LOADING FAILED!";
 	strings[19] = "BMP FILE CREATION FAILED!";
+	strings[20] = "DOUBLE PARAMETER DEFINITION!";
+	strings[21] = "MISSING PARAMETER!";
 	printf("Error\n%s\n", strings[error_no]);
 	return (error_no);
 }
