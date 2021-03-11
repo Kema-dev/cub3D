@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/10 13:50:58 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 11:24:26 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,20 +331,30 @@ int							ft_cub3d_init_text_infos(t_data *data);
 */
 
 int							ft_cub3d_move_rotate(t_data *data);
+void						ft_cub3d_move_rotate_2(t_data *data, \
+											double prev_dir_x, \
+											double prev_plane_x);
 int							ft_cub3d_move_horiz(t_data *data);
 int							ft_cub3d_move_vert(t_data *data);
 
 int							ft_cub3d_create_bmp(t_data *data, int fd);
+void						ft_cub3d_create_bmp_2(t_data *data, int fd);
 
 /*
 ** sprites
 */
 
 void						ft_cub3d_init_sprites(t_data *data);
+int							ft_cub3d_sprite_count(t_data *data);
 void						ft_cub3d_fill_sprites(t_data *data);
-void						ft_cub3d_swap_array(t_data *data, ssize_t i);
+void						ft_cub3d_swap_array(t_data *data, \
+												ssize_t i);
 void						ft_cub3d_sort_sprites(t_data *data);
 void						ft_cub3d_project_sprites(t_data *data);
+void						ft_cub3d_project_sprites_2(t_data *data);
 void						ft_cub3d_put_sprites(t_data *data);
+void						ft_cub3d_put_sprites_2(t_data *data, \
+													int tex_x, \
+													int stripe);
 
 #endif

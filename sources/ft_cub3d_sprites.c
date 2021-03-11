@@ -6,19 +6,17 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:05:16 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 10:04:45 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 11:15:57 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void						ft_cub3d_init_sprites(t_data *data)
+int							ft_cub3d_sprite_count(t_data *data)
 {
-	ssize_t		i;
-	ssize_t		j;
+	int	i;
+	int	j;
 
-	if (!(data->sprite = ft_calloc(1, sizeof(t_sprite))))
-		exit(ft_cub3d_print_errno(MALLOC_FAIL));
 	i = -1;
 	while (data->map_params->map[++i])
 	{
@@ -31,13 +29,23 @@ void						ft_cub3d_init_sprites(t_data *data)
 			}
 		}
 	}
+	return (i);
+}
+
+void						ft_cub3d_init_sprites(t_data *data)
+{
+	if (!(data->sprite = ft_calloc(1, sizeof(t_sprite))))
+		exit(ft_cub3d_print_errno(MALLOC_FAIL));
+	ft_cub3d_sprite_count(data);
 	if (!(data->sprite->order = ft_calloc(data->sprite->count, sizeof(int))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
 	if (!(data->sprite->dist = ft_calloc(data->sprite->count, sizeof(double))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
-	if (!(data->sprite->coord = ft_calloc(data->sprite->count, sizeof(t_coord))))
+	if (!(data->sprite->coord = ft_calloc(data->sprite->count, \
+										sizeof(t_coord))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
-	if (!(data->sprite->z_buffer = ft_calloc(data->map_params->res_width, sizeof(double))))
+	if (!(data->sprite->z_buffer = ft_calloc(data->map_params->res_width, \
+											sizeof(double))))
 		exit(ft_cub3d_print_errno(MALLOC_FAIL));
 	ft_cub3d_fill_sprites(data);
 }
@@ -85,13 +93,15 @@ void						ft_cub3d_swap_array(t_data *data, ssize_t i)
 void						ft_cub3d_sort_sprites(t_data *data)
 {
 	int	i;
+
 	i = -1;
 	while (++i < data->sprite->count)
 	{
 		data->sprite->order[i] = i;
-		data->sprite->dist[i] = ((data->pos_x - data->sprite->coord[i].x) * (data->pos_x \
-				- data->sprite->coord[i].x) + (data->pos_y - data->sprite->coord[i].y) \
-				* (data->pos_y - data->sprite->coord[i].y));
+		data->sprite->dist[i] = ((data->pos_x - data->sprite->coord[i].x) \
+			* (data->pos_x - data->sprite->coord[i].x) + (data->pos_y \
+			- data->sprite->coord[i].y) * (data->pos_y - \
+			data->sprite->coord[i].y));
 	}
 	i = -1;
 	while (++i < data->sprite->count - 1)

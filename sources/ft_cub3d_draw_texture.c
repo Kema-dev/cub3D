@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:04:14 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 13:37:03 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 10:36:17 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void						ft_cub3d_text_init(t_data *data)
 	else if (data->side == 0)
 		data->tex_val.dir = 1;
 	if (data->side == 1 && data->ray_dir_x < 0)
-		data->tex_val.dir = 2;
-	else if (data->side == 1)
 		data->tex_val.dir = 3;
+	else if (data->side == 1)
+		data->tex_val.dir = 2;
 	if (data->side == 0)
 		data->tex_val.wall_x = data->pos_x + data->perp_wall_dist \
 							* data->ray_dir_x;
@@ -76,9 +76,4 @@ void						ft_cub3d_swap_addr(t_data *data, int x, ssize_t *y)
 		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
 		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
 		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 2];
-	data->addr[*y * data->line_length + x *\
-			(data->bits_per_pixel) / 8 + 3] =
-		data->texture[data->tex_val.dir].addr[data->tex_val.y *\
-		data->texture[data->tex_val.dir].size_line + data->tex_val.x *\
-		(data->texture[data->tex_val.dir].bits_per_pixel) / 8 + 3];
 }

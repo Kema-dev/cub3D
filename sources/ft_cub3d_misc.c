@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/02 13:38:49 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 11:00:34 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void						ft_cub3d_print_map_params(t_map_params *map_params)
 	printf("propermap\n:%s:\n", map_params->field);
 }
 
-int					ft_cub3d_exit(void)
+int							ft_cub3d_exit(void)
 {
 	printf("\n%s\n", "YOU KILLED ME D:");
 	printf("uptime : %zu sec\n", clock() / CLOCKS_PER_SEC);
 	exit(SUCCESS);
 }
 
-unsigned long	ft_cub3d_create_rgb_3(int r, int g, int b)
+unsigned long				ft_cub3d_create_rgb_3(int r, int g, int b)
 {
 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }

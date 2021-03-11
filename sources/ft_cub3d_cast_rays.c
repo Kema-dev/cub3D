@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 11:02:33 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/10 15:28:45 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 10:54:36 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ void							ft_cub3d_raycast_side(t_data *data)
 	if (data->ray_dir_y < 0)
 	{
 		data->step_y = -1;
-		data->side_dist_y = (data->pos_y - data->map_y)	* data->delta_dist_y;
+		data->side_dist_y = (data->pos_y - data->map_y) * data->delta_dist_y;
 	}
 	else
 	{
 		data->step_y = 1;
-		data->side_dist_y = (data->map_y + 1.0 - data->pos_y) * data->delta_dist_y;
+		data->side_dist_y = (data->map_y + 1.0 - data->pos_y) \
+							* data->delta_dist_y;
 	}
 	if (data->ray_dir_x < 0)
 	{
@@ -63,11 +64,12 @@ void							ft_cub3d_raycast_side(t_data *data)
 	else
 	{
 		data->step_x = 1;
-		data->side_dist_x = (data->map_x + 1.0 - data->pos_x) * data->delta_dist_x;
+		data->side_dist_x = (data->map_x + 1.0 - data->pos_x) \
+							* data->delta_dist_x;
 	}
 }
 
-void						ft_cub3d_raycast_orientation(t_data *data)
+void							ft_cub3d_raycast_orientation(t_data *data)
 {
 	if (data->map_params->orientation == 'N')
 	{
@@ -91,12 +93,12 @@ void						ft_cub3d_raycast_orientation(t_data *data)
 	}
 }
 
-int							ft_cub3d_cast_rays(t_data *data)
+int								ft_cub3d_cast_rays(t_data *data)
 {
-	int	x;
+	ssize_t	x;
 
 	x = -1;
-	while ((size_t)++x < data->map_params->res_width)
+	while (++x < (ssize_t)data->map_params->res_width)
 	{
 		ft_cub3d_raycast_init(data, x);
 		ft_cub3d_raycast_side(data);

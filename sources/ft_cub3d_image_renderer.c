@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/10 17:18:23 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 10:24:12 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 	data->mlx = mlx_init();
 	ft_cub3d_raycast_param(data);
 	ft_cub3d_raycast_orientation(data);
+	ft_cub3d_init_sprites(data);
 	if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
 		return (TEXT_FAILURE);
 	data->img = mlx_new_image(data->mlx, data->map_params->res_width, \
@@ -53,6 +54,8 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 									&data->line_length, &data->endian);
 	ft_cub3d_cast_rays(data);
+	ft_cub3d_sort_sprites(data);
+	ft_cub3d_project_sprites(data);
 	if ((fd = open("image.bmp", O_CREAT | O_TRUNC | O_WRONLY, 0777)) <= 0)
 		exit(ft_cub3d_print_errno(BMP_FAIL));
 	ft_cub3d_create_bmp(data, fd);
