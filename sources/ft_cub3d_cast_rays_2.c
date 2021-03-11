@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:54:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 10:48:29 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 11:36:41 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void						ft_cub3d_draw_ray(t_data *data)
 	if (data->draw_start < 0)
 		data->draw_start = 0;
 	data->draw_end = data->line_height / 2 + data->map_params->res_height / 2;
-	if (data->draw_end >= (ssize_t)data->map_params->res_height)
+	if (data->draw_end > (ssize_t)data->map_params->res_height)
 		data->draw_end = data->map_params->res_height;
 }
 
