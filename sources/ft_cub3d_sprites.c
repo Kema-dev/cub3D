@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:05:16 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/10 16:32:58 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 10:04:45 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,4 @@ void						ft_cub3d_sort_sprites(t_data *data)
 			i--;
 		}
 	}
-	//i = -1;
-	//while (++i < data->sprite->count)
-	//{
-	//	printf("y:%f x x:%f dist:%f\n", data->sprite->coord[i].y, data->sprite->coord[i].x, data->sprite->dist[i]);
-	//}
-	//printf("\n");
 }

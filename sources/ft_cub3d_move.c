@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 16:49:26 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/10 15:41:29 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 10:21:45 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int						ft_cub3d_move_vert(t_data *data)
 {
+	char	tile;
+
 	if (data->forward == true)
 	{
-		if (data->map_params->map[(int)floor(data->pos_y + data->dir_y \
-					* data->move_speed * 3)][(int)floor(data->pos_x \
-					+ data->dir_x * data->move_speed * 3)] != '1')
+		tile = data->map_params->map[(int)floor(data->pos_y + data->dir_y \
+					* data->move_speed * 1.5)][(int)floor(data->pos_x \
+					+ data->dir_x * data->move_speed * 1.5)];
+		if ((tile != '1') && (tile != '2'))
 		{
 			data->pos_y += data->dir_y * data->move_speed;
 			data->pos_x += data->dir_x * data->move_speed;
@@ -26,9 +29,10 @@ int						ft_cub3d_move_vert(t_data *data)
 	}
 	else if (data->backward == true)
 	{
-		if (data->map_params->map[(int)floor(data->pos_y - data->dir_y \
-					* data->move_speed * 3)][(int)floor(data->pos_x \
-					- data->dir_x * data->move_speed * 3)] != '1')
+		tile = data->map_params->map[(int)floor(data->pos_y - data->dir_y \
+					* data->move_speed * 1.5)][(int)floor(data->pos_x \
+					- data->dir_x * data->move_speed * 1.5)];
+		if ((tile != '1') && (tile != '2'))
 		{
 			data->pos_y -= data->dir_y * data->move_speed;
 			data->pos_x -= data->dir_x * data->move_speed;
@@ -39,21 +43,25 @@ int						ft_cub3d_move_vert(t_data *data)
 
 int						ft_cub3d_move_horiz(t_data *data)
 {
+	char	tile;
+
 	if (data->left == true)
 	{
-		if (data->map_params->map[(int)floor(data->pos_y + data->dir_x \
-					* data->move_speed * 3)][(int)floor(data->pos_x \
-					+ data->dir_y * data->move_speed * 3)] != '1')
+		tile = data->map_params->map[(int)floor(data->pos_y - data->dir_x \
+					* data->move_speed * 1.5)][(int)floor(data->pos_x \
+					+ data->dir_y * data->move_speed * 1.5)];
+		if ((tile != '1') && (tile != '2'))
 		{
 			data->pos_y -= data->dir_x * data->move_speed;
 			data->pos_x += data->dir_y * data->move_speed;
 		}
 	}
-	if (data->right == true)
+	else if (data->right == true)
 	{
-		if (data->map_params->map[(int)floor(data->pos_y - data->dir_x \
-					* data->move_speed * 3)][(int)floor(data->pos_x \
-					- data->dir_y * data->move_speed * 3)] != '1')
+		tile = data->map_params->map[(int)floor(data->pos_y + data->dir_x \
+					* data->move_speed * 1.5)][(int)floor(data->pos_x \
+					- data->dir_y * data->move_speed * 1.5)];
+		if ((tile != '1') && (tile != '2'))
 		{
 			data->pos_y += data->dir_x * data->move_speed;
 			data->pos_x -= data->dir_y * data->move_speed;

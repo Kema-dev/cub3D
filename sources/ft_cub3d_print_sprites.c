@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:44:15 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/10 17:19:57 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 10:05:03 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void						ft_cub3d_put_sprites(t_data *data)
 	ssize_t	y;
 
 	stripe = data->sprite->start_x;
-	//printf("y = %d x %d\n", data->sprite->start_y, data->sprite->end_y);
-	//printf("x = %d x %d\n", data->sprite->start_x, data->sprite->end_x);
 	while (stripe < (int)data->sprite->end_x)
 	{
 		tex_x = (int)(256 * (stripe - (-data->sprite->width / 2 + data->sprite->screen)) * data->texture[4].x / data->sprite->width) / 256;
@@ -76,15 +74,15 @@ void						ft_cub3d_project_sprites(t_data *data)
 		if (data->sprite->start_y < 0)
 			data->sprite->start_y = 0;
 		data->sprite->end_y = data->sprite->height / 2 + data->map_params->res_height / 2;
-		if (data->sprite->end_y > (int)data->map_params->res_height - 1)
-			data->sprite->end_y = (int)data->map_params->res_height - 1;
+		if (data->sprite->end_y > (int)data->map_params->res_height)
+			data->sprite->end_y = (int)data->map_params->res_height;
 		data->sprite->width = abs((int)(data->map_params->res_height / data->sprite->trans_y));
 		data->sprite->start_x = -data->sprite->width / 2 + data->sprite->screen;
 		if (data->sprite->start_x < 0)
 			data->sprite->start_x = 0;
 		data->sprite->end_x = data->sprite->width / 2 + data->sprite->screen;
-		if (data->sprite->end_x > (int)data->map_params->res_width - 1)
-			data->sprite->end_x = (int)data->map_params->res_width - 1;
+		if (data->sprite->end_x > (int)data->map_params->res_width)
+			data->sprite->end_x = (int)data->map_params->res_width;
 		ft_cub3d_put_sprites(data);
 	}
 }
