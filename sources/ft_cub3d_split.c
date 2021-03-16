@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:46:53 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 13:04:08 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 14:54:25 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,26 @@ char				**ft_cub3d_split(char const *s, char c)
 	}
 	tab[i] = NULL;
 	return (tab);
+}
+
+int		ft_cub3d_field_is_charset(char *field, char *charset)
+{
+	ssize_t	i;
+	ssize_t	k;
+	int		return_value;
+
+	i = -1;
+	while (field[++i])
+	{
+		return_value = MAP_INVALID_CHAR;
+		k = -1;
+		while (charset[++k])
+		{
+			if (field[i] == charset[k])
+				return_value = SUCCESS;
+		}
+		if (return_value != SUCCESS)
+			return (return_value);
+	}
+	return (SUCCESS);
 }

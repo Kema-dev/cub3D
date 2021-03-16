@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 16:13:45 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 14:43:11 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int			ft_cub3d_get_next_param(char **tmp, \
 {
 	int		return_value;
 
-	while ((*tmp[0] == '\n') || (*tmp[0] == ' '))
-		(*tmp) += 1;
+	while (*tmp[0] == '\n')
+		(*tmp)++;
 	if (*tmp[0] == 'R')
 	{
 		return_value = ft_cub3d_get_resolution(tmp, map_params);

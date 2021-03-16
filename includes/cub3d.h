@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 13:20:35 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 14:48:01 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,8 +220,6 @@ int							ft_cub3d_get_next_param(char **tmp, \
 													t_map_params *map_params);
 int							ft_cub3d_get_resolution(char **str, \
 													t_map_params *map_params);
-int							ft_cub3d_get_resolution_2(char **str, \
-									t_map_params *map_params);
 int							ft_cub3d_get_texture(char **str, \
 													t_map_params *map_params);
 int							ft_cub3d_get_plane(char **str, \
@@ -364,5 +362,6 @@ void						ft_cub3d_put_sprites_2(t_data *data, \
 
 char						**ft_cub3d_split(char const *s, char c);
 int							ft_cub3d_release(int keycode, t_data *data);
+int							ft_cub3d_field_is_charset(char *field, char *charset);
 
 #endif

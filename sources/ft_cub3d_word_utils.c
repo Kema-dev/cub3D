@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 12:33:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 16:50:55 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 14:36:58 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int		ft_cub3d_pass_digit(char **str)
 {
+	while (*str[0] == ' ')
+		(*str)++;
 	while (ft_isdigit(*str[0]))
-		(*str) += 1;
-	(*str) += 1;
+		(*str)++;
 	return (SUCCESS);
 }
 

@@ -6,62 +6,41 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 13:11:32 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 14:54:39 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			ft_cub3d_get_resolution_2(char **str, \
-									t_map_params *map_params)
-{
-	if ((map_params->res_height = ft_atoi(*str)) <= 0)
-	{
-		if (*str[0] != '-')
-			return (MAP_INVALID_RES);
-		else
-			map_params->res_height = 1395;
-	}
-	ft_cub3d_go_next_word(str, ' ', '\n');
-	if (map_params->res_width > 2560)
-		map_params->res_width = 2560;
-	if (map_params->res_height > 1395)
-		map_params->res_height = 1395;
-	if (map_params->res_width < 150)
-	{
-		printf("%s\n", "ADAPTED WIDTH!");
-		map_params->res_width = 150;
-	}
-	if (map_params->res_height < 150)
-	{
-		printf("%s\n", "ADAPTED HEIGHT!");
-		map_params->res_height = 150;
-	}
-	return (SUCCESS);
-}
-
 int			ft_cub3d_get_resolution(char **str, \
 									t_map_params *map_params)
 {
-	ssize_t	i;
-	int		return_value;
-
 	if (map_params->res_height || map_params->res_width)
 		return (DOUBLE_DEF);
-	ft_cub3d_go_next_word(str, ' ', '\n');
+	(*str) += 1;
+	while (*str[0] == ' ')
+		(*str)++;
+	if (*str[0] == '-')
+		return (MAP_INVALID_RES);
 	if ((map_params->res_width = ft_atoi(*str)) <= 0)
+		map_params->res_width = 2560;
+	while ((*str[0] >= '0') && (*str[0] <= '9'))
+		(*str)++;
+	while (*str[0] == ' ')
+		(*str)++;
+	if (*str[0] == '-')
+		return (MAP_INVALID_RES);
+	if ((map_params->res_height = ft_atoi(*str)) <= 0)
+		map_params->res_height = 1395;
+	while ((*str[0] >= '0') && (*str[0] <= '9'))
+		(*str)++;
+	while ((*str[0]) && (*str[0] != '\n'))
 	{
-		i = -1;
-		while (*str[++i] != ' ')
-			str++;
-		if (*str[0] != '-')
-			return (MAP_INVALID_RES);
-		else
-			map_params->res_width = 2560;
+		if (*str[0] != ' ')
+			return (MAP_INVALID_CHAR);
+		(*str)++;
 	}
-	ft_cub3d_go_next_word(str, ' ', '\n');
-	return_value = ft_cub3d_get_resolution_2(str, map_params);
-	return (return_value);
+	return (SUCCESS);
 }
 
 int			ft_cub3d_get_texture(char **str, \
@@ -88,6 +67,12 @@ int			ft_cub3d_get_texture(char **str, \
 	else
 		return (DOUBLE_DEF);
 	free(dest);
+	while ((*str[0]) && (*str[0] != '\n'))
+	{
+		if (*str[0] != ' ')
+			return (MAP_INVALID_CHAR);
+		(*str)++;
+	}
 	return (SUCCESS);
 }
 
@@ -104,9 +89,17 @@ int			ft_cub3d_get_plane(char **str, \
 	if (((r = ft_atoi(*str)) < 0) || ((r == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
 	ft_cub3d_pass_digit(str);
+	if (*str[0] != ',')
+		return (MAP_INVALID_COLOR);
+	else
+		(*str)++;
 	if (((g = ft_atoi(*str)) < 0) || ((g == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
 	ft_cub3d_pass_digit(str);
+	if (*str[0] != ',')
+		return (MAP_INVALID_COLOR);
+	else
+		(*str)++;
 	if (((b = ft_atoi(*str)) < 0) || ((b == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
 	if ((r > 255) || (g > 255) || (b > 255))
@@ -118,7 +111,14 @@ int			ft_cub3d_get_plane(char **str, \
 	else
 		return (DOUBLE_DEF);
 	free(dest);
-	return (ft_cub3d_pass_digit(str));
+	ft_cub3d_pass_digit(str);
+	while ((*str[0]) && (*str[0] != '\n'))
+	{
+		if (*str[0] != ' ')
+			return (MAP_INVALID_CHAR);
+		(*str)++;
+	}
+	return (SUCCESS);
 }
 
 int			ft_cub3d_get_field(char **str, \
@@ -133,6 +133,9 @@ int			ft_cub3d_2d_map(t_map_params *map_params)
 {
 	int		return_value;
 
+	if ((return_value = ft_cub3d_field_is_charset(map_params->field, \
+											"\n012 NSEW")) != SUCCESS)
+		return (MAP_INVALID_CHAR);
 	if (!(map_params->map = ft_cub3d_split(map_params->field, '\n')))
 		return (MAP_SPLIT_FAIL);
 	if ((return_value = ft_cub3d_is_charset(map_params->map, \
