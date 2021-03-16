@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 11:02:33 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 14:25:33 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 13:35:25 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void							ft_cub3d_raycast_param(t_data *data)
 {
-	data->move_speed = 0.35;
-	data->rot_speed = 0.15;
+	data->move_speed = 0.15;
+	data->rot_speed = 0.05;
 	data->forward = 0;
 	data->backward = 0;
 	data->right = 0;

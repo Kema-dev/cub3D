@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 10:49:45 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 13:20:35 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,5 +363,6 @@ void						ft_cub3d_put_sprites_2(t_data *data, \
 													int stripe);
 
 char						**ft_cub3d_split(char const *s, char c);
+int							ft_cub3d_release(int keycode, t_data *data);
 
 #endif

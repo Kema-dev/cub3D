@@ -6,11 +6,28 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 13:04:01 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/02/26 15:31:50 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 13:21:03 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int			ft_cub3d_release(int keycode, t_data *data)
+{
+	if (keycode == W_KEY)
+		data->forward = false;
+	else if (keycode == A_KEY)
+		data->left = false;
+	else if (keycode == S_KEY)
+		data->backward = false;
+	else if (keycode == D_KEY)
+		data->right = false;
+	else if (keycode == LEFT_ARROW_KEY)
+		data->rot_left = false;
+	else if (keycode == RIGHT_ARROW_KEY)
+		data->rot_right = false;
+	return (SUCCESS);
+}
 
 void		ft_cub3d_reset_input(t_data *data)
 {
