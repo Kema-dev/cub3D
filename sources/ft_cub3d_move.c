@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 16:49:26 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 10:59:32 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 15:27:17 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int						ft_cub3d_move_vert(t_data *data)
 		tile = data->map_params->map[(int)floor(data->pos_y + data->dir_y \
 					* data->move_speed * 1.5)][(int)floor(data->pos_x \
 					+ data->dir_x * data->move_speed * 1.5)];
-		if ((tile != '1') && (tile != '2'))
+		if ((tile == '0') || (tile == data->map_params->orientation))
 		{
 			data->pos_y += data->dir_y * data->move_speed;
 			data->pos_x += data->dir_x * data->move_speed;
@@ -32,7 +32,7 @@ int						ft_cub3d_move_vert(t_data *data)
 		tile = data->map_params->map[(int)floor(data->pos_y - data->dir_y \
 					* data->move_speed * 1.5)][(int)floor(data->pos_x \
 					- data->dir_x * data->move_speed * 1.5)];
-		if ((tile != '1') && (tile != '2'))
+		if ((tile == '0') || (tile == data->map_params->orientation))
 		{
 			data->pos_y -= data->dir_y * data->move_speed;
 			data->pos_x -= data->dir_x * data->move_speed;
@@ -50,7 +50,7 @@ int						ft_cub3d_move_horiz(t_data *data)
 		tile = data->map_params->map[(int)floor(data->pos_y - data->dir_x \
 					* data->move_speed * 1.5)][(int)floor(data->pos_x \
 					+ data->dir_y * data->move_speed * 1.5)];
-		if ((tile != '1') && (tile != '2'))
+		if ((tile == '0') || (tile == data->map_params->orientation))
 		{
 			data->pos_y -= data->dir_x * data->move_speed;
 			data->pos_x += data->dir_y * data->move_speed;
@@ -61,7 +61,7 @@ int						ft_cub3d_move_horiz(t_data *data)
 		tile = data->map_params->map[(int)floor(data->pos_y + data->dir_x \
 					* data->move_speed * 1.5)][(int)floor(data->pos_x \
 					- data->dir_y * data->move_speed * 1.5)];
-		if ((tile != '1') && (tile != '2'))
+		if ((tile == '0') || (tile == data->map_params->orientation))
 		{
 			data->pos_y += data->dir_x * data->move_speed;
 			data->pos_x -= data->dir_y * data->move_speed;
