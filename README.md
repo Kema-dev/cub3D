@@ -13,5 +13,4 @@ End of line stuff to call as error
 001 to call as error
 11
 
-empty line in map to treat as end of map, if other things after call as error
 frame rate to fix : move when pressed, and until released

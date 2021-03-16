@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 16:04:00 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 13:11:32 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int			ft_cub3d_2d_map(t_map_params *map_params)
 {
 	int		return_value;
 
-	if (!(map_params->map = ft_split(map_params->field, '\n')))
+	if (!(map_params->map = ft_cub3d_split(map_params->field, '\n')))
 		return (MAP_SPLIT_FAIL);
 	if ((return_value = ft_cub3d_is_charset(map_params->map, \
 											"012 NSEW")) != SUCCESS)
