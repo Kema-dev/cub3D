@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:49:10 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 16:13:50 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:34:54 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,39 @@ int							ft_cub3d_get_texture_2(char *path, \
 }
 
 int							ft_cub3d_get_plane_2(char **str, \
-												int r, \
-												int g, \
-												int b)
+												int *r, \
+												int *g, \
+												int *b)
 {
 	ft_cub3d_go_next_word(str, ' ', '\n');
-	if (((r = ft_atoi(*str)) < 0) || ((r == 0) && ((*str[0] != '0'))))
+	if (((*r = ft_atoi(*str)) < 0) || ((*r == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
 	ft_cub3d_pass_digit(str);
 	if (*str[0] != ',')
 		return (MAP_INVALID_COLOR);
 	else
 		(*str)++;
-	if (((g = ft_atoi(*str)) < 0) || ((g == 0) && ((*str[0] != '0'))))
+	if (((*g = ft_atoi(*str)) < 0) || ((*g == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
 	ft_cub3d_pass_digit(str);
 	if (*str[0] != ',')
 		return (MAP_INVALID_COLOR);
 	else
 		(*str)++;
-	if (((b = ft_atoi(*str)) < 0) || ((b == 0) && ((*str[0] != '0'))))
+	if (((*b = ft_atoi(*str)) < 0) || ((*b == 0) && ((*str[0] != '0'))))
 		return (MAP_INVALID_COLOR);
-	if ((r > 255) || (g > 255) || (b > 255))
+	if ((*r > 255) || (*g > 255) || (*b > 255))
 		return (MAP_INVALID_COLOR);
+	return (SUCCESS);
+}
+
+int							ft_cub3d_get_plane_3(char **str)
+{
+	while ((*str[0]) && (*str[0] != '\n'))
+	{
+		if (*str[0] != ' ')
+			return (MAP_INVALID_CHAR);
+		(*str)++;
+	}
 	return (SUCCESS);
 }

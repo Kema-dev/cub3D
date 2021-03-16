@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 16:15:14 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:34:51 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,8 +369,9 @@ int							ft_cub3d_get_texture_2(char *path, \
 												char *dest, \
 												t_map_params *map_params);
 int							ft_cub3d_get_plane_2(char **str, \
-												int r, \
-												int g, \
-												int b);
+												int *r, \
+												int *g, \
+												int *b);
+int							ft_cub3d_get_plane_3(char **str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 16:15:17 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:34:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,11 @@ int			ft_cub3d_get_plane(char **str, \
 	int		g;
 	int		b;
 
+	r = 0;
+	g = 0;
+	b = 0;
 	dest = ft_cub3d_get_first_word(str, ' ', '\n');
-	if (ft_cub3d_get_plane_2(str, r, g, b) != SUCCESS)
+	if (ft_cub3d_get_plane_2(str, &r, &g, &b) != SUCCESS)
 		return (MAP_INVALID_COLOR);
 	if ((ft_strncmp(dest, "F", 1) == 0) && (!map_params->floor_color))
 		map_params->floor_color = ft_cub3d_create_rgb_3(r, g, b);
@@ -84,12 +87,8 @@ int			ft_cub3d_get_plane(char **str, \
 		return (DOUBLE_DEF);
 	free(dest);
 	ft_cub3d_pass_digit(str);
-	while ((*str[0]) && (*str[0] != '\n'))
-	{
-		if (*str[0] != ' ')
-			return (MAP_INVALID_CHAR);
-		(*str)++;
-	}
+	if (ft_cub3d_get_plane_3(str) != SUCCESS)
+		return (MAP_INVALID_CHAR);
 	return (SUCCESS);
 }
 
