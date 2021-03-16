@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 14:48:01 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:15:14 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,19 @@
 # define MAP_IS_OPEN			5
 # define MAP_INVALID_CHAR		6
 # define MAP_INVALID_CONFIG		7
-# define MAP_INVALID_PATH		8
-# define MAP_INVALID_COLOR		9
-# define MAP_INVALID_EXT		10
-# define MAP_INVALID_POS		11
-# define MAP_INVALID_READ		12
-# define MAP_INVALID_RES		13
-# define MAP_IS_DIR				14
-# define MAP_SPLIT_FAIL			15
-# define MAP_NO_STARTING_POS	16
-# define MLX_INIT_FAIL			17
-# define TEXT_FAILURE			18
-# define BMP_FAIL				19
-# define DOUBLE_DEF				20
-# define MISSING_PARAM			21
+# define MAP_INVALID_COLOR		8
+# define MAP_INVALID_EXT		9
+# define MAP_INVALID_POS		10
+# define MAP_INVALID_READ		11
+# define MAP_INVALID_RES		12
+# define MAP_IS_DIR				13
+# define MAP_SPLIT_FAIL			14
+# define MAP_NO_STARTING_POS	15
+# define MLX_INIT_FAIL			16
+# define TEXT_FAILURE			17
+# define BMP_FAIL				18
+# define DOUBLE_DEF				19
+# define MISSING_PARAM			20
 
 /*
 ** GNL
@@ -245,7 +244,8 @@ void						ft_cub3d_print_map_params(t_map_params *map_params);
 int							ft_cub3d_pass_digit(char **str);
 int							ft_cub3d_last_checks(char **tmp);
 int							ft_cub3d_param_return(int return_value);
-int							ft_cub3d_check_init_params(t_map_params *map_params);
+int							ft_cub3d_check_init_params(t_map_params \
+														*map_params);
 int							ft_cub3d_2d_map(t_map_params *map_params);
 int							ft_cub3d_is_charset(char **map, char *charset);
 int							ft_cub3d_get_starting_pos(t_map_params \
@@ -362,6 +362,15 @@ void						ft_cub3d_put_sprites_2(t_data *data, \
 
 char						**ft_cub3d_split(char const *s, char c);
 int							ft_cub3d_release(int keycode, t_data *data);
-int							ft_cub3d_field_is_charset(char *field, char *charset);
+int							ft_cub3d_field_is_charset(char *field, \
+													char *charset);
+void						ft_cub3d_get_resolution_2(char **str);
+int							ft_cub3d_get_texture_2(char *path, \
+												char *dest, \
+												t_map_params *map_params);
+int							ft_cub3d_get_plane_2(char **str, \
+												int r, \
+												int g, \
+												int b);
 
 #endif

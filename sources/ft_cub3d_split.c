@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:46:53 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 14:54:25 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 15:47:50 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,17 @@ char				**ft_cub3d_split(char const *s, char c)
 	while (i < nb_strs)
 	{
 		if (next_str[0] == c)
-			break;
+			break ;
 		ft_cub3d_get_next_str(&next_str, &next_str_len, c);
 		if (!(tab[i] = ft_calloc(sizeof(char), (next_str_len + 1))))
 			return (ft_cub3d_tab_free(tab));
 		ft_strlcpy(tab[i], next_str, next_str_len + 1);
 		i++;
 	}
-	tab[i] = NULL;
 	return (tab);
 }
 
-int		ft_cub3d_field_is_charset(char *field, char *charset)
+int					ft_cub3d_field_is_charset(char *field, char *charset)
 {
 	ssize_t	i;
 	ssize_t	k;

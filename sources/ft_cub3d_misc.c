@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:35:20 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/11 15:50:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 15:44:25 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ unsigned long				ft_cub3d_create_rgb_3(int r, int g, int b)
 
 int							ft_cub3d_print_errno(int error_no)
 {
-	char	*strings[22];
+	char	*strings[21];
 
 	strings[0] = "SUCCESS";
 	strings[1] = "FAILURE";
@@ -50,20 +50,19 @@ int							ft_cub3d_print_errno(int error_no)
 	strings[5] = "MAP IS NOT CLOSED!";
 	strings[6] = "MAP CONTAINS AN INVALID CHAR!";
 	strings[7] = "MAP HAS INVALID PARAMETERS!";
-	strings[8] = "MAP PATH IS NOT REACHABLE!";
-	strings[9] = "INVALID COLOR!";
-	strings[10] = "MAP IS NOT ENDING WITH '.cub'!";
-	strings[11] = "MAP CONTAINS INVALID STARTING POSITION!";
-	strings[12] = "GOT AN INVALID READ ON MAP!";
-	strings[13] = "REQUESTED RESOLUTION IS INVALID!";
-	strings[14] = "YOUR SPECIFIED MAP IS A DIRECTORY!";
-	strings[15] = "MAP SPLIT FAILED!";
-	strings[16] = "MAP CONTAINS NO STARTING POSITION!";
-	strings[17] = "YOU KILLED ME D:";
-	strings[18] = "TEXTURE LOADING FAILED!";
-	strings[19] = "BMP FILE CREATION FAILED!";
-	strings[20] = "DOUBLE PARAMETER DEFINITION!";
-	strings[21] = "MISSING PARAMETER!";
+	strings[8] = "INVALID COLOR!";
+	strings[9] = "MAP IS NOT ENDING WITH '.cub'!";
+	strings[10] = "MAP CONTAINS INVALID STARTING POSITION!";
+	strings[11] = "GOT AN INVALID READ ON MAP!";
+	strings[12] = "REQUESTED RESOLUTION IS INVALID!";
+	strings[13] = "YOUR SPECIFIED MAP IS A DIRECTORY!";
+	strings[14] = "MAP SPLIT FAILED!";
+	strings[15] = "MAP CONTAINS NO STARTING POSITION!";
+	strings[16] = "YOU KILLED ME D:";
+	strings[17] = "TEXTURE LOADING FAILED!";
+	strings[18] = "BMP FILE CREATION FAILED!";
+	strings[19] = "DOUBLE PARAMETER DEFINITION!";
+	strings[20] = "MISSING PARAMETER!";
 	printf("Error\n%s\n", strings[error_no]);
 	return (error_no);
 }

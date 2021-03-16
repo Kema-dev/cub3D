@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 10:46:12 by jjourdan          #+#    #+#              #
-#    Updated: 2021/03/16 15:29:30 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/03/16 15:49:48 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,8 @@ SRCS		=	ft_cub3d_main.c \
 				ft_cub3d_move.c \
 				ft_cub3d_sprites.c \
 				ft_cub3d_print_sprites.c \
-				ft_cub3d_split.c
+				ft_cub3d_split.c \
+				ft_cub3d_norme.c
 
 SRCS_FULL	=	$(addprefix $(SRCS_DIR), $(SRCS))
 
@@ -90,10 +91,10 @@ mlx:
 
 norme:			fclean
 				printf "\033c"
-				norminettev2 includes/
-				norminettev2 libs/gnl/
-				norminettev2 libs/libft/
-				norminettev2 sources/
+				norminette-old includes/
+				norminette-old libs/gnl/
+				norminette-old libs/libft/
+				norminette-old sources/
 
 d:				libft gnl mlx $(DEBUG_FULL) $(OBJS)
 				$(CC) $(DEBUG_FLAGS) -I libs/mlx/mms/ -I $(INC_DIR) $(LIBS) $(filter-out sources/ft_cub3d_main.o, $(OBJS)) $(DEBUG_FULL) -o $(DEBUG_OUT)

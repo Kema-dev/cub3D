@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 14:43:11 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 15:37:46 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int							ft_cub3d_check_init_params(t_map_params *map_params)
 	return (SUCCESS);
 }
 
-int			ft_cub3d_get_map_params(t_map_params *map_params, \
+int							ft_cub3d_get_map_params(t_map_params *map_params, \
 									char *map_lines)
 {
 	char	*tmp;
@@ -45,7 +45,7 @@ int			ft_cub3d_get_map_params(t_map_params *map_params, \
 	return (SUCCESS);
 }
 
-int			ft_cub3d_last_checks(char **tmp)
+int							ft_cub3d_last_checks(char **tmp)
 {
 	if (*tmp[0] != 0)
 		return (MAP_INVALID_CONFIG);
@@ -53,14 +53,14 @@ int			ft_cub3d_last_checks(char **tmp)
 		return (PASS);
 }
 
-int			ft_cub3d_param_return(int return_value)
+int							ft_cub3d_param_return(int return_value)
 {
 	if (return_value != SUCCESS)
 		return (return_value);
 	return (SUCCESS);
 }
 
-int			ft_cub3d_get_next_param(char **tmp, \
+int							ft_cub3d_get_next_param(char **tmp, \
 									t_map_params *map_params)
 {
 	int		return_value;

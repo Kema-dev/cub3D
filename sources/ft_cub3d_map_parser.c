@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 14:54:39 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:15:17 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ int			ft_cub3d_get_resolution(char **str, \
 		return (MAP_INVALID_RES);
 	if ((map_params->res_height = ft_atoi(*str)) <= 0)
 		map_params->res_height = 1395;
-	while ((*str[0] >= '0') && (*str[0] <= '9'))
-		(*str)++;
+	ft_cub3d_get_resolution_2(str);
 	while ((*str[0]) && (*str[0] != '\n'))
 	{
 		if (*str[0] != ' ')
@@ -54,17 +53,7 @@ int			ft_cub3d_get_texture(char **str, \
 	dest = ft_cub3d_get_first_word(str, ' ', '\n');
 	ft_cub3d_go_next_word(str, ' ', '\n');
 	path = ft_cub3d_get_first_word(str, ' ', '\n');
-	if ((strncmp(dest, "NO", 2) == 0) && (!map_params->north_text))
-		map_params->north_text = path;
-	else if ((strncmp(dest, "SO", 2) == 0) && (!map_params->south_text))
-		map_params->south_text = path;
-	else if ((strncmp(dest, "WE", 2) == 0) && (!map_params->west_text))
-		map_params->west_text = path;
-	else if ((strncmp(dest, "EA", 2) == 0) && (!map_params->east_text))
-		map_params->east_text = path;
-	else if ((strncmp(dest, "S", 1) == 0) && (!map_params->sprite_text))
-		map_params->sprite_text = path;
-	else
+	if (ft_cub3d_get_texture_2(path, dest, map_params) != SUCCESS)
 		return (DOUBLE_DEF);
 	free(dest);
 	while ((*str[0]) && (*str[0] != '\n'))
@@ -85,24 +74,7 @@ int			ft_cub3d_get_plane(char **str, \
 	int		b;
 
 	dest = ft_cub3d_get_first_word(str, ' ', '\n');
-	ft_cub3d_go_next_word(str, ' ', '\n');
-	if (((r = ft_atoi(*str)) < 0) || ((r == 0) && ((*str[0] != '0'))))
-		return (MAP_INVALID_COLOR);
-	ft_cub3d_pass_digit(str);
-	if (*str[0] != ',')
-		return (MAP_INVALID_COLOR);
-	else
-		(*str)++;
-	if (((g = ft_atoi(*str)) < 0) || ((g == 0) && ((*str[0] != '0'))))
-		return (MAP_INVALID_COLOR);
-	ft_cub3d_pass_digit(str);
-	if (*str[0] != ',')
-		return (MAP_INVALID_COLOR);
-	else
-		(*str)++;
-	if (((b = ft_atoi(*str)) < 0) || ((b == 0) && ((*str[0] != '0'))))
-		return (MAP_INVALID_COLOR);
-	if ((r > 255) || (g > 255) || (b > 255))
+	if (ft_cub3d_get_plane_2(str, r, g, b) != SUCCESS)
 		return (MAP_INVALID_COLOR);
 	if ((ft_strncmp(dest, "F", 1) == 0) && (!map_params->floor_color))
 		map_params->floor_color = ft_cub3d_create_rgb_3(r, g, b);
