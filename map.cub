@@ -1,9 +1,14 @@
-R 3 3
+R 800 800
+
+
 NO ./textures/bookshelf.xpm
 SO ./textures/cracked_stone_bricks.xpm
-EA ./textures/purplestone.xpm
-WE ./textures/piston_top.xpm
 S ./textures/barrel.xpm
+WE ./textures/piston_top.xpm
+
+
+EA ./textures/purplestone.xpm
+
 F 255,0,255
 C 51,26,255
 

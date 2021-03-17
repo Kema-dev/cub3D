@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:46:53 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 15:47:50 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 10:54:19 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,17 @@ int					ft_cub3d_field_is_charset(char *field, char *charset)
 {
 	ssize_t	i;
 	ssize_t	k;
+	int		dual;
 	int		return_value;
 
+	dual = 0;
 	i = -1;
 	while (field[++i])
 	{
 		return_value = MAP_INVALID_CHAR;
+		if ((field[i] == 'N') || (field[i] == 'S') \
+			|| (field[i] == 'E') || (field[i] == 'W'))
+			dual++;
 		k = -1;
 		while (charset[++k])
 		{
@@ -120,5 +125,7 @@ int					ft_cub3d_field_is_charset(char *field, char *charset)
 		if (return_value != SUCCESS)
 			return (return_value);
 	}
+	if (dual != 1)
+		return (MAP_NO_STARTING_POS);
 	return (SUCCESS);
 }
