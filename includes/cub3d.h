@@ -6,15 +6,15 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 11:15:01 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 11:30:37 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _CUB3D_H
 # define _CUB3D_H
 
-# include "get_next_line.h"
-# include "libft.h"
+# include "../libs/gnl/get_next_line.h"
+# include "../libs/libft/includes/libft.h"
 # include <sys/types.h>
 # include <unistd.h>
 # include <stdio.h>
