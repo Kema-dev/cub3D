@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:49:10 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 10:21:30 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 10:37:24 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ void						ft_cub3d_get_resolution_2(t_map_params *map_params, char **str)
 		map_params->res_width = MAX_RES_WIDTH;
 	if (map_params->res_height > MAX_RES_HEIGHT)
 		map_params->res_height = MAX_RES_HEIGHT;
+	if (map_params->res_width < MIN_RES_WIDTH)
+	{
+		map_params->res_width = MIN_RES_WIDTH;
+		printf("ADAPTED RESOLUTION WIDTH TO %d\n", MAX_RES_WIDTH);
+	}
+	if (map_params->res_height < MIN_RES_HEIGHT)
+	{
+		map_params->res_height = MIN_RES_HEIGHT;
+		printf("ADAPTED RESOLUTION HEIGHT TO %d\n", MAX_RES_HEIGHT);
+	}
 }
 
 int							ft_cub3d_get_texture_2(char *path, \
@@ -77,4 +87,32 @@ int							ft_cub3d_get_plane_3(char **str)
 		(*str)++;
 	}
 	return (SUCCESS);
+}
+
+int	ft_cub3d_res_atoi(const char *nptr)
+{
+	unsigned int	n;
+	int				neg;
+
+	neg = 1;
+	if (!nptr)
+		return (0);
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			neg = -1;
+		nptr++;
+	}
+	n = 0;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		if (n > n * 10 + *nptr - '0')
+			return (-1);
+		n = n * 10 + *nptr - '0';
+		nptr++;
+	}
+	n *= neg;
+	return (n);
 }

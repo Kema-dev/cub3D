@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 10:21:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 10:34:12 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 
 # define MAX_RES_WIDTH			2560
 # define MAX_RES_HEIGHT			1395
+# define MIN_RES_WIDTH			300
+# define MIN_RES_HEIGHT			300
 
 /*
 ** return values
@@ -376,5 +378,6 @@ int							ft_cub3d_get_plane_2(char **str, \
 												int *g, \
 												int *b);
 int							ft_cub3d_get_plane_3(char **str);
+int							ft_cub3d_res_atoi(const char *nptr);
 
 #endif
