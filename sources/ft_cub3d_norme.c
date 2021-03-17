@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:49:10 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 10:37:24 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 11:01:21 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void						ft_cub3d_get_resolution_2(t_map_params *map_params, char **str)
 	if (map_params->res_width < MIN_RES_WIDTH)
 	{
 		map_params->res_width = MIN_RES_WIDTH;
-		printf("ADAPTED RESOLUTION WIDTH TO %d\n", MAX_RES_WIDTH);
+		printf("ADAPTED RESOLUTION WIDTH TO %d\n", MIN_RES_WIDTH);
 	}
 	if (map_params->res_height < MIN_RES_HEIGHT)
 	{
 		map_params->res_height = MIN_RES_HEIGHT;
-		printf("ADAPTED RESOLUTION HEIGHT TO %d\n", MAX_RES_HEIGHT);
+		printf("ADAPTED RESOLUTION HEIGHT TO %d\n", MIN_RES_HEIGHT);
 	}
 }
 
