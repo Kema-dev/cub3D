@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 16:34:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 10:22:56 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			ft_cub3d_get_resolution(char **str, \
 	if (*str[0] == '-')
 		return (MAP_INVALID_RES);
 	if ((map_params->res_width = ft_atoi(*str)) <= 0)
-		map_params->res_width = 2560;
+		map_params->res_width = MAX_RES_WIDTH;
 	while ((*str[0] >= '0') && (*str[0] <= '9'))
 		(*str)++;
 	while (*str[0] == ' ')
@@ -31,8 +31,8 @@ int			ft_cub3d_get_resolution(char **str, \
 	if (*str[0] == '-')
 		return (MAP_INVALID_RES);
 	if ((map_params->res_height = ft_atoi(*str)) <= 0)
-		map_params->res_height = 1395;
-	ft_cub3d_get_resolution_2(str);
+		map_params->res_height = MAX_RES_HEIGHT;
+	ft_cub3d_get_resolution_2(map_params, str);
 	while ((*str[0]) && (*str[0] != '\n'))
 	{
 		if (*str[0] != ' ')

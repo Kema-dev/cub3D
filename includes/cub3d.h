@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 16:34:51 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 10:21:21 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@
 # define ESC_KEY				53
 # define LEFT_ARROW_KEY			123
 # define RIGHT_ARROW_KEY		124
+
+# define MAX_RES_WIDTH			2560
+# define MAX_RES_HEIGHT			1395
 
 /*
 ** return values
@@ -364,7 +367,7 @@ char						**ft_cub3d_split(char const *s, char c);
 int							ft_cub3d_release(int keycode, t_data *data);
 int							ft_cub3d_field_is_charset(char *field, \
 													char *charset);
-void						ft_cub3d_get_resolution_2(char **str);
+void						ft_cub3d_get_resolution_2(t_map_params *map_params, char **str);
 int							ft_cub3d_get_texture_2(char *path, \
 												char *dest, \
 												t_map_params *map_params);

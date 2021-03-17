@@ -6,16 +6,20 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:49:10 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 16:34:54 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 10:21:30 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void						ft_cub3d_get_resolution_2(char **str)
+void						ft_cub3d_get_resolution_2(t_map_params *map_params, char **str)
 {
 	while ((*str[0] >= '0') && (*str[0] <= '9'))
 		(*str)++;
+	if (map_params->res_width > MAX_RES_WIDTH)
+		map_params->res_width = MAX_RES_WIDTH;
+	if (map_params->res_height > MAX_RES_HEIGHT)
+		map_params->res_height = MAX_RES_HEIGHT;
 }
 
 int							ft_cub3d_get_texture_2(char *path, \
