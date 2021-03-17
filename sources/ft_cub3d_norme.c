@@ -6,13 +6,14 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:49:10 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 11:01:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 11:15:18 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void						ft_cub3d_get_resolution_2(t_map_params *map_params, char **str)
+void						ft_cub3d_get_resolution_2(t_map_params *map_params,\
+														char **str)
 {
 	while ((*str[0] >= '0') && (*str[0] <= '9'))
 		(*str)++;
@@ -89,7 +90,7 @@ int							ft_cub3d_get_plane_3(char **str)
 	return (SUCCESS);
 }
 
-int	ft_cub3d_res_atoi(const char *nptr)
+int							ft_cub3d_res_atoi(const char *nptr)
 {
 	unsigned int	n;
 	int				neg;
