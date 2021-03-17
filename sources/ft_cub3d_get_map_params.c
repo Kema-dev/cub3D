@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 10:54:16 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:46:32 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int							ft_cub3d_check_init_params(t_map_params *map_params)
 	if ((!map_params->res_width) || (!map_params->res_height) \
 				|| (!map_params->north_text) || (!map_params->south_text) \
 				|| (!map_params->east_text) || (!map_params->west_text) \
-				|| (!map_params->sprite_text) || (!map_params->floor_color) \
-				|| (!map_params->ceiling_color) || (!map_params->field) \
+				|| (!map_params->sprite_text) || (!map_params->field) \
 				|| (!map_params->orientation) || (!map_params->starting_pos_x) \
 				|| (!map_params->starting_pos_y))
 		return (MISSING_PARAM);
@@ -45,8 +44,9 @@ int							ft_cub3d_get_map_params(t_map_params *map_params, \
 	return (SUCCESS);
 }
 
-int							ft_cub3d_last_checks(char **tmp)
+int							ft_cub3d_last_checks(char **tmp, t_map_params *map_params)
 {
+	ft_cub3d_get_field(tmp, map_params);
 	if (*tmp[0] != 0)
 		return (MAP_INVALID_CONFIG);
 	else
@@ -86,6 +86,6 @@ int							ft_cub3d_get_next_param(char **tmp, \
 		return_value = ft_cub3d_get_field(tmp, map_params);
 	}
 	else
-		return (ft_cub3d_last_checks(tmp));
+		return (ft_cub3d_last_checks(tmp, map_params));
 	return (ft_cub3d_param_return(return_value));
 }

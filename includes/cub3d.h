@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:37:22 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 11:30:37 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:18:05 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,7 @@ char						*ft_cub3d_get_first_word(char **str, \
 int							ft_cub3d_check_map_is_dir(char *map_path);
 void						ft_cub3d_print_map_params(t_map_params *map_params);
 int							ft_cub3d_pass_digit(char **str);
-int							ft_cub3d_last_checks(char **tmp);
+int							ft_cub3d_last_checks(char **tmp, t_map_params *map_params);
 int							ft_cub3d_param_return(int return_value);
 int							ft_cub3d_check_init_params(t_map_params \
 														*map_params);

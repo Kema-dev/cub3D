@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 10:54:17 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:11:21 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int			ft_cub3d_get_plane(char **str, \
 	int		g;
 	int		b;
 
-	r = 0;
-	g = 0;
-	b = 0;
+	r = -1;
+	g = -1;
+	b = -1;
 	dest = ft_cub3d_get_first_word(str, ' ', '\n');
 	if (ft_cub3d_get_plane_2(str, &r, &g, &b) != SUCCESS)
 		return (MAP_INVALID_COLOR);
@@ -89,6 +89,8 @@ int			ft_cub3d_get_plane(char **str, \
 	ft_cub3d_pass_digit(str);
 	if (ft_cub3d_get_plane_3(str) != SUCCESS)
 		return (MAP_INVALID_CHAR);
+	if ((r < 0) || (g < 0) || (b < 0))
+		return (MAP_INVALID_COLOR);
 	return (SUCCESS);
 }
 
