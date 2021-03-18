@@ -4,7 +4,6 @@ My 42 Lyon's cub3D
 It has been made with the old norminette (v2.x)
 
 - empty line in map
-- map starting by space ???
 
 useful command :
 
