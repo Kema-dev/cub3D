@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:46:53 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 10:54:19 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 17:08:05 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,14 @@ static size_t		ft_cub3d_get_nb_strs(char const *s, char c)
 		if (s[i] == c)
 		{
 			nb_strs++;
-			while (s[i] && s[i] == c)
-				i++;
+			i++;
+			if (s[i] == c)
+			{
+				while (s[i] == c)
+					i++;
+				if (s[i])
+					exit(ft_cub3d_print_errno(MAP_INVALID_CHAR));
+			}
 		}
 		else
 			i++;
