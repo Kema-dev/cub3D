@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/22 10:17:39 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 12:29:47 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,6 @@ int							ft_cub3d_get_next_param(char **tmp, \
 	else if ((strncmp(*tmp, "F ", 2) == 0) || (strncmp(*tmp, "C ", 2) == 0))
 	{
 		return_value = ft_cub3d_get_plane(tmp, map_params);
-	}
-	else if (ft_isdigit(*tmp[0]))
-	{
-		return_value = ft_cub3d_get_field(tmp, map_params);
 	}
 	else
 		return (ft_cub3d_last_checks(tmp, map_params));
