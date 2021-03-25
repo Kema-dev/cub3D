@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 12:43:29 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/22 12:29:47 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 14:56:36 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int							ft_cub3d_get_map_params(t_map_params *map_params, \
 	int		return_value;
 
 	tmp = map_lines;
+	map_params->floor_color = -1;
+	map_params->ceiling_color = -1;
 	while ((return_value = ft_cub3d_get_next_param(&tmp, map_params)) \
 															== SUCCESS)
 		;
@@ -47,6 +49,8 @@ int							ft_cub3d_get_map_params(t_map_params *map_params, \
 int							ft_cub3d_last_checks(char **tmp, \
 												t_map_params *map_params)
 {
+	if ((map_params->ceiling_color == -1) || (map_params->floor_color == -1))
+		return (MAP_INVALID_CONFIG);
 	ft_cub3d_get_field(tmp, map_params);
 	if (*tmp[0] != 0)
 		return (MAP_INVALID_CONFIG);
