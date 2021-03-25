@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:23:13 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/17 16:00:14 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 15:11:23 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ int							ft_cub3d_check_arg(int argc,\
 												bool *save)
 {
 	if ((argc <= 1) || (argc >= 4))
-		return (INVALID_ARG_NUM);
+		exit(ft_cub3d_print_errno(INVALID_ARG_NUM));
 	if (argv[2])
 	{
 		if (ft_strncmp(argv[2], "--save", 7) != SUCCESS)
-			return (INVALID_ARG);
+			exit(ft_cub3d_print_errno(INVALID_ARG));
 		else
 			*save = true;
 	}
 	if (ft_strlen(argv[1]) <= 4)
-		return (MAP_INVALID_EXT);
+		exit(ft_cub3d_print_errno(MAP_INVALID_EXT));
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != SUCCESS)
-		return (MAP_INVALID_EXT);
+		exit(ft_cub3d_print_errno(MAP_INVALID_EXT));
 	return (SUCCESS);
 }
 
@@ -39,7 +39,7 @@ int							ft_cub3d_check_map_is_dir(char *map_path)
 	if ((fd = open(map_path, O_DIRECTORY)) >= 0)
 	{
 		close(fd);
-		return (MAP_IS_DIR);
+		exit(ft_cub3d_print_errno(MAP_IS_DIR));
 	}
 	else
 		return (SUCCESS);
@@ -55,9 +55,9 @@ int							ft_cub3d_check_map(char *map_path, \
 
 	return_value = 0;
 	if (ft_cub3d_check_map_is_dir(map_path) != SUCCESS)
-		return (MAP_IS_DIR);
+		exit(ft_cub3d_print_errno(MAP_IS_DIR));
 	else if ((fd = open(map_path, O_RDONLY)) < 0)
-		return (MAP_INVALID_READ);
+		exit(ft_cub3d_print_errno(MAP_INVALID_READ));
 	while ((return_value = get_next_line(fd, &buf)) > 0)
 	{
 		map_lines = ft_strjoin_free_s1(map_lines, buf);
@@ -67,11 +67,11 @@ int							ft_cub3d_check_map(char *map_path, \
 	map_lines = ft_strjoin_free_s1(map_lines, buf);
 	free(buf);
 	if (return_value < 0)
-		return (MAP_INVALID_READ);
+		exit(ft_cub3d_print_errno(MAP_INVALID_READ));
 	close(fd);
 	if ((return_value = ft_cub3d_get_map_params(map_params, \
 												map_lines)) != SUCCESS)
-		return (return_value);
+		exit(ft_cub3d_print_errno(return_value));
 	return (SUCCESS);
 }
 

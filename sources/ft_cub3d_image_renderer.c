@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/16 13:21:10 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 15:21:04 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,23 +91,23 @@ int							ft_cub3d_raycast_load_text(t_data *data)
 	if (!(data->texture[0].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->north_text, \
 					&data->texture[0].x, &data->texture[0].y)))
-		return (TEXT_FAILURE);
+		exit(ft_cub3d_print_errno(TEXT_FAILURE));
 	if (!(data->texture[1].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->south_text, \
 					&data->texture[1].x, &data->texture[1].y)))
-		return (TEXT_FAILURE);
+		exit(ft_cub3d_print_errno(TEXT_FAILURE));
 	if (!(data->texture[2].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->east_text, \
 					&data->texture[2].x, &data->texture[2].y)))
-		return (TEXT_FAILURE);
+		exit(ft_cub3d_print_errno(TEXT_FAILURE));
 	if (!(data->texture[3].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->west_text, \
 					&data->texture[3].x, &data->texture[3].y)))
-		return (TEXT_FAILURE);
+		exit(ft_cub3d_print_errno(TEXT_FAILURE));
 	if (!(data->texture[4].img = mlx_xpm_file_to_image(data->mlx, \
 		data->map_params->sprite_text, \
 					&data->texture[4].x, &data->texture[4].y)))
-		return (TEXT_FAILURE);
+		exit(ft_cub3d_print_errno(TEXT_FAILURE));
 	ft_cub3d_get_text_addr(data);
 	return (SUCCESS);
 }
