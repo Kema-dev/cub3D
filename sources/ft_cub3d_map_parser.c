@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:49:56 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/25 16:32:21 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 10:13:10 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int			ft_cub3d_get_plane(char **str, \
 		exit(ft_cub3d_print_errno(MAP_INVALID_COLOR));
 	if ((ft_strncmp(dest, "F", 1) == 0) && (map_params->floor_color == -1))
 		map_params->floor_color = ft_cub3d_create_rgb_3(r, g, b);
-	else if ((ft_strncmp(dest, "C", 1) == 0) && (map_params->ceiling_color == -1))
+	else if ((ft_strncmp(dest, "C", 1) == 0) \
+				&& (map_params->ceiling_color == -1))
 		map_params->ceiling_color = ft_cub3d_create_rgb_3(r, g, b);
 	else
 		exit(ft_cub3d_print_errno(DOUBLE_DEF));

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:14:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/03/25 15:21:04 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 10:07:32 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 	int		fd;
 
 	if (!(data = ft_calloc(1, sizeof(t_data))))
-		return (MALLOC_FAIL);
+		exit(ft_cub3d_print_errno(MALLOC_FAIL));
 	data->map_params = map_params;
 	data->mlx = mlx_init();
 	ft_cub3d_raycast_param(data);
 	ft_cub3d_raycast_orientation(data);
 	ft_cub3d_init_sprites(data);
 	if ((ft_cub3d_raycast_load_text(data)) != SUCCESS)
-		return (TEXT_FAILURE);
+		exit(ft_cub3d_print_errno(TEXT_FAILURE));
 	data->img = mlx_new_image(data->mlx, data->map_params->res_width, \
 								data->map_params->res_height);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
@@ -59,7 +59,7 @@ int							ft_cub3d_save_file(t_map_params *map_params)
 		exit(ft_cub3d_print_errno(BMP_FAIL));
 	ft_cub3d_create_bmp(data, fd);
 	printf("%s\n", "IMAGE SAVED TO \"image.bmp\"!");
-	return (SUCCESS);
+	exit(SUCCESS);
 }
 
 void						ft_cub3d_get_text_addr(t_data *data)
